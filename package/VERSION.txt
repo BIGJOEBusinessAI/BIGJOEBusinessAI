@@ -1,0 +1,2 @@
+BIGJOE Business AI v58.13
+Sales Returns: Return button on Sales/POS (backend was already complete — inventory restore, loyalty reversal, full exclusion from all reports); leaderboard tightened further (5 rows, 180px cap on phones)

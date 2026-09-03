@@ -1,0 +1,16 @@
+{
+  "appId": "com.bigjoe.businessai",
+  "appName": "BIGJOE Business AI",
+  "webDir": "www",
+  "server": {
+    "url": "https://REPLACE-WITH-YOUR-BIGJOE-DOMAIN.example.com",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "always"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIGJOE Business AI — Smart Business Management</title><meta name="description" content="BIGJOE Business AI helps Nigerian businesses manage sales, inventory, customers, suppliers, accounting and business intelligence in one platform."><meta name="robots" content="index,follow"><meta name="application-name" content="BIGJOE Business AI"><meta property="og:title" content="BIGJOE Business AI"><meta property="og:description" content="Smart business management, analytics and AI for growing businesses."><meta property="og:type" content="website"><link rel="canonical" href="/"> <link rel="stylesheet" href="/style.css"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#172033"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="mobile-web-app-capable" content="yes"><link rel="apple-touch-icon" href="/icon-192.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BIGJOE Business AI","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android, iOS, Windows","description":"Smart business management and business intelligence platform for growing businesses."}</script>
+</head>
+<body class="screen-welcome">
+<div id="toast"></div>
+<header class="top site-topbar">
+  <div class="brand brand-lockup" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <img src="/icon-192.png" alt="BIGJOE Business AI" class="brand-logo">
+    <div><strong>BIGJOE</strong><span>BUSINESS AI</span></div>
+  </div>
+  <div id="nav" class="top-actions public-top-actions">
+    <button class="top-start-free" onclick="showAuth('login')">Start free</button>
+  </div>
+</header>
+<main>
+<section id="landing" class="hero hero-v57 welcome-hero">
+  <div class="hero-copy">
+    <div class="badge gold-badge">✦ WELCOME TO BIGJOE BUSINESS AI</div>
+    <h1>Run smarter.<br><span>Grow bigger.</span><br><em>BIGJOE.</em></h1>
+    <h2 class="welcome-business-name">BIGJOE Business AI</h2>
+    <p>BIGJOE is an all-in-one business management and AI platform that helps business owners manage sales, inventory, customers, accounting and daily operations—while turning business data into clear decisions for growth.</p>
+    <div class="welcome-ad" aria-label="BIGJOE feature highlights">
+      <div class="welcome-ad-track">
+        <article class="welcome-ad-slide active"><span class="ad-icon">📊</span><div><b>See your business clearly</b><small>Track sales, profit, expenses and performance from one professional dashboard.</small></div></article>
+        <article class="welcome-ad-slide"><span class="ad-icon">🤖</span><div><b>Let BIGJOE help you decide</b><small>Ask the AI Assistant questions about your actual business records and get practical guidance.</small></div></article>
+        <article class="welcome-ad-slide"><span class="ad-icon">📦</span><div><b>Keep operations under control</b><small>Manage products, stock, customers, suppliers, branches and transactions in one place.</small></div></article>
+        <article class="welcome-ad-slide"><span class="ad-icon">⚡</span><div><b>Move from information to action</b><small>Smart automation highlights important changes and recommends what deserves your attention.</small></div></article>
+      </div>
+      <div class="welcome-ad-dots" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-logo-frame"><img src="/bigjoe-master-icon.png" alt="BIGJOE Business AI logo"></div>
+    <div class="hero-glow-card"><b>BIGJOE BUSINESS AI</b><span>Manage. Understand. Grow.</span></div>
+  </div>
+</section>
+<section id="platform" class="marketing-section public-extra"><div class="section-kicker">THE BIGJOE PLATFORM</div><h2>Everything your business needs in one command center.</h2><p class="section-lead">From the first sale to financial control and AI recommendations, BIGJOE keeps your business information connected.</p><div class="feature-showcase">
+  <article><b>📊 Live Business Intelligence</b><p>Revenue, profit, expenses, inventory and customer performance in one view.</p></article>
+  <article><b>🤖 AI & Automation</b><p>Ask BIGJOE questions, receive recommendations and monitor important business signals.</p></article>
+  <article><b>📦 Complete Operations</b><p>POS, products, suppliers, purchases, customers, loyalty and documents.</p></article>
+  <article><b>🔐 Accounting & Control</b><p>Cashbook, financial statements, audit, permissions and data protection.</p></article>
+</div></section>
+<section id="solutions" class="marketing-section split-section public-extra"><div><div class="section-kicker">BUILT TO SCALE</div><h2>One business. Every screen.</h2><p class="section-lead">BIGJOE is being designed around one business engine that can power web, laptop, Android and iPhone experiences.</p><div class="device-pills"><span>🌐 Web</span><span>💻 Laptop</span><span>📱 Android</span><span>🍎 iPhone</span></div></div><div class="platform-card"><div class="platform-orbit">BJ</div><b>BIGJOE Everywhere</b><small>One account • One business engine • Connected experiences</small></div></section>
+<section id="security" class="marketing-section security-section public-extra"><div class="section-kicker">TRUST & CONTROL</div><h2>Your business stays under your control.</h2><div class="security-grid"><span>🔒 Authentication</span><span>👥 Roles & permissions</span><span>🛡 Data protection</span><span>📋 Audit history</span><span>📱 Device management foundation</span><span>⚙ System health</span></div></section>
+
+<section id="phoneAccess" class="phone-access public-extra"><div class="phone-access-inner"><div><span class="badge">📱 PHONE & LAPTOP ACCESS</span><h2>Use BIGJOE on your phone</h2><p>On the same Wi-Fi as the computer running BIGJOE, open the address shown below. For worldwide access and Google search, BIGJOE will need to be deployed to a public domain.</p></div><div class="phone-url-box"><b id="lanAccessStatus">Checking local network address…</b><code id="lanAccessUrl">Please wait…</code><button onclick="copyLanUrl()">Copy address</button></div></div></section>
+
+<section id="auth" class="auth-screen hidden" aria-label="BIGJOE account login">
+  <div class="auth-page-shell">
+    <div class="authbox">
+      <div class="auth-brand"><img src="/icon-192.png" alt="BIGJOE Business AI"><div><strong>BIGJOE</strong><span>BUSINESS AI</span></div></div>
+      <div class="auth-kicker">SECURE BUSINESS ACCESS</div>
+      <h2 id="authTitle">Welcome back</h2>
+      <p class="auth-subtitle">Sign in to your BIGJOE Business AI account to continue to your Overview.</p>
+      <form id="authForm">
+        <div id="nameField"><label for="name">Full name</label><input id="name" placeholder="Full name"></div>
+        <div><label for="email">Email address</label><input id="email" type="email" placeholder="Enter your email address" required></div>
+        <div class="password-field"><label for="password">Password</label><div class="password-input-wrap"><input id="password" type="password" placeholder="Enter your password" required><button type="button" class="password-toggle" onclick="togglePasswordVisibility()" aria-label="Show password" aria-pressed="false">Show</button></div></div>
+        <button class="primary auth-submit" id="authButton">Log in</button>
+      </form>
+      <p id="authSwitch"></p>
+    </div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+<div class="dashboard-head">
+  <div class="dashboard-identity">
+    <img src="/bigjoe-master-icon.png" alt="BIGJOE Business AI" class="dashboard-brand-logo">
+    <div class="dashboard-welcome"><h2>Welcome, <span id="userName"></span> 👋</h2><span id="overviewActiveBranch" class="muted">Active branch</span></div>
+  </div>
+  <div class="dashboard-head-actions">
+    <label class="operating-branch-control"><span>Operating branch</span><select id="headerActiveBranchSelect" onchange="selectHeaderActiveBranch()" aria-label="Operating branch"></select></label>
+    <button onclick="logout()">Log out</button>
+  </div>
+</div>
+<div class="tabs-nav professional-nav">
+  <div class="overview-nav-row">
+    <div class="features-menu overview-menu">
+      <button class="menu-trigger" aria-label="Open BIGJOE features" aria-expanded="false" onclick="toggleFeaturesMenu(event)"><span class="hamburger-lines"><i></i><i></i><i></i></span><span class="menu-label">Features</span></button>
+      <div id="featuresDropdown" class="features-dropdown">
+        <div class="features-menu-heading"><b>BIGJOE Features</b><span>Everything else is here</span></div>
+        <button onclick="showPage('controlCenter',this)">✦ Control Center</button>
+        <button onclick="showPage('branches',this)">🏢 Branches</button>
+        <button onclick="showPage('reports',this)">📑 Reports</button>
+        <button onclick="showPage('financialCenter',this)">📊 Financial Centre</button>
+        <button onclick="showPage('accounting',this)">📚 Accounting</button>
+        <button onclick="showPage('analytics',this)">📊 Business Intelligence</button>
+        <button onclick="showPage('planner',this)">🎯 Business Planner</button>
+        <button onclick="showPage('cashflow',this)">💧 Cash Flow</button>
+        <button onclick="showPage('budgetControl',this)">🧾 Budget Control</button>
+        <button onclick="showPage('customerIntel',this)">🧠 Customer Intelligence</button>
+        <button onclick="showPage('marketing',this)">📣 Marketing</button>
+        <button onclick="showPage('loyalty',this)">❤️ Loyalty & Rewards</button>
+        <button onclick="showPage('documents',this)">🧾 Invoices & Quotes</button>
+        <button onclick="showPage('receivables',this)">💳 Receivables</button>
+        <button onclick="showPage('purchases',this)">📥 Purchases</button>
+        <button onclick="showPage('procurement',this)">🏭 Procurement Intelligence</button>
+        <button onclick="showPage('predictive',this)">🔮 Predictive Intelligence</button>
+        <button onclick="showPage('decisionAutomation',this)">⚡ Decision Automation</button>
+        <button onclick="showPage('smartActions',this)">⚡ Smart Action Center</button>
+        <button onclick="showPage('commandCenter',this)">🏢 Business Command Center</button>
+        <button onclick="showPage('automationCenter',this)">🤖 Smart Automation Center</button>
+        <button onclick="showPage('products',this)">🛒 Products</button>
+        <button onclick="showPage('categories',this)">🏷️ Categories</button>
+        <button onclick="showPage('suppliers',this)">🚚 Suppliers</button>
+        <button onclick="showPage('expenses',this)">💸 Expenses</button>
+        <button onclick="showPage('systemHealth',this)">🛡️ System Health</button>
+        <button onclick="showPage('dataAudit',this)">🛡️ Data & Audit</button>
+        <button onclick="showPage('tools',this)">🛠 Business Tools</button>
+        <button onclick="showPage('paymentHub',this)">💳 Payment Hub</button>
+        <button onclick="showPage('plansPage',this)">💳 Plans</button>
+        <button onclick="showPage('onboarding',this)">🚀 Business Setup</button>
+        <button onclick="showPage('staff',this)">👥 Staff & Permissions</button>
+        <button onclick="showPage('settings',this)">⚙ Settings</button>
+      </div>
+    </div>
+    <button class="overview-main-nav overview-home-nav active" onclick="showPage('overview',this)">⌂ Overview</button>
+    <button class="overview-main-nav" onclick="showPage('dashboard',this)">📊 Dashboard</button>
+    <button class="overview-main-nav" onclick="showPage('sales',this)">💰 Sales / POS</button>
+    <button class="overview-main-nav" onclick="showPage('inventory',this)">📦 Inventory</button>
+    <button class="overview-main-nav" onclick="showPage('customers',this)">👥 Customers</button>
+    <button class="overview-main-nav ai-main-nav" onclick="focusAIAssistant(this)">🤖 AI Assistant</button>
+    
+  </div>
+</div>
+
+<div id="controlCenter" class="page hidden">
+  <div class="control-hero"><div><span class="ai-badge">✦ BIGJOE CONTROL CENTER</span><h2>Welcome to your business command center</h2><p class="muted">A clean executive view of your business, branches, devices and important actions.</p></div><div class="control-actions"><button onclick="loadControlCenter()">↻ Refresh</button><button class="primary" onclick="showPage('automationCenter')">Open Smart Automation</button></div></div>
+  <div id="controlStats" class="stats control-stats"></div>
+  <div class="control-grid">
+    <div class="card control-card"><div class="section-head"><div><h3>📈 Performance</h3><p class="muted">Current selected period</p></div><button class="link" onclick="showPage('dashboard')">View dashboard</button></div><div id="controlPerformance"></div></div>
+    <div class="card control-card"><div class="section-head"><div><h3>🚨 Attention required</h3><p class="muted">Important signals from BIGJOE</p></div><button class="link" onclick="showPage('automationCenter')">View all</button></div><div id="controlAlerts"></div></div>
+    <div class="card control-card"><div class="section-head"><div><h3>📦 Stock watch</h3><p class="muted">Products needing attention</p></div><button class="link" onclick="showPage('inventory')">Inventory</button></div><div id="controlStock"></div></div>
+    <div class="card control-card"><div class="section-head"><div><h3>⚡ Quick actions</h3><p class="muted">Get to work faster</p></div></div><div class="quick-action-grid"><button onclick="showPage('sales')">💰 New Sale</button><button onclick="openProductModal()">📦 Add Product</button><button onclick="openCustomerModal()">👤 Add Customer</button><button onclick="showPage('reports')">📑 Reports</button><button onclick="showPage('accounting')">📚 Accounting</button><button onclick="showPage('settings')">⚙ Settings</button></div></div>
+  </div>
+</div>
+
+<div id="overview" class="page"><div class="page-refresh-bar"><button class="page-refresh" onclick="refreshPage('overview')">↻ Refresh</button></div><div class="grid">
+<div class="card wide ai-assistant-card">
+  <div class="ai-header"><div><span class="ai-badge">🤖 BIGJOE AI v49</span><h3>Your Business Advisor</h3><p class="muted">Ask in simple words. BIGJOE can now answer using your recorded sales, profit, expenses, customers and inventory.</p></div><div class="ai-status"><span></span> Ready to help</div></div>
+  <div class="ai-quick-prompts">
+    <button onclick="useAIPrompt('How is my business performing this month?')">📊 My business</button><button onclick="useAIPrompt('What should I do next based on my business records?')">🎯 What next?</button>
+    <button onclick="useAIPrompt('Which products are my best sellers?')">🏆 Best sellers</button>
+    <button onclick="useAIPrompt('Which products need restocking?')">📦 Stock alerts</button>
+    <button onclick="useAIPrompt('What are my largest expense categories?')">💰 Expenses</button>
+  </div>
+  <textarea id="aiInput" placeholder="Example: How can I increase sales in my shop?"></textarea>
+  <div class="ai-actions"><button class="primary" onclick="askAI()">Ask BIGJOE <span>→</span></button><small>BIGJOE uses your recorded business data when answering business-performance questions.</small></div>
+  <div id="aiOutput" class="ai-response"><div class="ai-placeholder">💬 Your answer will appear here.</div></div>
+</div>
+<div class="card wide"><h3>📦 Inventory Snapshot</h3><div id="overviewStats" class="stats"></div><button class="primary" onclick="showPage('inventory')">Open Inventory</button></div>
+<div class="card wide"><div class="section-head"><div><h3>📜 Activity History</h3><p class="muted">Recent actions recorded in BIGJOE.</p></div><button onclick="loadHistory()">↻ Refresh</button></div><div id="history">No activity yet.</div></div></div></div>
+
+<div id="dashboard" class="page hidden">
+<div class="section-head"><div><h2>📊 Business Dashboard</h2><p class="muted">Track sales, profit, customers, expenses and stock performance by branch.</p></div><div class="report-controls"><label>Report branch <select id="dashboardBranchSelect" onchange="selectDashboardBranch()"><option value="active">Active branch</option></select></label><label>From <input id="reportStart" type="date"></label><label>To <input id="reportEnd" type="date"></label><button class="primary" onclick="loadDashboard()">Apply</button><button onclick="loadDashboard()">↻ Refresh</button><button onclick="setReportPreset('today')">Today</button><button onclick="setReportPreset('7')">7 Days</button><button onclick="setReportPreset('month')">This Month</button><button onclick="setReportPreset('year')">This Year</button><button onclick="exportDashboardCSV()">⬇ CSV</button></div></div>
+<div id="dashboardStats" class="stats"></div>
+<div class="card wide"><div class="section-head"><div><h3>🏢 Branch Performance</h3><p class="muted">Separate performance for every active branch in the selected period.</p></div><span class="badge" id="dashboardScopeBadge">Active branch</span></div><div id="dashboardBranchReports" class="branch-report-grid"></div></div>
+<div class="card wide v32-decision-centre"><div class="section-head"><div><h3>🧠 BIGJOE Business Decision Centre</h3><p class="muted">A management snapshot that turns your actual records into clear decisions.</p></div><span class="badge">v32 Intelligence</span></div><div id="decisionMetrics" class="decision-metrics"></div><div class="decision-columns"><div><h4>🎯 What BIGJOE recommends</h4><div id="decisionActions" class="insights"></div></div><div><h4>🔎 Key signals</h4><div id="decisionSignals" class="insights"></div></div></div></div>
+<div class="grid dashboard-grid v26-intelligence"><div class="card wide"><div class="section-head"><div><h3>🔔 Business Alerts</h3><p class="muted">Important changes detected automatically from your records.</p></div><span class="badge">v26 Intelligence</span></div><div id="businessAlerts" class="alerts-list"></div></div><div class="card wide"><div class="section-head"><div><h3>📊 Period Comparison</h3><p class="muted">Current period compared with the immediately preceding period of the same length.</p></div></div><div id="periodComparison" class="comparison-grid"></div></div></div>
+<div class="grid dashboard-grid">
+ <div class="card"><div class="section-head"><div><h3>📈 Revenue Trend</h3><p class="muted">Daily revenue for the selected period.</p></div></div><div id="dailyChart" class="bar-chart"></div></div>
+ <div class="card"><div class="section-head"><div><h3>💰 Gross Profit Trend</h3><p class="muted">Daily gross profit before operating expenses.</p></div></div><div id="profitChart" class="bar-chart"></div></div>
+ <div class="card"><h3>🏆 Best-Selling Products</h3><div id="bestProducts"></div></div>
+ <div class="card"><h3>👥 Top Customers</h3><div id="topCustomers"></div></div>
+ <div class="card"><h3>💳 Payment Methods</h3><div id="paymentMethods"></div></div>
+ <div class="card"><h3>💸 Expense Categories</h3><div id="expenseCategories"></div></div>
+ <div class="card wide"><h3>⚠️ Stock Alerts</h3><div id="dashboardLowStock"></div></div>
+</div>
+<div class="grid dashboard-grid advanced-analytics">
+ <div class="card"><div class="section-head"><div><h3>🩺 Business Health Score</h3><p class="muted">A quick indicator based on profitability, expenses and stock risk.</p></div></div><div id="businessHealth"></div></div>
+ <div class="card"><div class="section-head"><div><h3>📉 Net Profit Trend</h3><p class="muted">Daily gross profit after operating expenses.</p></div></div><div id="netProfitChart" class="bar-chart"></div></div>
+ <div class="card"><div class="section-head"><div><h3>💸 Expense Trend</h3><p class="muted">Daily operating expenses in the selected period.</p></div></div><div id="expenseTrendChart" class="bar-chart"></div></div>
+ <div class="card"><h3>🚀 Fast-Moving Products</h3><div id="fastMovers"></div></div>
+ <div class="card"><h3>🐢 Slow-Moving Products</h3><div id="slowMovers"></div></div>
+ <div class="card"><h3>💎 Most Profitable Products</h3><div id="profitableProducts"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🤖 BIGJOE AI Business Advisor</h3><p class="muted">Practical recommendations based on your actual sales, expenses, profit and inventory data.</p></div></div><div id="aiAdvisor" class="insights"></div></div>
+ <div class="card"><h3>📦 Stock Risk & Reorder</h3><div id="stockInsights"></div></div>
+ <div class="card"><h3>💰 Margin Opportunities</h3><div id="marginOpportunities"></div></div>
+ <div class="card"><h3>💸 Expense Concentration</h3><div id="expenseConcentration"></div></div>
+ <div class="card wide"><h3>🎯 Recommended Actions</h3><div id="actionPlan" class="action-plan"></div></div>
+ <div class="card wide"><h3>📊 Key Business Ratios</h3><div id="businessRatios" class="summary-grid"></div></div>
+</div>
+<div class="card"><div class="section-head"><div><h3>📋 Management Summary</h3><p class="muted">A quick view of what needs your attention.</p></div><button onclick="printDashboard()">🖨 Print Report</button></div><div id="managementSummary" class="report-summary"></div></div>
+</div>
+
+<div id="analytics" class="page hidden">
+<div class="section-head"><div><h2>📊 Advanced Business Intelligence</h2><p class="muted">Turn your actual business records into clear performance insights and management decisions.</p></div><div class="doc-actions"><button class="primary" onclick="loadAnalytics()">↻ Refresh</button><button onclick="exportAnalyticsCSV()">⬇ CSV</button></div></div>
+<div class="card analytics-controls"><div class="report-controls"><label>From <input id="analyticsStart" type="date"></label><label>To <input id="analyticsEnd" type="date"></label><label>Branch <select id="analyticsBranch"><option value="">All branches</option></select></label><button class="primary" onclick="loadAnalytics()">Apply</button><button onclick="setAnalyticsPreset('today')">Today</button><button onclick="setAnalyticsPreset('7')">7 Days</button><button onclick="setAnalyticsPreset('month')">This Month</button><button onclick="setAnalyticsPreset('year')">This Year</button></div></div>
+<div id="analyticsKpis" class="stats"></div>
+<div class="grid dashboard-grid analytics-grid">
+ <div class="card wide"><div class="section-head"><div><h3>📈 Performance Comparison</h3><p class="muted">Selected period compared with the immediately preceding period of the same length.</p></div></div><div id="analyticsComparison" class="comparison-grid"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>📅 Performance Trend</h3><p class="muted">Revenue, gross profit, expenses and net profit by day.</p></div></div><div id="analyticsTrend" class="bar-chart"></div></div>
+ <div class="card"><h3>🏷️ Category Performance</h3><div id="analyticsCategories" class="table-wrap"></div></div>
+ <div class="card"><h3>🏢 Branch Performance</h3><div id="analyticsBranches" class="table-wrap"></div></div>
+ <div class="card"><h3>👥 Top Customers</h3><div id="analyticsCustomers" class="table-wrap"></div></div>
+ <div class="card"><h3>🏭 Supplier Spend</h3><div id="analyticsSuppliers" class="table-wrap"></div></div>
+ <div class="card"><h3>💳 Payment Methods</h3><div id="analyticsPayments"></div></div>
+ <div class="card"><h3>⚠️ Stock Risk</h3><div id="analyticsStockRisk"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🚨 Business Intelligence Alerts</h3><p class="muted">Important changes BIGJOE detected from your records.</p></div></div><div id="analyticsAlerts" class="alerts-list"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🎯 Recommended Management Actions</h3><p class="muted">Practical actions based on the selected period.</p></div></div><div id="analyticsRecommendations" class="action-plan"></div></div>
+</div></div>
+
+<div id="branches" class="page hidden"><div class="section-head"><div><h2>🏢 Multi-Branch Business Management</h2><p class="muted">Manage locations, compare branch performance and transfer stock between branches.</p></div><div class="doc-actions"><label>Active Branch<select id="activeBranchSelect" onchange="selectActiveBranch()"></select></label><button class="primary" onclick="loadBranchesPage()">↻ Refresh</button></div></div><div class="card"><div class="section-head"><div><h3>🏢 Your Branches</h3><p class="muted">Your current branch is used automatically for new sales, purchases and expenses.</p></div><button class="primary" onclick="openBranchModal()">+ Add Branch</button></div><div id="branchCards" class="stats"></div><div id="branchesTable" class="table-wrap"></div></div><div id="branchStats" class="stats"></div><div class="card"><div class="section-head"><div><h3>🌐 Consolidated Business Report</h3><p class="muted">Combined performance across all active branches for the selected period.</p></div><div class="doc-actions"><label>From <input id="branchReportFrom" type="date"></label><label>To <input id="branchReportTo" type="date"></label><button class="primary" onclick="loadConsolidatedBranchReport()">Apply</button></div></div><div id="consolidatedStats" class="stats"></div><div id="consolidatedTable" class="table-wrap"></div></div><div class="grid dashboard-grid"><div class="card wide"><h3>📊 Branch Performance</h3><div id="branchComparison" class="table-wrap"></div></div><div class="card"><h3>📦 Branch Inventory</h3><div id="branchInventory" class="table-wrap"></div></div></div><div class="card"><div class="section-head"><div><h3>🔄 Stock Transfer</h3><p class="muted">Move stock between active branches.</p></div></div><div class="scenario-form"><label>From<select id="transferFrom"></select></label><label>To<select id="transferTo"></select></label><label>Product<select id="transferProduct"></select></label><label>Quantity<input id="transferQty" type="number" min="0.01" step="0.01" value="1"></label><button class="primary" onclick="createBranchTransfer()">Transfer Stock</button></div></div><div class="card"><h3>📋 Recent Stock Transfers</h3><div id="branchTransfers" class="table-wrap"></div></div></div><div id="branchModal" class="modal hidden"><div class="modal-card branch-modal-card"><div class="modal-header"><div><span class="modal-kicker">BRANCH MANAGEMENT</span><h2>🏢 Add New Branch</h2><p class="muted">Enter the branch details below. You can update them later.</p></div><button class="close" type="button" onclick="closeBranchModal()" aria-label="Close">×</button></div><form onsubmit="submitBranch(event)"><label>Branch name<input id="branchName" required placeholder="e.g. BIGJOE Stores — Branch 2"></label><div class="two"><label>Branch code<input id="branchCode" placeholder="BR2"></label><label>Phone number<input id="branchPhone" type="tel" placeholder="080XXXXXXXXXX"></label></div><label>Address<textarea id="branchAddress" rows="3" placeholder="Full branch address"></textarea></label><div class="modal-actions"><button type="button" onclick="closeBranchModal()">Cancel</button><button class="primary" type="submit">Save Branch</button></div></form></div></div>
+
+<div id="planner" class="page hidden">
+<div class="section-head"><div><h2>🎯 BIGJOE Business Planner</h2><p class="muted">Forecast sales, track targets and know when to reorder before stock becomes a problem.</p></div><div class="doc-actions"><button class="primary" onclick="loadBusinessPlanner()">↻ Refresh</button></div></div>
+<div class="card planner-settings"><div class="section-head"><div><h3>⚙ Planning Settings</h3><p class="muted">These settings control the sales target and stock planning recommendations.</p></div></div><div class="planner-form"><label>Monthly Sales Target (₦)<input id="plannerSalesTarget" type="number" min="0" step="1000" placeholder="e.g. 500000"></label><label>Monthly Expense Limit (₦)<input id="plannerExpenseLimit" type="number" min="0" step="1000" placeholder="Optional"></label><label>Default Supplier Lead Time (days)<input id="plannerLeadDays" type="number" min="1" max="90" step="1" value="7"></label><label>Safety Stock (days)<input id="plannerSafetyDays" type="number" min="0" max="90" step="1" value="7"></label><button class="primary" onclick="savePlannerSettings()">Save Planning Settings</button></div></div>
+<div id="plannerStats" class="stats"></div>
+<div class="grid dashboard-grid planner-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🔮 Sales Forecast</h3><p class="muted">BIGJOE estimates future sales using the last 30 days, recent momentum and active selling days.</p></div><span id="forecastConfidence" class="badge"></span></div><div id="forecastCards" class="forecast-cards"></div><div id="forecastNarrative" class="planner-narrative"></div></div>
+ <div class="card"><h3>🎯 Monthly Target</h3><div id="plannerTargetProgress"></div></div>
+ <div class="card"><h3>💸 Expense Limit</h3><div id="plannerExpenseProgress"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>📦 Reorder Recommendations</h3><p class="muted">Recommended quantities are based on recent sales velocity, lead time, safety stock and current stock.</p></div></div><div id="reorderRecommendations" class="table-wrap"></div></div>
+ <div class="card"><h3>🚀 Top Opportunities</h3><div id="plannerTopProducts"></div></div>
+ <div class="card"><h3>🔔 Planning Alerts</h3><div id="plannerAlerts" class="alerts-list"></div></div>
+</div>
+</div>
+
+<div id="predictive" class="page hidden">
+<div class="section-head"><div><h2>🔮 BIGJOE Predictive Intelligence</h2><p class="muted">Estimate what may happen next using your actual sales history, profit pattern, targets and stock velocity.</p></div><div class="doc-actions"><button class="primary" onclick="loadPredictiveIntelligence()">↻ Refresh</button></div></div>
+<div class="card predictive-note"><b>How to read this:</b> These are planning estimates, not guarantees. BIGJOE uses recent sales pace, momentum and historical variation, then combines that with your current targets and stock levels.</div>
+<div id="predictiveStats" class="stats"></div>
+<div class="grid dashboard-grid predictive-grid">
+ <div class="card wide"><div class="section-head"><div><h3>📈 30-Day Sales Forecast</h3><p class="muted">A range is shown so you can see the uncertainty instead of relying on one number.</p></div><span id="predictiveConfidence" class="badge"></span></div><div id="predictiveForecastCards" class="forecast-cards"></div><div id="predictiveNarrative" class="planner-narrative"></div></div>
+ <div class="card"><h3>🎯 Target Outlook</h3><div id="predictiveTarget"></div></div>
+ <div class="card"><h3>💡 Recommended Actions</h3><div id="predictiveActions" class="insights"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>📦 Predicted Stock Risk</h3><p class="muted">Products with estimated short stock cover based on the last 60 days of demand.</p></div></div><div id="predictiveInventory" class="table-wrap"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🚨 Predictive Alerts</h3><p class="muted">Early warnings based on current trends.</p></div></div><div id="predictiveAlerts" class="alerts-list"></div></div>
+</div></div>
+
+<div id="decisionAutomation" class="page hidden">
+<div class="section-head"><div><h2>⚡ BIGJOE Intelligent Decision Centre</h2><p class="muted">Turn your actual business records and predictive signals into a prioritized action plan.</p></div><div class="doc-actions"><button class="primary" onclick="loadDecisionAutomation()">↻ Refresh</button></div></div>
+<div class="card decision-automation-note"><b>How this works:</b> BIGJOE ranks the most important actions using recent sales, profit, expenses, targets, customer activity and stock signals. It does not invent figures or pretend that a recommendation is a guarantee.</div>
+<div id="decisionAutomationStats" class="stats"></div>
+<div class="grid dashboard-grid decision-automation-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🚦 What should I do first?</h3><p class="muted">Your three highest-priority decisions right now.</p></div><span class="badge">Action priority</span></div><div id="decisionTop" class="decision-cards"></div></div>
+ <div class="card"><h3>📅 Execution Plan</h3><div id="decisionPlan" class="execution-plan"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🔴 Urgent</h3><p class="muted">Issues that deserve immediate attention.</p></div></div><div id="decisionUrgent" class="decision-list"></div></div>
+ <div class="card"><div class="section-head"><div><h3>🟠 High Priority</h3><p class="muted">Important actions for today.</p></div></div><div id="decisionHigh" class="decision-list"></div></div>
+ <div class="card"><div class="section-head"><div><h3>🟡 Medium Priority</h3><p class="muted">Actions to plan and monitor.</p></div></div><div id="decisionMedium" class="decision-list"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🧾 Decision Evidence</h3><p class="muted">The numbers BIGJOE used to produce these recommendations.</p></div></div><div id="decisionEvidence" class="decision-evidence"></div></div>
+</div></div>
+
+<div id="commandCenter" class="page hidden">
+<div class="section-head"><div><h2>🏢 BIGJOE Business Command Center</h2><p class="muted">One professional view of what is happening, what needs attention and what to do next.</p></div><div class="doc-actions"><button class="primary" onclick="loadCommandCenter()">↻ Refresh</button></div></div>
+<div class="card command-note"><b>Management view:</b> This centre combines your current performance, business-health signals, predictive warnings and open actions. It is a decision-support dashboard, not an accounting statement.</div>
+<div id="commandStats" class="stats"></div>
+<div class="grid dashboard-grid command-grid">
+ <div class="card"><div class="section-head"><div><h3>❤️ Business Health</h3><p class="muted">A management indicator across sales, margin, stock and execution.</p></div><span id="commandHealthBadge" class="badge"></span></div><div id="commandHealth" class="command-health"></div></div>
+ <div class="card"><h3>⚡ Open Actions</h3><div id="commandTasks"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🚨 What Needs Your Attention?</h3><p class="muted">Important signals from your actual BIGJOE records.</p></div></div><div id="commandAlerts" class="alerts-list"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🎯 Recommended Next Steps</h3><p class="muted">Prioritized actions connected to the relevant BIGJOE module.</p></div></div><div id="commandActions" class="decision-cards"></div></div>
+ <div class="card"><h3>📊 Business Snapshot</h3><div id="commandSnapshot" class="command-snapshot"></div></div>
+ <div class="card wide"><h3>⚡ Quick Commands</h3><p class="muted">Start common business actions directly from your Command Center.</p><div class="command-nav"><button onclick="showPage('sales',this)">🛒 New Sale</button><button onclick="showPage('customers',this)">👤 Add Customer</button><button onclick="showPage('products',this)">📦 Add Product</button><button onclick="showPage('purchases',this)">🏭 New Purchase</button><button onclick="showPage('smartActions',this)">📋 Create Task</button><button onclick="showPage('overview',this)">🤖 Ask BIGJOE AI</button></div></div><div class="card"><h3>🧭 Quick Navigation</h3><div class="command-nav"><button onclick="showPage('analytics',this)">📊 Business Intelligence</button><button onclick="showPage('predictive',this)">🔮 Predictive Intelligence</button><button onclick="showPage('decisionAutomation',this)">⚡ Decision Automation</button><button onclick="showPage('smartActions',this)">📋 Smart Action Center</button><button onclick="showPage('planner',this)">🎯 Business Planner</button><button onclick="showPage('accounting',this)">📚 Accounting</button></div></div>
+</div></div>
+
+<div id="automationCenter" class="page hidden">
+<div class="section-head"><div><h2>🤖 BIGJOE Smart Automation Center</h2><p class="muted">A proactive business briefing that watches your recorded sales, expenses, customers and stock signals. BIGJOE recommends actions, but never makes financial commitments without your confirmation.</p></div><div class="doc-actions"><button class="primary" onclick="loadAutomationCenter()">↻ Refresh</button></div></div>
+<div id="automationStats" class="stats automation-stats"></div>
+<div class="card automation-briefing"><div class="section-head"><div><h3>☀️ Your Business Briefing</h3><p class="muted">A concise summary of the last 7 days.</p></div><span id="automationTimestamp" class="badge"></span></div><div id="automationBriefing" class="automation-copy"></div></div>
+<div class="grid dashboard-grid automation-grid">
+ <div class="card wide automation-panel"><div class="section-head"><div><h3>🚨 Smart Alerts</h3><p class="muted">Signals that may require your attention.</p></div></div><div id="automationAlerts" class="alerts-list"></div></div>
+ <div class="card wide automation-panel"><div class="section-head"><div><h3>🎯 Recommended Actions</h3><p class="muted">Open the relevant module and decide what to do next.</p></div></div><div id="automationActions" class="decision-cards"></div></div>
+ <div class="card wide automation-panel"><div class="section-head"><div><h3>📦 Reorder Recommendations</h3><p class="muted">Suggested quantities are estimates based on recent demand, current stock and a safety period. Review before ordering.</p></div></div><div id="automationReorder" class="table-wrap"></div></div>
+ <div class="card"><h3>📈 Recent Change</h3><div id="automationChanges" class="summary-grid"></div></div>
+ <div class="card"><h3>🛡️ Automation Safety</h3><div class="automation-safety"><div>✓ No purchases are placed automatically.</div><div>✓ No payments are made automatically.</div><div>✓ Recommendations use recorded BIGJOE data.</div><div>✓ You remain in control of every financial action.</div></div></div>
+</div></div>
+
+<div id="smartActions" class="page hidden">
+<div class="section-head"><div><h2>⚡ BIGJOE Smart Action Center</h2><p class="muted">Turn BIGJOE recommendations into safe, trackable business tasks. Financial commitments always require your confirmation.</p></div><div class="doc-actions"><button class="primary" onclick="loadSmartActions()">↻ Refresh</button></div></div>
+<div id="smartActionStats" class="stats"></div>
+<div class="card smart-action-create"><div class="section-head"><div><h3>➕ Create a Business Task</h3><p class="muted">Use this for anything you want to remember, follow up or complete.</p></div></div><div class="smart-task-form"><label>Task<input id="smartTaskTitle" placeholder="e.g. Call Rahab about her next order"></label><label>Priority<select id="smartTaskPriority"><option value="urgent">Urgent</option><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select></label><label>Due date<input id="smartTaskDue" type="date"></label><label>Category<select id="smartTaskCategory"><option>Sales</option><option>Customers</option><option>Inventory</option><option>Finance</option><option>Suppliers</option><option>Operations</option><option selected>General</option></select></label><label class="wide-field">Notes<textarea id="smartTaskDescription" placeholder="Optional notes"></textarea></label><button class="primary" onclick="createSmartTask()">Create Task</button></div></div>
+<div class="grid dashboard-grid smart-action-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🤖 Recommended Actions</h3><p class="muted">Convert a BIGJOE recommendation into a task with one click.</p></div></div><div id="smartRecommendedActions" class="decision-list"></div></div>
+ <div class="card"><div class="section-head"><div><h3>📋 Open Tasks</h3><p class="muted">Your active business work.</p></div></div><div id="smartOpenTasks" class="smart-task-list"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🗂️ All Tasks</h3><p class="muted">Track pending, in-progress and completed actions.</p></div></div><div id="smartAllTasks" class="table-wrap"></div></div>
+</div></div>
+
+<div id="reports" class="page hidden">
+<div class="section-head"><div><h2 id="reportsPageTitle">📑 Your Business Report</h2><p class="muted">Personalized sales, expenses, customers and inventory insights prepared for your account.</p></div><div class="report-controls"><label>From <input id="managementReportStart" type="date"></label><label>To <input id="managementReportEnd" type="date"></label><button class="primary" onclick="loadManagementReports()">Apply</button><button onclick="loadManagementReports()">↻ Refresh</button><button onclick="setManagementReportPreset('month')">This Month</button><button onclick="setManagementReportPreset('year')">This Year</button><button onclick="printManagementReport()">🖨 Print</button><button onclick="exportManagementReportCSV()">⬇ CSV</button></div></div>
+<div id="reportExecutive" class="card wide"></div><div class="card wide"><h3>🏢 Branch Performance</h3><div id="reportBranchSummary" class="insights"></div></div>
+<div class="grid dashboard-grid">
+ <div class="card"><h3>💰 Profit & Loss</h3><div id="reportProfitLoss"></div></div>
+ <div class="card"><h3 id="reportSalesTitle">📈 Your Sales Report</h3><div id="reportSalesPerformance"></div></div>
+ <div class="card"><h3>💸 Expense Report</h3><div id="reportExpenses"></div></div>
+ <div class="card"><h3>📦 Inventory Valuation</h3><div id="reportInventory"></div></div>
+ <div class="card"><h3>👥 Customer Performance</h3><div id="reportCustomers"></div></div>
+ <div class="card"><h3>🎯 Management Priorities</h3><div id="reportPriorities"></div></div>
+</div>
+</div>
+
+<div id="expenses" class="page hidden"><div class="section-head"><div><h2>💸 Expenses</h2><p class="muted">Record and monitor business operating expenses to calculate true net profit.</p></div><div class="doc-actions"><button onclick="loadExpenses()">↻ Refresh</button><button class="primary" onclick="openExpenseModal()">+ Add Expense</button></div></div><div class="card"><div class="expense-toolbar"><label class="compact-select">Branch<select id="expenseBranchSelect" onchange="selectExpenseBranch()"><option value="all">All branches</option></select></label><label>From<input id="expenseStart" type="date"></label><label>To<input id="expenseEnd" type="date"></label><button onclick="loadExpenses()">Apply</button><button onclick="clearExpenseFilters()">Clear</button><button onclick="exportExpensesCSV()">⬇ Export CSV</button></div><div id="expenseSummary" class="stats"></div></div><div class="card table-wrap"><table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Payment</th><th>Amount</th><th>Notes</th><th>Actions</th></tr></thead><tbody id="expensesTable"></tbody></table></div></div>
+
+<div id="cashflow" class="page hidden">
+<div class="section-head"><div><h2>💧 BIGJOE Cash Flow & Scenario Centre</h2><p class="muted">See your projected 30-day cash position, outstanding obligations and test simple business scenarios before making decisions.</p></div><div class="doc-actions"><button class="primary" onclick="loadCashFlow()">↻ Refresh</button></div></div>
+<div id="cashflowStats" class="stats"></div>
+<div class="grid dashboard-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🔮 30-Day Cash Forecast</h3><p class="muted">Uses your recent cash movement plus currently due receivables and payables. It is a planning estimate, not a guarantee.</p></div><span id="cashflowRisk" class="badge"></span></div><div id="cashflowChart" class="bar-chart"></div><div id="cashflowAlerts" class="alerts-list"></div></div>
+ <div class="card"><h3>📥 Receivables to Collect</h3><div id="cashflowReceivables"></div></div>
+ <div class="card"><h3>📤 Payables to Plan</h3><div id="cashflowPayables"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🧮 What-If Scenario Simulator</h3><p class="muted">Adjust the assumptions to estimate how a change could affect monthly net cash.</p></div></div><div class="scenario-form"><label>Extra monthly sales (₦)<input id="scenarioSales" type="number" min="0" step="1000" value="0"></label><label>Expected gross margin (%)<input id="scenarioMargin" type="number" min="0" max="100" step="1" value="25"></label><label>Extra monthly expenses (₦)<input id="scenarioExpenses" type="number" min="0" step="1000" value="0"></label><label>One-time cash cost (₦)<input id="scenarioCost" type="number" min="0" step="1000" value="0"></label><button class="primary" onclick="runCashScenario()">Calculate Scenario</button></div><div id="scenarioResult" class="scenario-result"></div></div>
+</div></div>
+
+<div id="budgetControl" class="page hidden">
+<div class="section-head"><div><h2>🧾 BIGJOE Budget & Cost Control Centre</h2><p class="muted">Set spending limits by category, compare actual expenses with your budget and catch cost overruns early.</p></div><div class="doc-actions"><button class="primary" onclick="loadBudgetControl()">↻ Refresh</button></div></div>
+<div id="budgetStats" class="stats"></div>
+<div class="card budget-settings"><div class="section-head"><div><h3>⚙ Expense Budget Settings</h3><p class="muted">Add the categories you want BIGJOE to monitor. Leave a category out if you do not want a separate limit for it.</p></div></div><div id="budgetRows" class="budget-rows"></div><div class="budget-actions"><button onclick="addBudgetRow()">+ Add Category Budget</button><button class="primary" onclick="saveBudgetSettings()">Save Budget Settings</button></div></div>
+<div class="grid dashboard-grid budget-grid">
+ <div class="card wide"><div class="section-head"><div><h3>📊 Current-Month Budget vs Actual</h3><p class="muted">Actual operating expenses are compared with your configured category budgets.</p></div></div><div id="budgetTable" class="table-wrap"></div></div>
+ <div class="card"><h3>📈 Three-Month Expense Trend</h3><div id="budgetTrend" class="bar-chart"></div></div>
+ <div class="card"><h3>🔔 Cost-Control Alerts</h3><div id="budgetAlerts" class="alerts-list"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>💡 BIGJOE Cost-Control Recommendations</h3><p class="muted">Practical actions based on this month's actual spending.</p></div></div><div id="budgetRecommendations" class="insights"></div></div>
+</div></div>
+
+<div id="customerIntel" class="page hidden">
+<div class="section-head"><div><h2>🧠 Customer & Sales Intelligence</h2><p class="muted">Understand your best customers, repeat-purchase behaviour and who is most likely to buy again.</p></div><div class="doc-actions"><button class="primary" onclick="loadCustomerIntelligence()">↻ Refresh</button></div></div>
+<div id="customerIntelStats" class="stats"></div>
+<div class="grid dashboard-grid customer-intel-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🎯 Customer Segments</h3><p class="muted">BIGJOE groups customers using recency, purchase frequency and total spend.</p></div></div><div id="customerSegments" class="segment-cards"></div></div>
+ <div class="card"><h3>🔁 Repeat Purchase Rate</h3><div id="repeatRate" class="big-metric"></div></div>
+ <div class="card"><h3>💎 Estimated Customer Value</h3><div id="customerValue" class="big-metric"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🏆 Customer Leaderboard</h3><p class="muted">Customers ranked by historical value and buying activity.</p></div></div><div id="customerLeaderboard" class="table-wrap"></div></div>
+ <div class="card wide"><div class="section-head"><div><h3>🔮 Customers Most Likely to Buy Again</h3><p class="muted">A practical score based on recent activity, repeat orders and purchase consistency.</p></div></div><div id="likelyToBuy" class="table-wrap"></div></div>
+ <div class="card"><h3>🛍 Popular Products by Customer</h3><div id="customerProductInsights"></div></div>
+ <div class="card"><h3>📣 Recommended Customer Actions</h3><div id="customerActions" class="insights"></div></div>
+</div></div>
+
+<div id="loyalty" class="page hidden"><div class="section-head"><div><h2>❤️ Customer Loyalty & Rewards</h2><p class="muted">Reward repeat customers, manage loyalty levels and encourage retention.</p></div><button class="primary" onclick="loadLoyalty()">↻ Refresh</button></div><div id="loyaltyStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>⚙ Loyalty Settings</h3><div class="two"><label>Points per ₦1<input id="loyaltyRate" type="number" step="0.0001" min="0"></label><label>Bronze minimum<input id="loyaltyBronze" type="number" min="0"></label><label>Silver minimum<input id="loyaltySilver" type="number" min="0"></label><label>Gold minimum<input id="loyaltyGold" type="number" min="0"></label><label>Platinum minimum<input id="loyaltyPlatinum" type="number" min="0"></label></div><button class="primary" onclick="saveLoyaltySettings()">Save Settings</button></div><div class="card"><h3>🏆 Loyalty Levels</h3><div id="loyaltyLevels" class="insights"></div></div></div><div class="grid dashboard-grid"><div class="card"><h3>👥 Customer Loyalty</h3><div id="loyaltyCustomers" class="table-wrap"></div></div><div class="card"><h3>🎁 Rewards</h3><div class="two"><label>Reward name<input id="rewardName" placeholder="e.g. ₦1,000 Discount"></label><label>Points required<input id="rewardPoints" type="number" min="1"></label><label>Reward value<input id="rewardValue" type="number" min="0"></label><label>Type<select id="rewardType"><option value="discount">Discount</option><option value="free_delivery">Free Delivery</option><option value="gift">Gift</option></select></label></div><button class="primary" onclick="createReward()">+ Add Reward</button><div id="rewardsTable" class="table-wrap"></div></div></div><div class="card"><h3>🎯 Redeem a Reward</h3><div class="two"><label>Customer<select id="loyaltyCustomerSelect"></select></label><label>Reward<select id="loyaltyRewardSelect"></select></label></div><button class="primary" onclick="redeemReward()">Redeem Reward</button></div><div class="card"><h3>💡 Retention Insight</h3><div id="loyaltyInsight" class="insights"></div></div></div>
+
+<div id="marketing" class="page hidden">
+<div class="section-head"><div><h2>📣 Marketing & Customer Engagement</h2><p class="muted">Turn customer intelligence into practical campaigns, offers and follow-up actions.</p></div><button class="primary" onclick="loadMarketing()">↻ Refresh</button></div>
+<div id="marketingStats" class="stats"></div>
+<div class="grid dashboard-grid">
+ <div class="card wide"><div class="section-head"><div><h3>🎯 Choose Customer Segment</h3><p class="muted">Create a campaign for a specific customer group.</p></div></div><div id="marketingSegments" class="segment-cards"></div></div>
+ <div class="card"><h3>✍️ Campaign Builder</h3><label>Campaign title<input id="campaignTitle" placeholder="e.g. Weekend Customer Offer"></label><label>Channel<select id="campaignChannel"><option value="whatsapp">WhatsApp</option><option value="sms">SMS</option><option value="email">Email</option></select></label><label>Specific customer (optional)<select id="campaignCustomer"><option value="">Use selected segment</option></select></label><label>Offer / incentive<input id="campaignOffer" placeholder="e.g. 10% discount"></label><div class="two"><label>Discount type<select id="campaignDiscountType"><option value="none">No automatic discount</option><option value="percent">Percentage (%)</option><option value="amount">Fixed amount (₦)</option></select></label><label>Discount value<input id="campaignDiscountValue" type="number" min="0" step="0.01" value="0"></label></div><label>Message<textarea id="campaignMessage" rows="7" placeholder="Write your customer message..."></textarea></label><button class="primary" onclick="createMarketingCampaign()">Create Campaign</button></div>
+ <div class="card wide"><h3>💬 Message Preview</h3><div id="marketingPreview" class="insight"><span>Select a segment to load a personalised message template.</span></div><button onclick="copyMarketingMessage()">Copy Message</button></div>
+ <div class="card wide"><div class="section-head"><div><h3>📋 Campaign History</h3><p class="muted">Manage your customer engagement campaigns.</p></div></div><div id="marketingCampaigns" class="table-wrap"></div></div>
+ <div class="card"><h3>💡 Recommended Actions</h3><div id="marketingRecommendations" class="insights"></div></div>
+</div></div>
+
+<div id="inventory" class="page hidden"><div class="section-head"><div><h2>📦 Advanced Inventory Management</h2><p class="muted">Monitor stock, make controlled adjustments and keep a clear history of inventory movement.</p></div><div class="doc-actions"><label class="compact-select">Branch<select id="inventoryBranchSelect" onchange="selectInventoryBranch()"><option value="all">All branches</option></select></label><button onclick="loadInventory()">↻ Refresh</button><button class="primary" onclick="showPage('products');openProductModal()">+ Add Product</button></div></div><div id="inventoryStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><div class="section-head"><div><h3>⚠️ Low Stock Alert</h3><p class="muted">Products at or below their minimum stock level.</p></div></div><div id="lowStockList"></div></div><div class="card"><div class="section-head"><div><h3>⏳ Expiry Watch</h3><p class="muted">Products expiring soon or already expired.</p></div></div><div id="expiryWatchList"></div></div></div><div class="card"><div class="section-head"><div><h3>🧮 Stock Adjustment</h3><p class="muted">Use this when you physically count stock, receive a correction or record a loss.</p></div><button class="primary" onclick="openInventoryAdjustModal()">Adjust Stock</button></div><div id="inventoryAdjustmentHint" class="settings-note">Every adjustment is recorded with the user, branch, reason and resulting stock.</div></div><div class="card"><div class="section-head"><div><h3>📋 Recent Inventory Movement</h3><p class="muted">Sales, purchases, returns, transfers and manual adjustments.</p></div></div><div id="inventoryMovements" class="table-wrap"></div></div></div>
+
+<div id="sales" class="page hidden">
+<div class="section-head"><div><h2>Sales / POS</h2><p class="muted">Sell products, collect payment and automatically reduce stock.</p></div><button class="primary" onclick="clearCart()">Clear Cart</button></div>
+<div class="pos-layout">
+  <div class="card">
+    <div class="pos-toolbar"><label class="pos-branch-label">Branch<select id="posBranchSelect" onchange="selectPosBranch()"></select></label><button type="button" onclick="loadSales()">↻ Refresh</button><input id="posSearch" placeholder="Search products by name or SKU..." oninput="renderPosProducts()"><span class="muted" id="posStockHint"></span></div>
+    <div id="posProducts" class="pos-products"></div>
+  </div>
+  <div class="card pos-cart">
+    <h3>🛒 Current Sale</h3>
+    <div id="cartItems"></div>
+    <div class="pos-form">
+      <label class="sales-customer-field">Customer<select id="customerSelect" onchange="syncCustomerFields()"><option value="">Walk-in customer</option></select></label><div id="customerPromo" class="insights" style="grid-column:1/-1"></div>
+      <button type="button" class="secondary-btn" onclick="openCustomerModal(null,true)">+ New Customer</button>
+      <input id="customerName" type="hidden">
+      <input id="customerPhone" type="hidden">
+      <div class="two"><label>Payment method<select id="paymentMethod" onchange="toggleSplitPayment()"><option value="cash">Cash</option><option value="transfer">Bank Transfer</option><option value="pos">POS / Card</option><option value="flutterwave">Flutterwave</option><option value="split">Split Payment</option></select></label><label>Discount<input id="saleDiscount" type="number" min="0" step="0.01" value="0" oninput="renderCart()"></label></div>
+      <div id="splitPaymentBox" class="split-payment-box hidden"><div class="split-head"><b>💳 Split Payment</b><span class="muted">Enter how the customer is paying.</span></div><div id="splitPaymentRows"></div><button type="button" onclick="addSplitPaymentRow()">+ Add payment method</button><div id="splitPaymentTotal" class="split-total"></div></div>
+    </div>
+    <div id="cartTotals" class="cart-totals"></div>
+    <button class="primary full" onclick="completeSale()">Complete Sale</button>
+  </div>
+</div>
+<div class="card"><div class="section-head"><div><h3>Today's Sales</h3><p class="muted">Quick performance summary.</p></div></div><div id="salesSummary" class="stats"></div></div>
+<div class="card table-wrap"><h3>Recent Sales</h3><table><thead><tr><th>Invoice</th><th>Customer</th><th>Items</th><th>Payment</th><th>Total</th><th>Profit</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="salesTable"></tbody></table></div>
+</div>
+
+<div id="documents" class="page hidden"><div class="section-head"><div><h2>🧾 Invoices & Quotations</h2><p class="muted">Create professional invoices and quotations with your business identity.</p></div><div class="doc-actions"><button onclick="loadDocuments()">↻ Refresh</button><button class="primary" onclick="openDocumentModal('invoice')">+ Create Invoice</button><button onclick="openDocumentModal('quotation')">+ Create Quotation</button></div></div><div id="documentStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>🧾 Invoices</h3><div id="invoicesTable" class="table-wrap"></div></div><div class="card"><h3>📄 Quotations</h3><div id="quotationsTable" class="table-wrap"></div></div></div></div>
+
+<div id="receivables" class="page hidden"><div class="section-head"><div><h2>💳 Customer Payments & Receivables</h2><p class="muted">Track who owes you, record payments and keep invoice balances accurate.</p></div><div class="doc-actions"><label class="compact-select">Branch<select id="receivableBranchSelect" onchange="selectReceivableBranch()"><option value="all">All branches</option></select></label><button onclick="loadReceivables()">↻ Refresh</button></div></div><div id="receivableStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>👥 Customers Who Owe You</h3><div id="customersDueTable" class="table-wrap"></div></div><div class="card"><h3>⚠️ Overdue & Open Invoices</h3><div id="receivablesTable" class="table-wrap"></div></div></div><div class="card"><h3>💰 Recent Payments</h3><div id="receivablePaymentsTable" class="table-wrap"></div></div></div>
+
+
+<div id="purchases" class="page hidden"><div class="section-head"><div><h2>📥 Purchases & Supplier Payables</h2><p class="muted">Order stock, receive goods, update inventory costs and track what you owe suppliers.</p></div><div class="doc-actions"><label>Branch<select id="purchaseBranchSelect" onchange="selectPurchaseBranch()"></select></label><button onclick="loadPurchases()">↻ Refresh</button><button class="primary" onclick="openPurchaseModal()">+ New Purchase</button></div></div><div id="purchaseStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>🚚 Supplier Balances</h3><div id="supplierBalancesTable" class="table-wrap"></div></div><div class="card"><h3>📦 Purchase Orders</h3><div id="purchasesTable" class="table-wrap"></div></div></div><div class="card"><h3>💸 Recent Supplier Payments</h3><div id="supplierPaymentsTable" class="table-wrap"></div></div></div>
+
+<div id="procurement" class="page hidden"><div class="section-head"><div><h2>🏭 Supplier & Procurement Intelligence</h2><p class="muted">Understand supplier performance, purchase-cost changes, payables and procurement savings.</p></div><button class="primary" onclick="loadProcurementIntelligence()">↻ Refresh</button></div><div id="procurementStats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>🏆 Supplier Performance</h3><div id="procurementSuppliers" class="table-wrap"></div></div><div class="card"><h3>⚠️ Purchase Cost Risks</h3><div id="procurementRisks" class="table-wrap"></div></div></div><div class="grid dashboard-grid"><div class="card"><h3>💡 Procurement Savings</h3><div id="procurementSavings" class="table-wrap"></div></div><div class="card"><h3>🤖 BIGJOE Procurement Recommendations</h3><div id="procurementRecommendations"></div></div></div></div>
+
+
+<div id="financialCenter" class="page hidden">
+  <div class="section-head"><div><h2>📊 Financial Intelligence Centre</h2><p class="muted">A professional view of your profitability, cash movement, receivables, payables and working capital.</p></div><div class="report-controls"><label>Branch<select id="financialBranchSelect" onchange="selectFinancialBranch()"><option value="">Active branch</option></select></label><label>From<input id="financialStart" type="date"></label><label>To<input id="financialEnd" type="date"></label><button class="primary" onclick="loadFinancialCenter()">Apply</button><button onclick="loadFinancialCenter()">↻ Refresh</button><button onclick="printFinancialCenter()">🖨 Print</button><button onclick="exportFinancialCenterCSV()">⬇ CSV</button></div></div>
+  <div id="financialStats" class="stats"></div>
+  <div class="card financial-hero"><div class="section-head compact"><div><h3>💼 Financial Position</h3><p class="muted" id="financialPeriodText"></p></div><span id="financialStatus" class="badge"></span></div><div id="financialMetrics" class="report-metrics"></div></div>
+  <div class="grid dashboard-grid"><div class="card"><h3>🩺 Financial Health</h3><div id="financialHealth"></div></div><div class="card"><h3>📈 Period Comparison</h3><div id="financialComparison" class="table-wrap"></div></div></div>
+  <div class="card"><h3>🚨 Financial Alerts & Actions</h3><div id="financialAlerts" class="insights"></div></div>
+  <div class="grid dashboard-grid">
+    <div class="card"><h3>📈 Profit & Loss</h3><div id="financialPL" class="table-wrap"></div></div>
+    <div class="card"><h3>💵 Cash Movement</h3><div id="financialCash" class="table-wrap"></div></div>
+  </div>
+  <div class="grid dashboard-grid">
+    <div class="card"><h3>💸 Expense Structure</h3><div id="financialExpenses" class="table-wrap"></div></div>
+    <div class="card"><h3>⚖ Working Capital</h3><div id="financialWorkingCapital" class="table-wrap"></div></div>
+  </div>
+  <div class="grid dashboard-grid">
+    <div class="card"><h3>👥 Largest Customer Balances</h3><div id="financialReceivables" class="table-wrap"></div></div>
+    <div class="card"><h3>🚚 Largest Supplier Balances</h3><div id="financialPayables" class="table-wrap"></div></div>
+  </div>
+  <div class="card"><h3>🧠 Financial Interpretation</h3><div id="financialInsights" class="insights"></div></div>
+  <div class="card"><h3>📅 Monthly Trend</h3><div id="financialTrend" class="table-wrap"></div></div>
+</div>
+
+<div id="accounting" class="page hidden">
+<div class="section-head"><div><h2>📚 Business Accounting & Cashbook</h2><p class="muted">Manage your chart of accounts, opening balances and business cash movements in one place.</p></div><div class="doc-actions"><button class="primary" onclick="openAccountingEntryModal()">+ Add Cashbook Entry</button><button onclick="openAccountModal()">+ Add Account</button></div></div>
+<div id="accountingStats" class="stats"></div>
+<div class="card accounting-control-card"><div class="section-head"><div><h3>🛡️ Financial Control Check</h3><p class="muted">Quickly verify that your books, statements and double-entry records agree for the selected period.</p></div><button onclick="loadFinancialControl()">↻ Run Check</button></div><div id="financialControl" class="financial-control-grid"><div class="empty">Run the check to verify your financial records.</div></div></div>
+<div class="card"><div class="expense-toolbar"><label>Branch<select id="accountingBranchSelect" onchange="selectAccountingBranch()"><option value="">Active branch</option></select></label><label>From<input id="accountingStart" type="date"></label><label>To<input id="accountingEnd" type="date"></label><button onclick="loadAccounting()">Apply</button><button onclick="clearAccountingFilters()">Clear</button><button onclick="exportAccountingCSV()">⬇ CSV</button></div></div>
+<div class="grid dashboard-grid accounting-grid"><div class="card"><h3>📒 Chart of Accounts</h3><div id="accountsTable" class="table-wrap"></div></div><div class="card"><h3>🏦 Cash & Bank Movement</h3><div id="accountingMethods" class="table-wrap"></div></div></div>
+<div class="card"><div class="section-head"><div><h3>📑 Financial Statements</h3><p class="muted">Professional financial statements generated automatically from your BIGJOE sales, expenses, inventory and cashbook records.</p></div><div class="doc-actions"><button onclick="loadFinancialStatements()">↻ Refresh</button><button onclick="printFinancialStatements()">🖨 Print</button><button onclick="exportFinancialStatementsCSV()">⬇ CSV</button></div></div><div id="financialStatements" class="financial-statements"></div></div>
+<div class="card"><div class="section-head"><div><h3>⚖ Trial Balance</h3><p class="muted">A double-entry control report showing total debits and credits. A balanced trial balance should always have equal totals.</p></div><div class="doc-actions"><button onclick="loadTrialBalance()">↻ Refresh</button><button onclick="exportTrialBalanceCSV()">⬇ CSV</button></div></div><div id="trialBalance" class="table-wrap"></div></div>
+<div class="card"><div class="section-head"><div><h3>📖 General Ledger</h3><p class="muted">Select an account to see every debit, credit and running balance behind your financial records.</p></div><div class="doc-actions"><select id="ledgerAccount" onchange="loadGeneralLedger()"><option value="">Select account</option></select><button onclick="loadGeneralLedger()">↻ Refresh</button></div></div><div id="generalLedger" class="table-wrap"></div></div>
+<div class="card"><div class="section-head"><div><h3>📖 Cashbook</h3><p class="muted">Automatic entries from sales, customer payments, expenses and supplier payments, plus your manual entries.</p></div></div><div id="cashbookTable" class="table-wrap"></div></div>
+</div>
+
+<div id="products" class="page hidden"><div class="section-head"><div><h2>Products</h2><p class="muted">Manage prices, stock and product details by branch.</p></div><div class="doc-actions"><label class="compact-select">Branch<select id="productsBranchSelect" onchange="selectProductsBranch()"><option value="all">All branches</option></select></label><button onclick="loadInventory()">↻ Refresh</button><button class="primary" onclick="openProductModal()">+ Add Product</button></div></div><div id="productsBranchStats" class="stats"></div><div class="card table-wrap"><table><thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Cost</th><th>Selling</th><th>Stock</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody id="productsTable"></tbody></table></div></div>
+
+<div id="categories" class="page hidden"><div class="section-head"><div><h2>Categories</h2><p class="muted">Organize your products.</p></div><div class="doc-actions"><button onclick="loadInventory()">↻ Refresh</button><button class="primary" onclick="openCategoryModal()">+ Add Category</button></div></div><div class="card table-wrap"><table><thead><tr><th>Name</th><th>Description</th><th>Actions</th></tr></thead><tbody id="categoriesTable"></tbody></table></div></div>
+
+<div id="suppliers" class="page hidden"><div class="section-head"><div><h2>🏭 Suppliers</h2><p class="muted">Manage supplier relationships, purchasing history and balances.</p></div><div class="doc-actions"><button onclick="loadInventory()">↻ Refresh</button><button class="primary" onclick="openSupplierModal()">+ Add Supplier</button></div></div><div class="card table-wrap"><table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr></thead><tbody id="suppliersTable"></tbody></table></div></div>
+
+<div id="customers" class="page hidden"><div class="section-head"><div><h2>Customers</h2><p class="muted">Manage customer contacts and purchase history.</p></div><div class="doc-actions"><button onclick="loadCustomers()">↻ Refresh</button><button class="primary" onclick="openCustomerModal()">+ Add Customer</button></div></div><div class="card table-wrap"><table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Purchases</th><th>Total Spent</th><th>Last Purchase</th><th>Actions</th></tr></thead><tbody id="customersTable"></tbody></table></div></div>
+
+<div id="staff" class="page hidden"><div class="section-head"><div><h2>👥 Staff, Roles & Permissions</h2><p class="muted">Give trusted staff controlled access without sharing your main business login.</p></div><div class="doc-actions"><button onclick="loadStaff()">↻ Refresh</button><button class="primary" onclick="openStaffModal()">+ Add Staff</button></div></div><div id="staffStats" class="stats"></div><div class="card"><div class="section-head"><div><h3>👤 Team Members</h3><p class="muted">Each staff member has their own login and role.</p></div><button onclick="loadStaff()">↻ Refresh</button></div><div id="staffTable" class="table-wrap"></div></div><div class="card"><h3>🔐 Role Guide</h3><div class="role-guide"><div><b>Manager</b><span>Most daily business operations.</span></div><div><b>Cashier</b><span>Sales, customers and AI assistance.</span></div><div><b>Inventory</b><span>Products, suppliers, purchases and stock.</span></div><div><b>Accountant</b><span>Expenses, reports and accounting.</span></div><div><b>Viewer</b><span>Dashboard, reports and customer viewing.</span></div></div></div></div>
+<div id="inventoryAdjustModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeInventoryAdjustModal()">×</button><h2>🧮 Adjust Stock</h2><p class="muted">Record a physical stock correction without changing the product price.</p><form onsubmit="submitInventoryAdjustment(event)"><label>Product<select id="inventoryAdjustProduct" required></select></label><div class="two"><label>Branch<select id="inventoryAdjustBranch" required></select></label><label>Action<select id="inventoryAdjustAction"><option value="increase">Increase stock</option><option value="decrease">Decrease stock</option><option value="set">Set exact quantity</option></select></label></div><div class="two"><label>Quantity<input id="inventoryAdjustQty" type="number" min="0" step="0.01" required value="1"></label><label>Reference<input id="inventoryAdjustReference" maxlength="80" placeholder="e.g. Count sheet 001"></label></div><label>Reason<textarea id="inventoryAdjustReason" maxlength="300" required placeholder="Why is the stock being adjusted?"></textarea></label><div class="modal-actions"><button type="button" onclick="closeInventoryAdjustModal()">Cancel</button><button class="primary" type="submit">Save Adjustment</button></div></form></div></div><div id="staffModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeStaffModal()">×</button><h2>👤 Add Staff Member</h2><form onsubmit="submitStaff(event)"><label>Full name<input id="staffName" required placeholder="e.g. Peter Okafor"></label><label>Email<input id="staffEmail" type="email" required placeholder="staff@example.com"></label><div class="two"><label>Temporary password<input id="staffPassword" type="password" minlength="6" required placeholder="At least 6 characters"></label><label>Role<select id="staffRole" onchange="updateStaffRoleHelp()"><option value="manager">Manager</option><option value="cashier">Cashier</option><option value="inventory">Inventory</option><option value="accountant">Accountant</option><option value="viewer">Viewer</option></select></label></div><label>Branch<select id="staffBranch"><option value="">All / Main business</option></select></label><div id="staffRoleHelp" class="settings-note">Manager can handle most day-to-day operations but cannot manage staff settings.</div><div class="modal-actions"><button type="button" onclick="closeStaffModal()">Cancel</button><button class="primary">Create Staff Login</button></div></form></div></div>
+
+<div id="tools" class="page hidden"><div class="grid"><div class="card"><h3>🛠 Business Tools</h3><select id="tool"><option value="ad">📣 Advertisement Generator</option><option value="reply">💬 Customer Reply</option><option value="invoice">🧾 Invoice</option><option value="assistant">💡 Business Ideas</option></select><textarea id="toolInput" placeholder="Enter your product, customer message or business details..."></textarea><button onclick="runTool()">Generate</button><pre id="toolOutput" class="output"></pre></div></div></div>
+
+<div id="paymentHub" class="page hidden">
+<div class="section-head"><div><h2>💳 Payment Integration Hub</h2><p class="muted">Configure your own Flutterwave or Paystack account for receiving customer payments. Subscription payment credentials remain separate in the plan system.</p></div><div class="doc-actions"><button class="primary" onclick="loadPaymentHub()">↻ Refresh</button></div></div>
+<div id="paymentProviderStats" class="stats"></div>
+<div class="grid dashboard-grid">
+ <div class="card"><div class="section-head"><div><h3>🟣 Flutterwave</h3><p id="flutterwaveStatus" class="muted">Your receiving account</p></div><div class="doc-actions"><button onclick="openPaymentConfig('flutterwave')">Configure</button><button onclick="testPaymentConnection('flutterwave')">Test</button></div></div><div id="flutterwaveCard"></div></div>
+ <div class="card"><div class="section-head"><div><h3>🔵 Paystack</h3><p id="paystackStatus" class="muted">Your receiving account</p></div><div class="doc-actions"><button onclick="openPaymentConfig('paystack')">Configure</button><button onclick="testPaymentConnection('paystack')">Test</button></div></div><div id="paystackCard"></div></div>
+ <div class="card"><h3>💵 Manual Payments</h3><p class="muted">Cash, transfer and POS payments remain supported through the existing POS and accounting workflows.</p><div class="settings-note">Manual payment records do not require an external API key.</div></div>
+ <div class="card"><h3>🔄 Reconciliation</h3><div id="paymentReconciliationSummary"></div></div>
+</div>
+<div class="card"><div class="section-head"><div><h3>🧾 Payment Transactions</h3><p class="muted">Review initialized, successful and failed gateway transactions.</p></div></div><div id="paymentHubTable" class="table-wrap"></div></div>
+</div>
+
+
+<div id="paymentConfigModal" class="modal hidden"><div class="modal-card"><div class="section-head"><div><h3 id="paymentConfigTitle">Configure Payment Account</h3><p class="muted">These credentials belong to your business receiving account. They are stored for your account only and are never shown back in full.</p></div><button onclick="closePaymentConfig()">✕</button></div><form id="paymentConfigForm" onsubmit="savePaymentConfig(event)"><input type="hidden" id="paymentConfigProvider"><label>Account / Business name<input id="paymentAccountName" placeholder="e.g. BIGJOE STORES"></label><label>Public key (optional)<input id="paymentPublicKey" placeholder="Public key"></label><label>Secret API key<input id="paymentSecretKey" type="password" placeholder="Secret API key" required></label><label>Mode<select id="paymentConfigMode"><option value="test">Test mode</option><option value="live">Live mode</option></select></label><div class="modal-actions"><button type="button" onclick="closePaymentConfig()">Cancel</button><button class="primary" type="submit">Save Configuration</button></div></form></div></div>
+
+<div id="plansPage" class="page hidden">
+<div class="section-head"><div><h2>💳 BIGJOE Plans</h2><p class="muted">Choose the BIGJOE plan that fits your business. Paid plans use secure Flutterwave checkout.</p></div><div class="doc-actions"><button onclick="loadPlans()">↻ Refresh</button><button class="primary" onclick="showPage('paymentHub',this)">Configure Flutterwave</button></div></div>
+<div id="plansPaymentStatus" class="settings-note plan-payment-status">Checking Flutterwave connection…</div>
+<div class="grid dashboard-grid plans-grid"><div class="card wide"><div id="plans" class="plans-list">
+<article class="plan plan-card"><div class="plan-card-top"><span class="plan-label">Free Forever</span></div><div class="plan-price">₦0<small>forever</small></div><div class="subscription-point"><b>Subscription:</b> Free Forever</div><p class="plan-description">Start managing your business with no monthly subscription.</p><ul class="plan-features"><li>✓ Core business dashboard</li><li>✓ Sales / POS</li><li>✓ Inventory &amp; customers</li><li>✓ Basic AI Assistant</li></ul><div class="plan-action"><button type="button" class="plan-button free-button" onclick="selectFreePlan()">Start Free Forever</button></div></article>
+<article class="plan plan-card plan-popular"><div class="plan-ribbon">MOST POPULAR</div><div class="plan-card-top"><span class="plan-label">Business</span></div><div class="plan-price">₦1,500<small>/ month</small></div><div class="subscription-point"><b>Subscription:</b> ₦1,500 per month via Flutterwave</div><p class="plan-description">The balanced plan for growing businesses that need more control.</p><ul class="plan-features"><li>✓ Everything in Free Forever</li><li>✓ Advanced analytics &amp; reports</li><li>✓ Branches and business controls</li><li>✓ Priority business tools</li></ul><div class="plan-action"><button type="button" class="plan-button flutterwave-button" onclick="pay('business')">Subscribe with Flutterwave</button><small class="payment-note">Secure monthly subscription checkout via Flutterwave</small></div></article>
+<article class="plan plan-card"><div class="plan-card-top"><span class="plan-label">Pro</span></div><div class="plan-price">₦3,000<small>/ month</small></div><div class="subscription-point"><b>Subscription:</b> ₦3,000 per month via Flutterwave</div><p class="plan-description">The complete BIGJOE experience for businesses ready to scale.</p><ul class="plan-features"><li>✓ Everything in Business</li><li>✓ Advanced AI &amp; automation</li><li>✓ Premium intelligence &amp; controls</li><li>✓ Priority support</li></ul><div class="plan-action"><button type="button" class="plan-button flutterwave-button" onclick="pay('pro')">Subscribe with Flutterwave</button><small class="payment-note">Secure monthly subscription checkout via Flutterwave</small></div></article>
+</div></div></div>
+</div>
+
+<div id="onboarding" class="page hidden">
+  <div class="section-head"><div><h2>🚀 Business Setup & Readiness</h2><p class="muted">A simple checklist to make sure your BIGJOE business account is ready for daily operations and customer payments.</p></div><div class="doc-actions"><button class="primary" onclick="loadOnboarding()">↻ Refresh</button></div></div>
+  <div id="onboardingStats" class="stats"></div>
+  <div class="grid dashboard-grid">
+    <div class="card wide"><h3>✅ Setup Checklist</h3><p id="onboardingProgress" class="muted"></p><div id="onboardingChecklist"></div></div>
+    <div class="card"><h3>📦 Business Snapshot</h3><div id="onboardingSnapshot"></div></div>
+    <div class="card"><h3>🧭 Recommended Next Step</h3><div id="onboardingNext"></div></div>
+  </div>
+</div>
+
+<div id="settings" class="page hidden">
+  <div class="section-head"><div><h2>⚙ Business Profile & Settings</h2><p class="muted">Personalize BIGJOE with your business details. These details can appear on reports and receipts.</p></div><div class="doc-actions"><button onclick="loadBusinessProfile()">↻ Refresh</button></div></div>
+  <div class="grid settings-grid">
+    <div class="card wide">
+      <h3>🏢 Business Identity</h3>
+      <div class="form-grid">
+        <label>Business name<input id="businessName" maxlength="100" placeholder="e.g. BIGJOE Stores"></label>
+        <label>Business email<input id="businessEmail" type="email" maxlength="120" placeholder="business@example.com"></label>
+        <label>Phone / WhatsApp<input id="businessPhone" maxlength="40" placeholder="0800 000 0000"></label>
+        <label>Business address<input id="businessAddress" maxlength="180" placeholder="Business location or address"></label>
+        <label class="full">Tagline<input id="businessTagline" maxlength="180" placeholder="A short line customers will remember"></label>
+      </div>
+      <div class="branding-panel">
+        <div class="branding-logo-area">
+          <div class="branding-logo-preview" id="businessLogoPreview"><span>LOGO</span></div>
+          <div><b>Business logo</b><p class="muted small">Use a clear PNG, JPG or WebP logo. It can appear on reports and printed documents.</p><input id="businessLogo" type="file" accept="image/png,image/jpeg,image/webp" onchange="handleLogoUpload(event)"><button type="button" class="secondary-btn compact-btn" onclick="removeBusinessLogo()">Remove logo</button></div>
+        </div>
+        <div class="branding-options">
+          <label><input id="showLogo" type="checkbox" checked> Show logo on reports</label>
+          <label><input id="showOwnerName" type="checkbox" checked> Show account-holder name</label>
+          <label><input id="showBranding" type="checkbox" checked> Show “Powered by BIGJOE”</label>
+          <label><input id="showContactInfo" type="checkbox" checked> Show business contact details</label>
+        </div>
+      </div>
+      <div class="settings-actions"><button class="primary" onclick="saveBusinessProfile()">Save Business Profile</button><button onclick="loadBusinessProfile()">Reset</button></div>
+      <p class="muted small">BIGJOE is the platform/brand; your business name identifies your own business. Your account name remains <b id="settingsOwnerName"></b>.</p>
+    </div>
+    <div class="card">
+      <h3>👤 Account Holder</h3>
+      <div class="profile-preview"><div class="profile-avatar" id="profileAvatar">JC</div><div><b id="profileOwnerPreview"></b><span id="profileEmailPreview" class="muted"></span></div></div>
+      <div class="settings-note">Your reports can greet you personally while still displaying your business brand.</div>
+    </div>
+  </div>
+</div>
+<div id="systemHealth" class="page hidden">
+<div class="section-head"><div><h2>🛡️ System Health & Security</h2><p class="muted">Check BIGJOE security, data integrity, access control and system readiness from one place.</p></div><div class="doc-actions"><button class="primary" onclick="loadSystemHealth()">↻ Refresh</button><button onclick="cleanupExpiredSessions()">Clean expired sessions</button></div></div>
+<div id="systemHealthStats" class="stats"></div>
+<div class="grid dashboard-grid"><div class="card wide"><div class="section-head"><div><h3>🔍 System Integrity</h3><p class="muted">Automated checks of the current business environment.</p></div></div><div id="systemHealthChecks"></div></div><div class="card"><h3>🔐 Security Review</h3><p class="muted">Owner-only review of staff access and protection controls.</p><div id="securityReview"></div></div></div>
+</div>
+<div id="dataAudit" class="page hidden">
+<div class="section-head"><div><h2>🛡️ Data Protection & Audit Centre</h2><p class="muted">Protect your business records, review important activity and keep a secure backup.</p></div><button class="primary" onclick="loadDataAudit()">↻ Refresh</button></div>
+<div class="grid dashboard-grid">
+<div class="card wide"><div class="section-head"><div><h3>🔐 Data Protection Status</h3><p class="muted">A simple overview of your BIGJOE data protection.</p></div><span id="auditProtectionBadge" class="badge ok">Protected</span></div><div id="auditHealth" class="stats"></div></div>
+<div class="card"><h3>💾 Business Backup</h3><p class="muted">Download a copy of your business records. Passwords and login sessions are never included.</p><button class="primary" onclick="downloadBusinessBackup()">Download Backup</button><div class="settings-note" style="margin-top:12px">Keep backups in a safe place and create one regularly.</div></div>
+</div>
+<div class="card audit-log-card"><div class="section-head"><div><h3>📜 Audit & Activity Log</h3><p class="muted">Review important actions, filter the records and export a secure audit copy.</p></div><div class="doc-actions"><button onclick="downloadAuditCsv()">⬇ Export CSV</button></div></div>
+<div class="audit-filter-panel"><div class="audit-filter-title"><b>Filter audit records</b><span class="muted">Search by action, module or date.</span></div><div class="audit-filters"><label>Search<input id="auditSearch" placeholder="e.g. sale, login, inventory..." oninput="loadDataAudit()"></label><label>Module<select id="auditTool" onchange="loadDataAudit()"><option value="">All modules</option></select></label><label>From<input id="auditStart" type="date" onchange="loadDataAudit()"></label><label>To<input id="auditEnd" type="date" onchange="loadDataAudit()"></label></div></div>
+<div id="auditTable" class="table-wrap audit-table-wrap"></div></div>
+</div>
+</section></main>
+<div id="modal" class="modal hidden"><div class="modal-card">
+<button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Add Product</h2>
+<form id="modalForm" onsubmit="submitModal(event)">
+<div id="productFields">
+<label>Product name<input id="f_name" required></label>
+<div class="two"><label>SKU<input id="f_sku"></label><label>Unit<input id="f_unit" value="pcs"></label></div>
+<div class="two"><label>Cost price<input id="f_cost" type="number" min="0" step="0.01" value="0"></label><label>Selling price<input id="f_sell" type="number" min="0" step="0.01" value="0"></label></div>
+<div class="two"><label>Stock quantity<input id="f_stock" type="number" min="0" step="0.01" value="0"></label><label>Low-stock level<input id="f_low" type="number" min="0" step="0.01" value="5"></label></div>
+<div class="two"><label>Batch number<input id="f_batch"></label><label>Expiry date<input id="f_expiry" type="date"></label></div>
+<div class="two"><label>Category<select id="f_cat"><option value="">None</option></select></label><label>Supplier<select id="f_sup"><option value="">None</option></select></label></div>
+<label>Description<textarea id="f_desc"></textarea></label>
+</div>
+<button class="primary" id="modalSubmit">Save</button>
+</form></div></div>
+
+<div id="purchaseModal" class="modal hidden"><div class="modal-card wide-modal"><button class="close" onclick="closePurchaseModal()">×</button><h2>📥 New Purchase Order</h2><form id="purchaseForm" onsubmit="submitPurchase(event)"><div class="two"><label>Branch<select id="purchaseBranch" required></select></label><label>Supplier<select id="purchaseSupplier" required></select></label></div><div class="two"><label>Purchase date<input id="purchaseDate" type="date" required></label><label>Due date<input id="purchaseDueDate" type="date"></label></div><div class="two"><label>Status<select id="purchaseStatus"><option value="ordered">Ordered — do not add stock yet</option><option value="received">Received — add stock immediately</option></select></label></div><div id="purchaseItems" class="purchase-items"></div><button type="button" onclick="addPurchaseItem()">+ Add Item</button><div class="two purchase-totals"><label>Discount<input id="purchaseDiscount" type="number" min="0" step="0.01" value="0" oninput="calcPurchaseTotals()"></label><label>Tax / VAT<input id="purchaseTax" type="number" min="0" step="0.01" value="0" oninput="calcPurchaseTotals()"></label></div><div id="purchaseTotals" class="purchase-total-box"></div><label>Notes<textarea id="purchaseNotes" placeholder="Supplier terms, delivery notes, etc."></textarea></label><button class="primary" type="submit">Save Purchase</button></form></div></div>
+<div id="supplier360Modal" class="modal hidden"><div class="modal-card wide-modal"><button class="close" onclick="closeSupplier360()">×</button><div class="modal-header"><div><span class="modal-kicker">SUPPLIER INTELLIGENCE</span><h2 id="supplier360Title">Supplier 360°</h2><p class="muted">Purchases, products, payments and outstanding balance.</p></div></div><div id="supplier360Stats" class="stats"></div><div class="grid dashboard-grid"><div class="card"><h3>📦 Products Supplied</h3><div id="supplier360Products" class="table-wrap"></div></div><div class="card"><h3>📋 Recent Purchases</h3><div id="supplier360Purchases" class="table-wrap"></div></div></div><div class="card"><h3>💳 Supplier Payments</h3><div id="supplier360Payments" class="table-wrap"></div></div></div></div>
+<div id="supplierPaymentModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeSupplierPaymentModal()">×</button><h2>💸 Record Supplier Payment</h2><form id="supplierPaymentForm" onsubmit="submitSupplierPayment(event)"><div id="supplierPaymentInfo" class="settings-note"></div><div class="two"><label>Amount<input id="supplierPayAmount" type="number" min="0.01" step="0.01" required></label><label>Date<input id="supplierPayDate" type="date" required></label></div><div class="two"><label>Payment method<select id="supplierPayMethod"><option value="cash">Cash</option><option value="transfer">Bank Transfer</option><option value="pos">POS</option><option value="bank">Bank</option><option value="flutterwave">Flutterwave</option><option value="other">Other</option></select></label><label>Reference<input id="supplierPayReference" maxlength="120"></label></div><label>Notes<textarea id="supplierPayNotes"></textarea></label><button class="primary" type="submit">Save Payment</button></form></div></div>
+<div id="paymentModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closePaymentModal()">×</button><h2>💳 Record Customer Payment</h2><form id="paymentForm" onsubmit="submitPayment(event)"><div id="paymentInvoiceInfo" class="settings-note"></div><div class="two"><label>Payment amount<input id="paymentAmount" type="number" min="0.01" step="0.01" required></label><label>Payment date<input id="paymentDate" type="date" required></label></div><div class="two"><label>Payment method<select id="paymentMethodReceivable"><option value="cash">Cash</option><option value="transfer">Bank Transfer</option><option value="pos">POS</option><option value="flutterwave">Flutterwave</option><option value="bank">Bank</option><option value="other">Other</option></select></label><label>Reference<input id="paymentReference" maxlength="120" placeholder="Receipt / transfer reference"></label></div><label>Notes<textarea id="paymentNotes" maxlength="500" placeholder="Optional payment note"></textarea></label><button class="primary" type="submit">Save Payment</button></form></div></div>
+<div id="accountModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeAccountModal()">×</button><h2>📒 Add Account</h2><form id="accountForm" onsubmit="submitAccount(event)"><label>Account name<input id="accountName" maxlength="80" required placeholder="e.g. Business Bank Account"></label><label>Account type<select id="accountType"><option value="asset">Asset</option><option value="liability">Liability</option><option value="income">Income</option><option value="expense">Expense</option><option value="equity">Equity</option></select></label><label>Opening balance<input id="accountOpening" type="number" step="0.01" value="0"></label><button class="primary" type="submit">Save Account</button></form></div></div>
+<div id="accountingEntryModal" class="modal hidden"><div class="modal-card wide-modal"><button class="close" onclick="closeAccountingEntryModal()">×</button><h2>🧾 Add Cashbook Entry</h2><div class="settings-note">Choose what the transaction really represents. Opening balances stay on the Balance Sheet; they are not treated as income or expenses.</div><form id="accountingEntryForm" onsubmit="submitAccountingEntry(event)"><div class="two"><label>Transaction type<select id="accountingEntryType" onchange="refreshAccountingEntryAccounts()"><option value="income">Other Income / Money In</option><option value="expense">Business Expense / Money Out</option><option value="owner_capital">Owner Capital Introduced</option><option value="owner_withdrawal">Owner Withdrawal</option><option value="loan_received">Loan Received</option><option value="loan_repayment">Loan Repayment</option><option value="asset_purchase">Purchase of Business Asset</option></select></label><label>Date<input id="accountingEntryDate" type="date" required></label></div><label>Description<input id="accountingEntryDescription" maxlength="160" required placeholder="e.g. Owner capital introduced"></label><div class="two"><label>Amount<input id="accountingEntryAmount" type="number" min="0.01" step="0.01" required></label><label id="accountingEntryAccountLabel">Account<select id="accountingEntryAccount"></select></label></div><div class="two"><label>Branch<select id="accountingEntryBranch"></select></label><label>Payment method<select id="accountingEntryMethod"><option value="cash">Cash</option><option value="transfer">Bank Transfer</option><option value="bank">Bank</option><option value="pos">POS</option><option value="flutterwave">Flutterwave</option><option value="other">Other</option></select></label><label>Reference<input id="accountingEntryReference" maxlength="120"></label></div><label>Notes<textarea id="accountingEntryNotes" maxlength="500"></textarea></label><button class="primary" type="submit">Save Entry</button></form></div></div>
+
+<footer>BIGJOE Business AI • Business Management Edition • Test-mode payments until you switch Flutterwave to live mode.</footer>
+<script src="/app.js?v=58.2"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body></html>

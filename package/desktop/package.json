@@ -1,0 +1,28 @@
+{
+  "name": "bigjoe-desktop",
+  "version": "58.8.0",
+  "private": true,
+  "description": "Installable Windows/Mac/Linux desktop app for BIGJOE Business AI — a thin Electron shell around your deployed BIGJOE website.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.bigjoe.businessai.desktop",
+    "productName": "BIGJOE Business AI",
+    "files": ["main.js", "preload.js", "package.json"],
+    "directories": { "buildResources": "build" },
+    "win": { "target": ["nsis"], "icon": "build/icon.ico" },
+    "mac": { "target": ["dmg"], "icon": "build/icon.icns", "category": "public.app-category.business" },
+    "linux": { "target": ["AppImage"], "icon": "build/icon.png", "category": "Office" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+  }
+}

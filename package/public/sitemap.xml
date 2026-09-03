@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  BIGJOE is a single-page app, so there's only one publicly crawlable URL (the marketing
+  landing page served at "/" — everything past login is behind auth and shouldn't be
+  indexed anyway). Replace the placeholder domain below with your real deployed HTTPS
+  domain, and update <lastmod> whenever the public landing content changes meaningfully.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://REPLACE-WITH-YOUR-BIGJOE-DOMAIN.example.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

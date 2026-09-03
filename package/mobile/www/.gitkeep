@@ -1,0 +1,4 @@
+This folder only exists so Capacitor has a webDir to point at during `cap add`.
+BIGJOE runs in "remote server" mode (see capacitor.config.json -> server.url),
+so nothing here is actually bundled into the app — the app just opens your
+live BIGJOE website inside a native shell. Do not put app files here.

@@ -1,0 +1,23 @@
+{
+  "name": "bigjoe-mobile",
+  "version": "58.5.0",
+  "private": true,
+  "description": "Capacitor wrapper that ships BIGJOE Business AI as native Android and iOS apps, pointed at your deployed BIGJOE server.",
+  "scripts": {
+    "sync": "cap sync",
+    "open:android": "cap open android",
+    "open:ios": "cap open ios",
+    "add:android": "cap add android",
+    "add:ios": "cap add ios",
+    "assets": "capacitor-assets generate"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/ios": "^6.1.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.1.0"
+  }
+}

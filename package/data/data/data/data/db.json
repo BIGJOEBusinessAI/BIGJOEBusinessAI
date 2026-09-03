@@ -1,0 +1,1960 @@
+{
+  "users": [
+    {
+      "id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "Joshua Cletus",
+      "email": "joshuachinenye6@gmail.com",
+      "password_hash": "d2e6d1872bc67f57c7d6227b56bdf2ab:b56c1b59adb5d3213b4103e328d734f8e8cede9f707b8311ee8f0879028f620e",
+      "plan": "pro",
+      "created_at": "2026-08-07T12:17:24.987Z",
+      "business_profile": {
+        "loyalty": {
+          "points_per_naira": 0.001,
+          "bronze": 5,
+          "silver": 10,
+          "gold": 15,
+          "platinum": 20
+        }
+      }
+    },
+    {
+      "id": "be6cc9ff-e9b2-4e3e-8a82-97940294bb68",
+      "name": "Test User",
+      "email": "test-dashboard@example.com",
+      "password_hash": "1837b8a4585844c0836cde5fd14114b5:b99e7b94adddac6617ca1e6cd71a2f44e874dd5166b6bef9a3d51a52f89ddd6b",
+      "plan": "free",
+      "created_at": "2026-08-10T20:42:23.167Z"
+    },
+    {
+      "id": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "name": "V16 Tester",
+      "email": "v16tester@example.com",
+      "password_hash": "fd9a2b82f3c571ce78d495a198291fbe:46a0f5f98ded27ab8010a188e2c85a3a47fc4f1d42bef8defae46bfa4daf9781",
+      "plan": "free",
+      "created_at": "2026-08-14T10:48:25.451Z",
+      "business_profile": {
+        "business_name": "BIGJOE",
+        "phone": "",
+        "address": "",
+        "email": "v16tester@example.com",
+        "tagline": "Smart business management with BIGJOE."
+      }
+    },
+    {
+      "id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "name": "Accounting Tester",
+      "email": "accttest@example.com",
+      "password_hash": "f5ee0b79a95f8320c988f03ef149d112:5b3df3b6a7d1b5ba6ea9ce2aed32fcce5b216a075e5c83c67540979f088e4f01",
+      "plan": "free",
+      "created_at": "2026-08-14T14:03:45.439Z",
+      "business_profile": {
+        "business_name": "BIGJOE",
+        "phone": "",
+        "address": "",
+        "email": "accttest@example.com",
+        "tagline": "Smart business management with BIGJOE."
+      }
+    }
+  ],
+  "payments": [
+    {
+      "id": "720ca4db-1140-4b95-bfb1-2b9eb7b5a7f7",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tx_ref": "BIGJOE-ae4dc27b-1af9-4c16-a408-5ae1e714e668-1786109025301-63ea49d2",
+      "plan": "business",
+      "amount": 1500,
+      "currency": "NGN",
+      "status": "initialized",
+      "transaction_id": null,
+      "created_at": "2026-08-07T13:23:52.178Z"
+    },
+    {
+      "id": "11861ce3-65c1-4c06-b20d-3803be3ea7c6",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tx_ref": "BIGJOE-ae4dc27b-1af9-4c16-a408-5ae1e714e668-1786109449414-8f283649",
+      "plan": "pro",
+      "amount": 3000,
+      "currency": "NGN",
+      "status": "initialized",
+      "transaction_id": null,
+      "created_at": "2026-08-07T13:30:50.759Z"
+    },
+    {
+      "id": "d45ff00f-737d-411c-88dc-718b5b38f53e",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tx_ref": "BIGJOE-ae4dc27b-1af9-4c16-a408-5ae1e714e668-1786110521909-52d7fd09",
+      "plan": "business",
+      "amount": 1500,
+      "currency": "NGN",
+      "status": "initialized",
+      "transaction_id": null,
+      "created_at": "2026-08-07T13:48:43.352Z"
+    },
+    {
+      "id": "ef9e2f6b-95c3-445e-b3bb-b6597107ec99",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tx_ref": "BIGJOE-ae4dc27b-1af9-4c16-a408-5ae1e714e668-1786113043157-96014bdc",
+      "plan": "business",
+      "amount": 1500,
+      "currency": "NGN",
+      "status": "successful",
+      "transaction_id": "10418715",
+      "created_at": "2026-08-07T14:30:44.883Z"
+    },
+    {
+      "id": "e2b4367b-3c06-4700-b4c8-5baeaf4cf59c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tx_ref": "BIGJOE-ae4dc27b-1af9-4c16-a408-5ae1e714e668-1786113374031-ac513cfc",
+      "plan": "pro",
+      "amount": 3000,
+      "currency": "NGN",
+      "status": "successful",
+      "transaction_id": "10418720",
+      "created_at": "2026-08-07T14:36:18.666Z"
+    }
+  ],
+  "activity": [
+    {
+      "id": "754da93e-b027-4d4c-89f2-839952ec920a",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "ai_assistant",
+      "input_text": "i want to start up a business with 1000000 naira, please advice me on what type of business to venture in",
+      "output_text": "BIGJOE Business Assistant\n\nI can help you create adverts, customer replies, invoices, business ideas, pricing suggestions and simple business plans. Tell me what you need.",
+      "created_at": "2026-08-07T13:45:34.156Z"
+    },
+    {
+      "id": "cd7709e9-68ac-4aa9-af02-1171dc0a2b54",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "ai_assistant",
+      "input_text": "give me a simple business plan",
+      "output_text": "BIGJOE Business Assistant\n\nI can help you create adverts, customer replies, invoices, business ideas, pricing suggestions and simple business plans. Tell me what you need.",
+      "created_at": "2026-08-07T13:47:00.802Z"
+    },
+    {
+      "id": "bb333464-1258-47cc-b36f-884f00d312c4",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "ai_assistant",
+      "input_text": "give me a simple business plan",
+      "output_text": "BIGJOE Business Assistant\n\nI can help you create adverts, customer replies, invoices, business ideas, pricing suggestions and simple business plans. Tell me what you need.",
+      "created_at": "2026-08-07T13:47:06.526Z"
+    },
+    {
+      "id": "6e1b5c92-3726-47fd-ba2a-bdb05b566a52",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "assistant",
+      "input_text": "i need a business idea on selling shoes\n",
+      "output_text": "BIGJOE Business Assistant\n\nI can help you create adverts, customer replies, invoices, business ideas, pricing suggestions and simple business plans. Tell me what you need.",
+      "created_at": "2026-08-07T13:48:07.566Z"
+    },
+    {
+      "id": "e1f1067a-9716-4bc4-8715-05458f147f8e",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260810-00001",
+      "output_text": "Sale BJ-20260810-00001 completed for ₦7,000.00 via cash.",
+      "created_at": "2026-08-10T14:47:29.395Z"
+    },
+    {
+      "id": "322c518b-64fe-47e3-b8bc-8c766e9c59f0",
+      "user_id": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "tool": "purchase",
+      "input_text": "PO-2026-00001",
+      "output_text": "Purchase order PO-2026-00001 created for ₦6,000.00 from Supplier V16.",
+      "created_at": "2026-08-14T10:48:28.415Z"
+    },
+    {
+      "id": "8f3dfdd9-d825-4a09-b8c8-ecfcc9f9341a",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "tool": "accounting",
+      "input_text": "6df97b70-9239-4091-a918-1113552f7837",
+      "output_text": "Manual income entry of ₦15,000.00 recorded.",
+      "created_at": "2026-08-14T14:03:45.542Z"
+    },
+    {
+      "id": "2033c2a9-ac79-4b29-9fc2-7e06d5efca97",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "accounting",
+      "input_text": "a09bc581-bfda-4c2c-b0df-ff32d0b65209",
+      "output_text": "Manual income entry of ₦200,000.00 recorded.",
+      "created_at": "2026-08-14T14:26:34.087Z"
+    },
+    {
+      "id": "b8810d24-30dd-40d4-aace-d1e930a21c36",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "assistant",
+      "input_text": "",
+      "output_text": "BIGJOE Business Assistant\n\nI can help you create adverts, customer replies, invoices, business ideas, pricing suggestions and simple business plans. Tell me what you need.",
+      "created_at": "2026-08-15T11:25:43.106Z"
+    },
+    {
+      "id": "ba60d352-c7e2-450b-bd5b-ad9b11b4522d",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "marketing_campaign",
+      "input_text": "cb86c073-6fb4-4f02-86ce-5ca12de1a769",
+      "output_text": "Marketing campaign created: Customer Update",
+      "created_at": "2026-08-15T11:44:39.667Z"
+    },
+    {
+      "id": "f8629caa-1980-44b3-829f-fc2f3ccd83bb",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00002",
+      "output_text": "Sale BJ-20260815-00002 completed for ₦7,000.00 via pos.",
+      "created_at": "2026-08-15T12:08:20.450Z"
+    },
+    {
+      "id": "7220364d-71c2-43b2-8669-0a442c8703ac",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00003",
+      "output_text": "Sale BJ-20260815-00003 completed for ₦7,500.00 via pos.",
+      "created_at": "2026-08-15T12:09:02.095Z"
+    },
+    {
+      "id": "ae800826-2770-4d2c-a316-ee67f48025d6",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00004",
+      "output_text": "Sale BJ-20260815-00004 completed for ₦21,000.00 via pos.",
+      "created_at": "2026-08-15T12:09:37.394Z"
+    },
+    {
+      "id": "0ccaca37-1593-4ebb-98ac-882137830579",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00005",
+      "output_text": "Sale BJ-20260815-00005 completed for ₦14,000.00 via pos.",
+      "created_at": "2026-08-15T12:18:31.012Z"
+    },
+    {
+      "id": "067f2a78-3881-4bdc-9e78-d87c1526133c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale_return",
+      "input_text": "RET-20260815-00001",
+      "output_text": "Sale BJ-20260815-00005 fully returned and ₦14,000.00 refunded via pos.",
+      "created_at": "2026-08-15T12:22:48.615Z"
+    },
+    {
+      "id": "5fd56028-c57a-49b8-aea4-bfb7619155ed",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00006",
+      "output_text": "Sale BJ-20260815-00006 completed for ₦17,500.00 via cash.",
+      "created_at": "2026-08-15T12:40:48.790Z"
+    },
+    {
+      "id": "9c215222-d22a-465a-b43e-c5147ff0d120",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00007",
+      "output_text": "Sale BJ-20260815-00007 completed for ₦24,500.00 via cash.",
+      "created_at": "2026-08-15T12:45:11.952Z"
+    },
+    {
+      "id": "8ef57df9-a90c-44ee-95fe-d804cd257115",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale_return",
+      "input_text": "RET-20260815-00002",
+      "output_text": "Sale BJ-20260815-00007 fully returned and ₦24,500.00 refunded via cash.",
+      "created_at": "2026-08-15T12:47:15.000Z"
+    },
+    {
+      "id": "181622e9-d9a6-4642-b8dd-1e9881417669",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00008",
+      "output_text": "Sale BJ-20260815-00008 completed for ₦35,000.00 via transfer.",
+      "created_at": "2026-08-15T12:50:11.536Z"
+    },
+    {
+      "id": "169534cf-6b84-4c0f-b711-f48e7b609113",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale_return",
+      "input_text": "RET-20260815-00003",
+      "output_text": "Sale BJ-20260815-00008 fully returned and ₦35,000.00 refunded via transfer.",
+      "created_at": "2026-08-15T12:51:13.170Z"
+    },
+    {
+      "id": "74a788e4-c9d0-47e3-b59b-3b2888903979",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00009",
+      "output_text": "Sale BJ-20260815-00009 completed for ₦35,000.00 via transfer.",
+      "created_at": "2026-08-15T13:08:37.610Z"
+    },
+    {
+      "id": "6ef7c4b9-abfc-4635-a1bb-2f150fa6a368",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale_return",
+      "input_text": "RET-20260815-00004",
+      "output_text": "Sale BJ-20260815-00009 fully returned and ₦35,000.00 refunded via transfer.",
+      "created_at": "2026-08-15T13:10:35.729Z"
+    },
+    {
+      "id": "3b123f8d-f111-422e-88a5-cc571b83df35",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00010",
+      "output_text": "Sale BJ-20260815-00010 completed for ₦17,500.00 via transfer.",
+      "created_at": "2026-08-15T13:12:53.193Z"
+    },
+    {
+      "id": "8eff1706-83fb-4a3f-b078-1c2000f30621",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00011",
+      "output_text": "Sale BJ-20260815-00011 completed for ₦7,500.00 via cash.",
+      "created_at": "2026-08-15T13:28:47.886Z"
+    },
+    {
+      "id": "77b64475-5c0b-4ce3-8d23-1f562f66c2bb",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00012",
+      "output_text": "Sale BJ-20260815-00012 completed for ₦12,500.00 via cash.",
+      "created_at": "2026-08-15T13:40:59.322Z"
+    },
+    {
+      "id": "ef48bf5b-0650-4124-89ae-750e04a233e0",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale_return",
+      "input_text": "RET-20260815-00005",
+      "output_text": "Sale BJ-20260815-00012 fully returned and ₦12,500.00 refunded via cash.",
+      "created_at": "2026-08-15T13:44:58.455Z"
+    },
+    {
+      "id": "0ce5e8e2-e6b3-4e4b-ac86-6be62f3138c2",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00013",
+      "output_text": "Sale BJ-20260815-00013 completed for ₦10,000.00 via cash.",
+      "created_at": "2026-08-15T13:57:40.309Z"
+    },
+    {
+      "id": "236472d3-4512-417b-9650-61ffe789a2d7",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "expense",
+      "input_text": "Transportation",
+      "output_text": "Expense recorded: ₦10,000.00 for Transport.",
+      "created_at": "2026-08-15T13:59:08.850Z"
+    },
+    {
+      "id": "6b338eab-9407-4501-a45f-353949e0941f",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "expense",
+      "input_text": "Shop Rent",
+      "output_text": "Expense recorded: ₦25,000.00 for Rent.",
+      "created_at": "2026-08-15T14:01:29.679Z"
+    },
+    {
+      "id": "628cd8e9-5076-4d51-8d4c-e1666f105699",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00014",
+      "output_text": "Sale BJ-20260815-00014 completed for ₦7,500.00 via cash.",
+      "created_at": "2026-08-15T14:13:05.008Z"
+    },
+    {
+      "id": "906eb5a7-8d1c-41bd-8535-6f7b3ef047c5",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "invoice",
+      "input_text": "INV-2026-00001",
+      "output_text": "Invoice INV-2026-00001 created for ₦3,500.00.",
+      "created_at": "2026-08-15T14:14:22.084Z"
+    },
+    {
+      "id": "ac4dfe51-3dca-4cc4-a110-3ecaf7745b47",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "quotation",
+      "input_text": "QUO-2026-00001",
+      "output_text": "Quotation QUO-2026-00001 created for ₦2,500.00.",
+      "created_at": "2026-08-15T14:15:44.454Z"
+    },
+    {
+      "id": "04aabae2-3d30-48e7-bb6c-a238c125b226",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "expense",
+      "input_text": "Shop Rent",
+      "output_text": "Expense recorded: ₦30,000.00 for Rent.",
+      "created_at": "2026-08-15T14:31:14.570Z"
+    },
+    {
+      "id": "52e97749-8abe-4e78-9176-f4abaa675462",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "purchase",
+      "input_text": "PO-2026-00001",
+      "output_text": "Purchase order PO-2026-00001 created for ₦1,450.00 from coca cola nigeria.",
+      "created_at": "2026-08-15T14:55:20.495Z"
+    },
+    {
+      "id": "48532cbb-5805-44b7-ad53-786aeaf606ac",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "sale",
+      "input_text": "BJ-20260815-00015",
+      "output_text": "Sale BJ-20260815-00015 completed for ₦600.00 via cash.",
+      "created_at": "2026-08-15T15:11:14.043Z"
+    },
+    {
+      "id": "a9c0744d-1636-49a8-b0d0-c4abd008b0ee",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "tool": "assistant",
+      "input_text": "Give me 5 business ideas i can start with 100000",
+      "output_text": "BIGJOE BUSINESS IDEA ANALYSIS\n\nYour request: Give me 5 business ideas i can start with 100000\n\n1. Recommended direction\nChoose a business that matches your available capital, location, skills and customer demand.\n\n2. Potential ideas\n• Retail/reselling — start with fast-moving products and reinvest profits.\n• Food/snacks — focus on a small menu with repeat local demand.\n• Digital services — graphics, document services, social-media support or AI-assisted services.\n• Distribution — buy selected fast-moving products in bulk and supply smaller retailers.\n\n3. How to choose\nCompare each idea by startup cost, expected margin, competition, repeat customers and cash-flow speed.\n\n4. First 30 days\nValidate demand with real customers, start small, record every sale and expense in BIGJOE, then reinvest into the products/services with the strongest margins.\n\nIf you give me your exact capital, location and skills, I can turn this into a more specific business plan.",
+      "created_at": "2026-08-15T15:21:06.298Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "791eb3c0-f6a0-41a3-a4c3-50aef4d26a80",
+      "userId": "be6cc9ff-e9b2-4e3e-8a82-97940294bb68",
+      "created_at": "2026-08-10T20:42:23.167Z"
+    },
+    {
+      "token": "b6cc61eb-2849-4ec3-bcfa-6d64b209449d",
+      "userId": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "created_at": "2026-08-14T10:48:25.452Z"
+    },
+    {
+      "token": "ca9e25c8-4e4c-4b88-b606-7ddd04934856",
+      "userId": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "created_at": "2026-08-14T14:03:45.440Z"
+    },
+    {
+      "token": "60660667-7b5c-4872-bfe4-b70f0c7366d4",
+      "userId": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "created_at": "2026-08-15T10:57:39.650Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "62adc6fa-1e9f-4bd5-811d-e2eec7e42aec",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "Soft Drinks",
+      "description": "Coka Cola, Sprit",
+      "created_at": "2026-08-09T19:55:26.192Z",
+      "updated_at": "2026-08-09T19:57:12.962Z"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "coca cola nigeria",
+      "phone": "08093782606",
+      "email": "joshua.chinenye@rocketmail.com",
+      "address": "22 catholic lane upper luggere jimeta\nAGC upper luggere",
+      "created_at": "2026-08-09T19:55:59.250Z"
+    },
+    {
+      "id": "2c699378-d2a0-4562-8bff-4e7ab176b411",
+      "user_id": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "name": "Supplier V16",
+      "phone": "",
+      "email": "",
+      "address": "",
+      "created_at": "2026-08-14T10:48:25.505Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "category_id": "62adc6fa-1e9f-4bd5-811d-e2eec7e42aec",
+      "supplier_id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "name": "coca cola",
+      "sku": "Big Bottle 50Cl",
+      "description": "Big bottle Coca cola",
+      "cost_price": 2500,
+      "selling_price": 3500,
+      "stock_quantity": 980,
+      "low_stock_level": 5,
+      "unit": "Bottle",
+      "created_at": "2026-08-09T19:53:16.526Z",
+      "updated_at": "2026-08-15T13:12:53.190Z"
+    },
+    {
+      "id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "category_id": "62adc6fa-1e9f-4bd5-811d-e2eec7e42aec",
+      "supplier_id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "name": "coca cola",
+      "sku": "Small Bottle 35Cl",
+      "description": "Small bottle coke",
+      "cost_price": 2000,
+      "selling_price": 2500,
+      "stock_quantity": 87,
+      "low_stock_level": 5,
+      "unit": "Bottles",
+      "created_at": "2026-08-09T19:59:05.108Z",
+      "updated_at": "2026-08-15T14:13:04.930Z"
+    },
+    {
+      "id": "2df17116-a5e1-4392-b70b-ee0d1bf74f83",
+      "user_id": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "category_id": null,
+      "supplier_id": "2c699378-d2a0-4562-8bff-4e7ab176b411",
+      "name": "V16 Product",
+      "sku": "",
+      "description": "",
+      "cost_price": 1066.67,
+      "selling_price": 1500,
+      "stock_quantity": 15,
+      "low_stock_level": 5,
+      "unit": "pcs",
+      "created_at": "2026-08-14T10:48:26.942Z",
+      "updated_at": "2026-08-14T10:48:28.389Z"
+    },
+    {
+      "id": "7df44d0b-6f59-4bab-bc2c-9f93fffed617",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "category_id": "62adc6fa-1e9f-4bd5-811d-e2eec7e42aec",
+      "supplier_id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "name": "Big Cola",
+      "sku": "35cl",
+      "description": "",
+      "cost_price": 1500,
+      "selling_price": 200,
+      "stock_quantity": 48,
+      "low_stock_level": 5,
+      "unit": "12pcs",
+      "created_at": "2026-08-15T14:52:28.045Z",
+      "updated_at": "2026-08-15T15:11:14.038Z"
+    }
+  ],
+  "sales": [
+    {
+      "id": "01390015-cd89-4cfa-b732-26ee89aaab87",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260810-00001",
+      "customer_name": "",
+      "customer_phone": "",
+      "payment_method": "cash",
+      "subtotal": 7000,
+      "discount": 0,
+      "total": 7000,
+      "cost_total": 5000,
+      "profit": 2000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 2,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 7000,
+          "line_cost": 5000
+        }
+      ],
+      "created_at": "2026-08-10T14:47:28.694Z",
+      "customer_id": null
+    },
+    {
+      "id": "deba67f8-c133-4f16-9f08-46401d309733",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00002",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "pos",
+      "subtotal": 7000,
+      "discount": 0,
+      "total": 7000,
+      "cost_total": 5000,
+      "profit": 2000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 2,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 7000,
+          "line_cost": 5000
+        }
+      ],
+      "created_at": "2026-08-15T12:08:19.863Z",
+      "loyalty_points": 7
+    },
+    {
+      "id": "2f24cb68-e868-4d64-95e6-9553201705cf",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00003",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "payment_method": "pos",
+      "subtotal": 7500,
+      "discount": 0,
+      "total": 7500,
+      "cost_total": 6000,
+      "profit": 1500,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 3,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 7500,
+          "line_cost": 6000
+        }
+      ],
+      "created_at": "2026-08-15T12:09:02.094Z",
+      "loyalty_points": 7
+    },
+    {
+      "id": "dfca081f-887b-411b-a7b0-e2b02a948b1c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00004",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "customer_name": "Rahab",
+      "customer_phone": "09034657890",
+      "payment_method": "pos",
+      "subtotal": 21000,
+      "discount": 0,
+      "total": 21000,
+      "cost_total": 15000,
+      "profit": 6000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 6,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 21000,
+          "line_cost": 15000
+        }
+      ],
+      "created_at": "2026-08-15T12:09:37.392Z",
+      "loyalty_points": 21
+    },
+    {
+      "id": "77941495-411a-417a-af68-63a4aac952c9",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00005",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "pos",
+      "subtotal": 14000,
+      "discount": 0,
+      "total": 14000,
+      "cost_total": 10000,
+      "profit": 4000,
+      "status": "returned",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 4,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 14000,
+          "line_cost": 10000
+        }
+      ],
+      "created_at": "2026-08-15T12:18:31.011Z",
+      "loyalty_points": 14,
+      "returned_at": "2026-08-15T12:22:48.613Z",
+      "return_no": "RET-20260815-00001",
+      "updated_at": "2026-08-15T12:22:48.614Z"
+    },
+    {
+      "id": "797dfb53-6cd3-4383-b094-38931a907ac5",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00006",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "cash",
+      "subtotal": 17500,
+      "discount": 0,
+      "total": 17500,
+      "cost_total": 12500,
+      "profit": 5000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 5,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 17500,
+          "line_cost": 12500
+        }
+      ],
+      "created_at": "2026-08-15T12:40:48.714Z",
+      "loyalty_points": 17
+    },
+    {
+      "id": "e20fb7b2-e163-43e6-9781-9fdecfd1fbf8",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00007",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "cash",
+      "subtotal": 24500,
+      "discount": 0,
+      "total": 24500,
+      "cost_total": 17500,
+      "profit": 7000,
+      "status": "returned",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 7,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 24500,
+          "line_cost": 17500
+        }
+      ],
+      "created_at": "2026-08-15T12:45:11.951Z",
+      "loyalty_points": 24,
+      "returned_at": "2026-08-15T12:47:14.997Z",
+      "return_no": "RET-20260815-00002",
+      "updated_at": "2026-08-15T12:47:14.999Z"
+    },
+    {
+      "id": "c697cef3-f4ab-4d97-95b6-d11dca8465be",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00008",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "transfer",
+      "subtotal": 35000,
+      "discount": 0,
+      "total": 35000,
+      "cost_total": 25000,
+      "profit": 10000,
+      "status": "returned",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 10,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 35000,
+          "line_cost": 25000
+        }
+      ],
+      "created_at": "2026-08-15T12:50:11.535Z",
+      "loyalty_points": 35,
+      "returned_at": "2026-08-15T12:51:13.164Z",
+      "return_no": "RET-20260815-00003",
+      "updated_at": "2026-08-15T12:51:13.169Z"
+    },
+    {
+      "id": "e6eea470-3f71-40ca-82ce-ae1a2c443f0b",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00009",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "payment_method": "transfer",
+      "subtotal": 35000,
+      "discount": 0,
+      "total": 35000,
+      "cost_total": 25000,
+      "profit": 10000,
+      "status": "returned",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 10,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 35000,
+          "line_cost": 25000
+        }
+      ],
+      "created_at": "2026-08-15T13:08:37.534Z",
+      "loyalty_points": 35,
+      "returned_at": "2026-08-15T13:10:35.725Z",
+      "return_no": "RET-20260815-00004",
+      "updated_at": "2026-08-15T13:10:35.728Z"
+    },
+    {
+      "id": "ff4b3863-5749-43da-ac8a-0c1ec8a582ae",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00010",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "payment_method": "transfer",
+      "subtotal": 17500,
+      "discount": 0,
+      "total": 17500,
+      "cost_total": 12500,
+      "profit": 5000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 5,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 17500,
+          "line_cost": 12500
+        }
+      ],
+      "created_at": "2026-08-15T13:12:53.191Z",
+      "loyalty_points": 17
+    },
+    {
+      "id": "8922e7cd-77ec-41eb-a282-88dc5eb9bd93",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00011",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "customer_name": "Rahab",
+      "customer_phone": "09034657890",
+      "payment_method": "cash",
+      "subtotal": 7500,
+      "discount": 0,
+      "total": 7500,
+      "cost_total": 6000,
+      "profit": 1500,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 3,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 7500,
+          "line_cost": 6000
+        }
+      ],
+      "created_at": "2026-08-15T13:28:47.809Z",
+      "loyalty_points": 7
+    },
+    {
+      "id": "0d999593-dde3-4725-91c0-3aadf6107509",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00012",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "customer_name": "Rahab",
+      "customer_phone": "09034657890",
+      "payment_method": "cash",
+      "subtotal": 12500,
+      "discount": 0,
+      "total": 12500,
+      "cost_total": 10000,
+      "profit": 2500,
+      "status": "returned",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 5,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 12500,
+          "line_cost": 10000
+        }
+      ],
+      "created_at": "2026-08-15T13:40:59.306Z",
+      "loyalty_points": 12,
+      "returned_at": "2026-08-15T13:44:58.454Z",
+      "return_no": "RET-20260815-00005",
+      "updated_at": "2026-08-15T13:44:58.455Z"
+    },
+    {
+      "id": "8d153ad2-2a65-4f7d-bfaa-67116652bc66",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00013",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "payment_method": "cash",
+      "subtotal": 10000,
+      "discount": 0,
+      "total": 10000,
+      "cost_total": 8000,
+      "profit": 2000,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 4,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 10000,
+          "line_cost": 8000
+        }
+      ],
+      "created_at": "2026-08-15T13:57:40.291Z",
+      "loyalty_points": 10
+    },
+    {
+      "id": "cb9ba897-0f61-4603-84ed-cc079ae9a1df",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00014",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "payment_method": "cash",
+      "subtotal": 7500,
+      "discount": 0,
+      "total": 7500,
+      "cost_total": 6000,
+      "profit": 1500,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 3,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 7500,
+          "line_cost": 6000
+        }
+      ],
+      "created_at": "2026-08-15T14:13:04.933Z",
+      "loyalty_points": 7
+    },
+    {
+      "id": "0bb4bfc7-2f2f-4679-88cb-521710b29ca5",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "invoice_no": "BJ-20260815-00015",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "payment_method": "cash",
+      "subtotal": 600,
+      "discount": 0,
+      "total": 600,
+      "cost_total": 4500,
+      "profit": -3900,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "7df44d0b-6f59-4bab-bc2c-9f93fffed617",
+          "name": "Big Cola",
+          "sku": "35cl",
+          "unit": "12pcs",
+          "quantity": 3,
+          "unit_price": 200,
+          "unit_cost": 1500,
+          "line_total": 600,
+          "line_cost": 4500
+        }
+      ],
+      "created_at": "2026-08-15T15:11:14.041Z",
+      "loyalty_points": 0
+    }
+  ],
+  "customers": [
+    {
+      "id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "Maigari",
+      "phone": "08012345678",
+      "email": "Aliyu12@gmail",
+      "address": "Zaranda",
+      "created_at": "2026-08-15T12:05:23.397Z",
+      "updated_at": "2026-08-15T12:05:23.397Z"
+    },
+    {
+      "id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "Joshua",
+      "phone": "08000000000",
+      "email": "joshua@gmail.com",
+      "address": "Market",
+      "created_at": "2026-08-15T12:06:28.387Z",
+      "updated_at": "2026-08-15T12:06:28.388Z"
+    },
+    {
+      "id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "Rahab",
+      "phone": "09034657890",
+      "email": "rahab21@gmail.com",
+      "address": "Bishop Street",
+      "created_at": "2026-08-15T12:07:22.128Z",
+      "updated_at": "2026-08-15T12:07:22.128Z"
+    }
+  ],
+  "receivable_payments": [],
+  "supplier_payments": [
+    {
+      "id": "9710ccda-c0a9-444b-b9f8-b02fe20baabc",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "purchase_id": "99ddf99f-e75f-49b2-b9c6-73cba879af86",
+      "purchase_number": "PO-2026-00001",
+      "supplier_id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "supplier_name": "coca cola nigeria",
+      "amount": 1450,
+      "payment_date": "2026-08-15",
+      "payment_method": "cash",
+      "reference": "",
+      "notes": "Paid",
+      "created_at": "2026-08-15T14:56:56.030Z"
+    }
+  ],
+  "purchases": [
+    {
+      "id": "b8f6c84f-b188-4a1a-811e-e6a1681c2655",
+      "user_id": "3a7c1935-238e-4bcb-85cc-d6f5431b628e",
+      "number": "PO-2026-00001",
+      "supplier_id": "2c699378-d2a0-4562-8bff-4e7ab176b411",
+      "supplier_name": "Supplier V16",
+      "items": [
+        {
+          "product_id": "2df17116-a5e1-4392-b70b-ee0d1bf74f83",
+          "name": "V16 Product",
+          "sku": "",
+          "unit": "pcs",
+          "quantity": 5,
+          "unit_cost": 1200,
+          "total": 6000
+        }
+      ],
+      "subtotal": 6000,
+      "discount": 0,
+      "tax": 0,
+      "total": 6000,
+      "date": "2026-08-14",
+      "due_date": "",
+      "status": "received",
+      "notes": "",
+      "received_at": "2026-08-14T10:48:28.389Z",
+      "created_at": "2026-08-14T10:48:28.389Z",
+      "updated_at": "2026-08-14T10:48:28.389Z"
+    },
+    {
+      "id": "99ddf99f-e75f-49b2-b9c6-73cba879af86",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "number": "PO-2026-00001",
+      "supplier_id": "fe37bf78-f202-47b2-bdbd-5f740ea59e1c",
+      "supplier_name": "coca cola nigeria",
+      "items": [
+        {
+          "product_id": "7df44d0b-6f59-4bab-bc2c-9f93fffed617",
+          "name": "Big Cola",
+          "sku": "35cl",
+          "unit": "12pcs",
+          "quantity": 1,
+          "unit_cost": 1500,
+          "total": 1500
+        }
+      ],
+      "subtotal": 1500,
+      "discount": 50,
+      "tax": 0,
+      "total": 1450,
+      "date": "2026-08-15",
+      "due_date": "2026-08-15",
+      "status": "received",
+      "notes": "",
+      "received_at": "2026-08-15T14:55:20.416Z",
+      "created_at": "2026-08-15T14:55:20.416Z",
+      "updated_at": "2026-08-15T14:55:20.416Z"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "3d2fce71-2f9b-4ebc-8c04-7063d4b86332",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "description": "Transportation",
+      "category": "Transport",
+      "amount": 10000,
+      "date": "2026-08-15",
+      "payment_method": "cash",
+      "notes": "Supply of goods",
+      "created_at": "2026-08-15T13:59:08.850Z",
+      "updated_at": "2026-08-15T13:59:08.850Z"
+    },
+    {
+      "id": "56a0b11e-7c8d-4b4d-ac53-f8748fe2eb3d",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "description": "Shop Rent",
+      "category": "Rent",
+      "amount": 25000,
+      "date": "2026-08-15",
+      "payment_method": "cash",
+      "notes": "1year rent",
+      "created_at": "2026-08-15T14:01:29.679Z",
+      "updated_at": "2026-08-15T14:01:29.679Z"
+    },
+    {
+      "id": "4263269a-590a-4403-a5af-b22217bde89b",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "description": "Shop Rent",
+      "category": "Rent",
+      "amount": 30000,
+      "date": "2026-08-15",
+      "payment_method": "cash",
+      "notes": "",
+      "created_at": "2026-08-15T14:31:14.568Z",
+      "updated_at": "2026-08-15T14:31:14.568Z"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "aaebbeb9-88a8-4c6b-8484-61b0d90005cd",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "number": "INV-2026-00001",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "customer_name": "Joshua",
+      "customer_phone": "08000000000",
+      "customer_email": "joshua@gmail.com",
+      "customer_address": "Market",
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "quantity": 1,
+          "unit_price": 3500,
+          "line_total": 3500
+        }
+      ],
+      "subtotal": 3500,
+      "discount": 0,
+      "tax": 0,
+      "total": 3500,
+      "notes": "",
+      "terms": "",
+      "created_at": "2026-08-15T14:14:22.065Z",
+      "updated_at": "2026-08-15T14:14:22.065Z",
+      "status": "sent",
+      "due_date": "2026-08-29"
+    }
+  ],
+  "quotations": [
+    {
+      "id": "d4ebce72-3ef3-47e8-bc65-a46f67538c7e",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "number": "QUO-2026-00001",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "customer_name": "Maigari",
+      "customer_phone": "08012345678",
+      "customer_email": "Aliyu12@gmail",
+      "customer_address": "Zaranda",
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "quantity": 1,
+          "unit_price": 2500,
+          "line_total": 2500
+        }
+      ],
+      "subtotal": 2500,
+      "discount": 0,
+      "tax": 0,
+      "total": 2500,
+      "notes": "",
+      "terms": "",
+      "created_at": "2026-08-15T14:15:44.453Z",
+      "updated_at": "2026-08-15T14:15:44.453Z",
+      "status": "sent",
+      "valid_until": "2026-08-29"
+    }
+  ],
+  "accounting_accounts": [
+    {
+      "id": "9638a4d6-f8f2-40a9-95aa-c6bdd0732869",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "CASH",
+      "name": "Cash",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.483Z",
+      "updated_at": "2026-08-14T14:03:45.483Z"
+    },
+    {
+      "id": "3c77e3f3-1061-4576-a650-4a1aafa1b5a1",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "BANK",
+      "name": "Bank Account",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "72939f4b-7bcd-4884-981e-72a22b00feda",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "POS",
+      "name": "POS / Card",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "39e647c4-3ce9-48eb-aee8-aae73512ac47",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "FLUTTERWAVE",
+      "name": "Flutterwave",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "ca78a520-5df9-4d38-acde-b505e9d609d9",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "SALES_REVENUE",
+      "name": "Sales Revenue",
+      "type": "income",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "659285c9-2aea-4a6e-8df1-de9a8cb7616f",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "OTHER_INCOME",
+      "name": "Other Income",
+      "type": "income",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "55301780-c720-4554-90cc-b6fd631e6816",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "OPERATING_EXPENSES",
+      "name": "Operating Expenses",
+      "type": "expense",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "986f12c1-3f88-4741-9011-2698e70fa885",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "INVENTORY",
+      "name": "Inventory",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "9fe95656-80fd-4632-bf5f-776d3ca99372",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "ACCOUNTS_RECEIVABLE",
+      "name": "Accounts Receivable",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "be4bd42a-e520-47e2-969e-e25a9f9aaa70",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "ACCOUNTS_PAYABLE",
+      "name": "Accounts Payable",
+      "type": "liability",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "954514cf-5b48-433f-80d0-ec0ec20c6a9f",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "OWNER_EQUITY",
+      "name": "Owner's Equity",
+      "type": "equity",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:45.484Z",
+      "updated_at": "2026-08-14T14:03:45.484Z"
+    },
+    {
+      "id": "428fd388-e2a6-4c3f-b76a-0e0270efc6b1",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "CASH",
+      "name": "Cash",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.079Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "a0eae16e-04c9-41eb-b773-117c4bbecc64",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "BANK",
+      "name": "Bank Account",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "37220295-e600-4e60-b801-f2fa5b4959da",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "POS",
+      "name": "POS / Card",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "e0c2bb71-3c9a-4a16-82c6-6ac4738abb95",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "FLUTTERWAVE",
+      "name": "Flutterwave",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "fa56b709-f1d8-4711-bbe4-66d1cd8e3303",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "SALES_REVENUE",
+      "name": "Sales Revenue",
+      "type": "income",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "0b11c3a3-5061-4d6c-b753-b2681290ccd7",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "OTHER_INCOME",
+      "name": "Other Income",
+      "type": "income",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "de4719f2-b43a-4aa4-bf61-380f114bb8ac",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "OPERATING_EXPENSES",
+      "name": "Operating Expenses",
+      "type": "expense",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "6df33286-5832-48dc-a7db-901d1153ae77",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "INVENTORY",
+      "name": "Inventory",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "2d71a7ad-a884-4586-8656-15dd04a8ec93",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "ACCOUNTS_RECEIVABLE",
+      "name": "Accounts Receivable",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "2f6c8ca4-0cf8-4843-9cc8-44627d57393d",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "ACCOUNTS_PAYABLE",
+      "name": "Accounts Payable",
+      "type": "liability",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "845518b5-0e27-4bf3-9743-376669fd0b4e",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "OWNER_EQUITY",
+      "name": "Owner's Equity",
+      "type": "equity",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-14T14:03:51.080Z",
+      "updated_at": "2026-08-14T14:03:51.080Z"
+    },
+    {
+      "id": "8335c5fc-1c32-45a0-9a54-e5be39fd1c42",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "CUSTOM_01E059D2",
+      "name": "Business Bank Account",
+      "type": "asset",
+      "opening_balance": 500000,
+      "active": true,
+      "created_at": "2026-08-14T14:27:56.427Z",
+      "updated_at": "2026-08-14T14:28:36.791Z"
+    },
+    {
+      "id": "5aaaf7ae-7c7f-47a7-a2a6-e3b99d02052b",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "code": "OTHER_ASSETS",
+      "name": "Other Assets",
+      "type": "asset",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-15T11:17:10.517Z",
+      "updated_at": "2026-08-15T11:17:10.517Z"
+    },
+    {
+      "id": "b4affb90-4dee-4835-bf7e-810a41481199",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "code": "COGS",
+      "name": "Cost of Goods Sold",
+      "type": "expense",
+      "opening_balance": 0,
+      "active": true,
+      "system": true,
+      "created_at": "2026-08-15T11:17:10.529Z",
+      "updated_at": "2026-08-15T11:17:10.529Z"
+    }
+  ],
+  "accounting_entries": [
+    {
+      "id": "6df97b70-9239-4091-a918-1113552f7837",
+      "user_id": "f29871af-54ee-4509-90f8-383dd4fab780",
+      "date": "2026-08-14",
+      "description": "Manual cash income",
+      "reference": "TEST-001",
+      "entry_type": "income",
+      "amount": 15000,
+      "payment_method": "cash",
+      "account_code": "OTHER_INCOME",
+      "notes": "Test",
+      "created_at": "2026-08-14T14:03:45.517Z"
+    },
+    {
+      "id": "a09bc581-bfda-4c2c-b0df-ff32d0b65209",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "date": "2026-08-14",
+      "description": "Owner cash",
+      "reference": "Sales boy",
+      "entry_type": "income",
+      "amount": 200000,
+      "payment_method": "transfer",
+      "account_code": "CASH",
+      "notes": "",
+      "created_at": "2026-08-14T14:26:34.013Z"
+    }
+  ],
+  "sales_returns": [
+    {
+      "id": "df1c9294-e744-4c6f-91e8-6c57094bc655",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "sale_id": "77941495-411a-417a-af68-63a4aac952c9",
+      "invoice_no": "BJ-20260815-00005",
+      "return_no": "RET-20260815-00001",
+      "payment_method": "pos",
+      "refund_total": 14000,
+      "cost_total": 10000,
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 4,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 14000,
+          "line_cost": 10000
+        }
+      ],
+      "created_at": "2026-08-15T12:22:48.613Z"
+    },
+    {
+      "id": "1f82a7b7-695d-4091-8e95-93f853d3fa01",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "sale_id": "e20fb7b2-e163-43e6-9781-9fdecfd1fbf8",
+      "invoice_no": "BJ-20260815-00007",
+      "return_no": "RET-20260815-00002",
+      "payment_method": "cash",
+      "refund_total": 24500,
+      "cost_total": 17500,
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 7,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 24500,
+          "line_cost": 17500
+        }
+      ],
+      "created_at": "2026-08-15T12:47:14.997Z"
+    },
+    {
+      "id": "e909b104-850d-433f-9a70-8e7135ac98e7",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "sale_id": "c697cef3-f4ab-4d97-95b6-d11dca8465be",
+      "invoice_no": "BJ-20260815-00008",
+      "return_no": "RET-20260815-00003",
+      "payment_method": "transfer",
+      "refund_total": 35000,
+      "cost_total": 25000,
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 10,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 35000,
+          "line_cost": 25000
+        }
+      ],
+      "created_at": "2026-08-15T12:51:13.164Z"
+    },
+    {
+      "id": "55db9403-a869-46df-a9cf-41e674e85d71",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "sale_id": "e6eea470-3f71-40ca-82ce-ae1a2c443f0b",
+      "invoice_no": "BJ-20260815-00009",
+      "return_no": "RET-20260815-00004",
+      "payment_method": "transfer",
+      "refund_total": 35000,
+      "cost_total": 25000,
+      "items": [
+        {
+          "product_id": "133df7c3-f2a7-4cd5-912d-8a54f4126b65",
+          "name": "coca cola",
+          "sku": "Big Bottle 50Cl",
+          "unit": "Bottle",
+          "quantity": 10,
+          "unit_price": 3500,
+          "unit_cost": 2500,
+          "line_total": 35000,
+          "line_cost": 25000
+        }
+      ],
+      "created_at": "2026-08-15T13:10:35.725Z"
+    },
+    {
+      "id": "8761e15f-16af-4f81-aa02-a847b3accbaf",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "sale_id": "0d999593-dde3-4725-91c0-3aadf6107509",
+      "invoice_no": "BJ-20260815-00012",
+      "return_no": "RET-20260815-00005",
+      "payment_method": "cash",
+      "refund_total": 12500,
+      "cost_total": 10000,
+      "items": [
+        {
+          "product_id": "71a92b25-676e-466d-905a-2c6d1410cc42",
+          "name": "coca cola",
+          "sku": "Small Bottle 35Cl",
+          "unit": "Bottles",
+          "quantity": 5,
+          "unit_price": 2500,
+          "unit_cost": 2000,
+          "line_total": 12500,
+          "line_cost": 10000
+        }
+      ],
+      "created_at": "2026-08-15T13:44:58.454Z"
+    }
+  ],
+  "business_plans": [
+    {
+      "id": "0359ff38-5b7b-4b90-bd79-a74fa974fa97",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "created_at": "2026-08-15T14:28:40.976Z",
+      "expense_budgets": {
+        "Rent": 20000,
+        "Transport": 10000,
+        "Food": 5000
+      },
+      "monthly_expense_limit": 100000,
+      "updated_at": "2026-08-15T14:28:40.976Z"
+    }
+  ],
+  "marketing_campaigns": [],
+  "loyalty_ledger": [
+    {
+      "id": "e881d570-3ad5-4d3a-9768-a7df8f72e7b2",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "deba67f8-c133-4f16-9f08-46401d309733",
+      "type": "earn",
+      "points": 7,
+      "amount": 7000,
+      "description": "Points earned from BJ-20260815-00002",
+      "created_at": "2026-08-15T12:08:19.864Z"
+    },
+    {
+      "id": "03ae0d9b-e039-405f-b088-dc5ea28431d5",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "sale_id": "2f24cb68-e868-4d64-95e6-9553201705cf",
+      "type": "earn",
+      "points": 7,
+      "amount": 7500,
+      "description": "Points earned from BJ-20260815-00003",
+      "created_at": "2026-08-15T12:09:02.094Z"
+    },
+    {
+      "id": "5150e118-d607-4306-a87d-f055efd2e0a2",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "sale_id": "dfca081f-887b-411b-a7b0-e2b02a948b1c",
+      "type": "earn",
+      "points": 21,
+      "amount": 21000,
+      "description": "Points earned from BJ-20260815-00004",
+      "created_at": "2026-08-15T12:09:37.393Z"
+    },
+    {
+      "id": "e4812451-aa85-4a75-b169-60783615a932",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "type": "redeem",
+      "points": 20,
+      "amount": 500,
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "description": "Redeemed reward: N500 Discount",
+      "created_at": "2026-08-15T12:14:28.135Z"
+    },
+    {
+      "id": "aadb2b29-4325-4988-9226-e0ef0e3ed2d3",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "77941495-411a-417a-af68-63a4aac952c9",
+      "type": "earn",
+      "points": 14,
+      "amount": 14000,
+      "description": "Points earned from BJ-20260815-00005",
+      "created_at": "2026-08-15T12:18:31.012Z"
+    },
+    {
+      "id": "a4a5e07e-556b-4eaa-9182-7a1e47403a0c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "type": "redeem",
+      "points": 20,
+      "amount": 500,
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "description": "Redeemed reward: N500 Discount",
+      "created_at": "2026-08-15T12:21:45.695Z"
+    },
+    {
+      "id": "2e5b3f11-7e74-4746-8884-06ca4ef8a839",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "type": "redeem",
+      "points": 14,
+      "amount": 0,
+      "sale_id": "77941495-411a-417a-af68-63a4aac952c9",
+      "description": "Points reversed for returned BJ-20260815-00005",
+      "created_at": "2026-08-15T12:22:48.614Z"
+    },
+    {
+      "id": "88153245-474b-4259-b6d4-eae5cb54c2df",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "797dfb53-6cd3-4383-b094-38931a907ac5",
+      "type": "earn",
+      "points": 17,
+      "amount": 17500,
+      "description": "Points earned from BJ-20260815-00006",
+      "created_at": "2026-08-15T12:40:48.715Z"
+    },
+    {
+      "id": "9e4fc2ac-beee-4280-9c31-51607d74455b",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "e20fb7b2-e163-43e6-9781-9fdecfd1fbf8",
+      "type": "earn",
+      "points": 24,
+      "amount": 24500,
+      "description": "Points earned from BJ-20260815-00007",
+      "created_at": "2026-08-15T12:45:11.951Z"
+    },
+    {
+      "id": "7088fe03-aebb-4db6-95d8-140b97697710",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "type": "redeem",
+      "points": 20,
+      "amount": 500,
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "description": "Redeemed reward: N500 Discount",
+      "created_at": "2026-08-15T12:46:29.781Z"
+    },
+    {
+      "id": "635c03d7-976a-4dac-80e3-6b6afd5b40ef",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "type": "redeem",
+      "points": 24,
+      "amount": 0,
+      "sale_id": "e20fb7b2-e163-43e6-9781-9fdecfd1fbf8",
+      "description": "Points reversed for returned BJ-20260815-00007",
+      "created_at": "2026-08-15T12:47:14.999Z"
+    },
+    {
+      "id": "e9dce9bd-fa25-40d7-b273-1e0f4e48d5ef",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "c697cef3-f4ab-4d97-95b6-d11dca8465be",
+      "type": "earn",
+      "points": 35,
+      "amount": 35000,
+      "description": "Points earned from BJ-20260815-00008",
+      "created_at": "2026-08-15T12:50:11.535Z"
+    },
+    {
+      "id": "73c02b77-6277-439f-845f-1861ccab0265",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "type": "redeem",
+      "points": 35,
+      "amount": 0,
+      "sale_id": "c697cef3-f4ab-4d97-95b6-d11dca8465be",
+      "description": "Points reversed for returned BJ-20260815-00008",
+      "created_at": "2026-08-15T12:51:13.169Z"
+    },
+    {
+      "id": "fcfd78d4-492e-4645-b635-a0c71c0d1345",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "sale_id": "e6eea470-3f71-40ca-82ce-ae1a2c443f0b",
+      "type": "earn",
+      "points": 35,
+      "amount": 35000,
+      "description": "Points earned from BJ-20260815-00009",
+      "created_at": "2026-08-15T13:08:37.535Z"
+    },
+    {
+      "id": "7d711948-d27c-47aa-bbb5-14e56fc15239",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "type": "redeem",
+      "points": 35,
+      "amount": 0,
+      "sale_id": "e6eea470-3f71-40ca-82ce-ae1a2c443f0b",
+      "description": "Points reversed for returned BJ-20260815-00009",
+      "created_at": "2026-08-15T13:10:35.728Z"
+    },
+    {
+      "id": "44d1505b-04f7-42fe-860c-2a6b3ab690af",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "sale_id": "ff4b3863-5749-43da-ac8a-0c1ec8a582ae",
+      "type": "earn",
+      "points": 17,
+      "amount": 17500,
+      "description": "Points earned from BJ-20260815-00010",
+      "created_at": "2026-08-15T13:12:53.191Z"
+    },
+    {
+      "id": "a447a504-4680-480e-986e-76be374b409c",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "type": "redeem",
+      "points": 20,
+      "amount": 500,
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "description": "Redeemed reward: N500 Discount",
+      "created_at": "2026-08-15T13:13:50.809Z"
+    },
+    {
+      "id": "c87bfd03-b9a4-4fcd-992e-f5fe8c772c37",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "sale_id": "8922e7cd-77ec-41eb-a282-88dc5eb9bd93",
+      "type": "earn",
+      "points": 7,
+      "amount": 7500,
+      "description": "Points earned from BJ-20260815-00011",
+      "created_at": "2026-08-15T13:28:47.810Z"
+    },
+    {
+      "id": "0145b4a7-c079-44a1-bbdd-d4def690a889",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "sale_id": "0d999593-dde3-4725-91c0-3aadf6107509",
+      "type": "earn",
+      "points": 12,
+      "amount": 12500,
+      "description": "Points earned from BJ-20260815-00012",
+      "created_at": "2026-08-15T13:40:59.306Z"
+    },
+    {
+      "id": "ea925597-b03f-4857-8395-83a14f311524",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "type": "redeem",
+      "points": 12,
+      "amount": 0,
+      "sale_id": "0d999593-dde3-4725-91c0-3aadf6107509",
+      "description": "Points reversed for returned BJ-20260815-00012",
+      "created_at": "2026-08-15T13:44:58.455Z"
+    },
+    {
+      "id": "d89c1c65-7caf-43df-9f9b-f06a2490a84a",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "sale_id": "8d153ad2-2a65-4f7d-bfaa-67116652bc66",
+      "type": "earn",
+      "points": 10,
+      "amount": 10000,
+      "description": "Points earned from BJ-20260815-00013",
+      "created_at": "2026-08-15T13:57:40.291Z"
+    },
+    {
+      "id": "d0a25f78-3d6a-4c76-bb09-f7ee3912b5fa",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "sale_id": "cb9ba897-0f61-4603-84ed-cc079ae9a1df",
+      "type": "earn",
+      "points": 7,
+      "amount": 7500,
+      "description": "Points earned from BJ-20260815-00014",
+      "created_at": "2026-08-15T14:13:04.934Z"
+    }
+  ],
+  "loyalty_rewards": [
+    {
+      "id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "name": "N500 Discount",
+      "points": 20,
+      "value": 500,
+      "type": "discount",
+      "description": "",
+      "active": true,
+      "created_at": "2026-08-15T12:14:04.845Z"
+    }
+  ],
+  "loyalty_redemptions": [
+    {
+      "id": "cb437fdf-f624-4706-9391-15b991652cfb",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "1fc4757f-7286-4a88-864a-9447dcb64027",
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "points": 20,
+      "value": 500,
+      "created_at": "2026-08-15T12:14:28.135Z"
+    },
+    {
+      "id": "a948dea7-bd54-4609-a12a-02cb1d231214",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "points": 20,
+      "value": 500,
+      "created_at": "2026-08-15T12:21:45.695Z"
+    },
+    {
+      "id": "0a45630d-a58a-4ff8-a4a3-5cbf98c7f049",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "70d77a88-57d8-4238-847a-438e9806126a",
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "points": 20,
+      "value": 500,
+      "created_at": "2026-08-15T12:46:29.781Z"
+    },
+    {
+      "id": "ff5fbbef-e00e-4d32-8f59-b18b7c10deed",
+      "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
+      "customer_id": "e1c47d80-68a3-4417-9db1-b6d164168e86",
+      "reward_id": "a9e025b0-88e6-4ad4-9f47-3d71ff0429a0",
+      "points": 20,
+      "value": 500,
+      "created_at": "2026-08-15T13:13:50.809Z"
+    }
+  ]
+}

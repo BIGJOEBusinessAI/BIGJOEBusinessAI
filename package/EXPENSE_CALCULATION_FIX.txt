@@ -1,0 +1,10 @@
+BIGJOE Business AI - Expense Calculation Fix
+
+Net Profit is calculated as:
+Gross Profit - Operating Expenses = Net Profit
+
+Example:
+NGN 2,000 gross profit - NGN 50,000 expenses = NGN -48,000 net profit.
+
+The dashboard uses the selected date range when calculating expenses.
+Keep your existing data/db.json if you already have current business data.

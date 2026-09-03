@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /payment/callback
+Disallow: /webhooks/
+
+Sitemap: https://REPLACE-WITH-YOUR-BIGJOE-DOMAIN.example.com/sitemap.xml

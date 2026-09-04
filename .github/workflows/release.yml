@@ -28,5 +28,6 @@ jobs:
         working-directory: package/desktop
       - name: Build and publish installer
         run: npx electron-builder --publish always
+        working-directory: package/desktop
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

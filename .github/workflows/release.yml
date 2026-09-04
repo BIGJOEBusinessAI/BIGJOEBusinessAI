@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+        working-directory: package/desktop
       - name: Build and publish installer
         run: npx electron-builder --publish always
         env:

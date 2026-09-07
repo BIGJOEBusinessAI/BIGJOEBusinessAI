@@ -5,7 +5,7 @@
 // stays the single "consolidated" BIGJOE — this app has no logic of its own.
 const { app, BrowserWindow, shell, Menu } = require("electron");
 const path = require("path");
-
+const { autoUpdater } = require('electron-updater');
 // Set this to your deployed HTTPS BIGJOE URL before building an installer.
 // Falls back to localhost for local development against `node server.js`.
 const BIGJOE_URL = process.env.BIGJOE_URL || "https://REPLACE-WITH-YOUR-BIGJOE-DOMAIN.example.com";

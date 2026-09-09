@@ -8,7 +8,7 @@ const path = require("path");
 const { autoUpdater } = require('electron-updater');
 // Set this to your deployed HTTPS BIGJOE URL before building an installer.
 // Falls back to localhost for local development against `node server.js`.
-const BIGJOE_URL = process.env.BIGJOE_URL || "https://REPLACE-WITH-YOUR-BIGJOE-DOMAIN.example.com";
+const BIGJOE_URL = process.env.BIGJOE_URL || "https://bigjoebusinessai.netlify.app";
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -30,15 +30,15 @@ function createWindow() {
 
   // Open any link that isn't the BIGJOE app itself (e.g. the Flutterwave checkout window,
   // support links) in the person's normal browser instead of inside the app shell.
-  win.webContents.setWindowOpenHandler(({ url }) => {bigjoebusinessai.netlify.app}
-    if (!url.startsWith(BIGJOE_URL)) {bigjoebusinessai.netlify.app}
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (!url.startsWith(BIGJOE_URL)) {
       shell.openExternal(url);
       return { action: "deny" };
     }
     return { action: "allow" };
   });
   win.webContents.on("will-navigate", (event, url) => {
-    if (!url.startsWith(bigjoebusinessai.netlify.app)) {
+    if (!url.startsWith(BIGJOE_URL)) {
       event.preventDefault();
       shell.openExternal(url);
     }

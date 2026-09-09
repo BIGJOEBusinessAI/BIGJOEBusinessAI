@@ -30,15 +30,15 @@ function createWindow() {
 
   // Open any link that isn't the BIGJOE app itself (e.g. the Flutterwave checkout window,
   // support links) in the person's normal browser instead of inside the app shell.
-  win.webContents.setWindowOpenHandler(({ url }) => {
-    if (!url.startsWith(BIGJOE_URL)) {
+  win.webContents.setWindowOpenHandler(({ url }) => {bigjoebusinessai.netlify.app}
+    if (!url.startsWith(BIGJOE_URL)) {bigjoebusinessai.netlify.app}
       shell.openExternal(url);
       return { action: "deny" };
     }
     return { action: "allow" };
   });
   win.webContents.on("will-navigate", (event, url) => {
-    if (!url.startsWith(BIGJOE_URL)) {
+    if (!url.startsWith(bigjoebusinessai.netlify.app)) {
       event.preventDefault();
       shell.openExternal(url);
     }

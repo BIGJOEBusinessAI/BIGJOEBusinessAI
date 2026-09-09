@@ -2,7 +2,7 @@
   "author": "Joshua",
   "name": "bigjoe-desktop",
   "repository": "https://github.com/BIGJOEBusinessAI/BIGJOEBusinessAI",
-  "version": "58.9.0",
+  "version": "58.10.0",
   "private": true,
   "description": "Installable Windows/Mac/Linux desktop app for BIGJOE Business AI — a thin Electron shell around your deployed BIGJOE website.",
   "main": "main.js",

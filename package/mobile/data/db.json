@@ -4721,7 +4721,7 @@
       "user_id": "ae4dc27b-1af9-4c16-a408-5ae1e714e668",
       "provider": "flutterwave",
       "created_at": "2026-08-26T10:23:29.509Z",
-      "secret_key": "FLWSECK_TEST-"FLWSECK_TEST-xxxxxxxxxxxx",
+      "secret_key": "FLWSECK_TEST-",
       "public_key": "FLWPUBK_TEST-1b522a587b540ed503b7b2557a50cb93-X",
       "account_name": "BIG JOE",
       "mode": "test",

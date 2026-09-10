@@ -1,2 +1,18 @@
-[build]
+﻿[build]
   publish = "package/public"
+# Add these blocks to your existing netlify.toml (don't overwrite the whole
+# file if you already have one — just merge these [[redirects]] entries in,
+# and make sure [functions] points at your functions folder).
+
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/login"
+  status = 200
+
+[[redirects]]
+  from = "/api/register"
+  to = "/.netlify/functions/register"
+  status = 200

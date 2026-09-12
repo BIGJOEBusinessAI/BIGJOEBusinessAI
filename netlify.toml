@@ -11,3 +11,9 @@
  from = "/api/register"
  to = "/.netlify/functions/register"
  status = 200
+
+[[redirects]]
+ from = "/api/*"
+ to = "https://bigjoe-backend.onrender.com/api/:splat"
+ status = 200
+ force = true

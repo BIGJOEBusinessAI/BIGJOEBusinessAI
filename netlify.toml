@@ -3,17 +3,7 @@
  functions = "netlify/functions"
 
 [[redirects]]
- from = "/api/login"
- to = "/.netlify/functions/login"
- status = 200
-
-[[redirects]]
- from = "/api/register"
- to = "/.netlify/functions/register"
- status = 200
-
-[[redirects]]
  from = "/api/*"
- to = "https://bigjoe-backend.onrender.com/api/:splat"
+ to = "https://bigjoe-fullbackend.onrender.com/api/:splat"
  status = 200
  force = true

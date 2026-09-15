@@ -139,23 +139,23 @@ function passwordVerify(password, stored) {
     return actual.length === expected.length && crypto.timingSafeEqual(Buffer.from(actual), Buffer.from(expected));
   }
   return false;
-  async function safeUser(u) {
-    const bp={business_name:"BIGJOE",phone:"",address:"",email:u.email,tagline:"Smart business manage..."};
-    let plan = u.plan;
-    let subscription_status = u.subscription_status||((u.plan&&u.plan!=="free")?"active":"free");
-    let subscription_expires_at = u.subscription_expires_at||null;
-    try {
-      const remote = await checkRemoteSubscription(u.email);
-      if (remote && remote.active) {
-        plan = remote.tier || plan;
-        subscription_status = "active";
-        subscription_expires_at = remote.expiresAt || subscription_expires_at;
-      }
-    } catch (err) {
-      console.error("safeUser: remote subscription check failed", err);
+}
+async function safeUser(u) {
+  const bp={business_name:"BIGJOE",phone:"",address:"",email:u.email,tagline:"Smart business manage..."};
+  let plan = u.plan;
+  let subscription_status = u.subscription_status||((u.plan&&u.plan!=="free")?"active":"free");
+  let subscription_expires_at = u.subscription_expires_at||null;
+  try {
+    const remote = await checkRemoteSubscription(u.email);
+    if (remote && remote.active) {
+      plan = remote.tier || plan;
+      subscription_status = "active";
+      subscription_expires_at = remote.expiresAt || subscription_expires_at;
     }
-    return {id:u.id,name:u.name,email:u.email,plan,subscription_status,subscription_plan:u.subscription_plan||null,subscription_started_at:u.subscription_started_at||null,subscription_expires_at,created_at:u.created_at,business_profile:bp};
+  } catch (err) {
+    console.error("safeUser: remote subscription check failed", err);
   }
+  return {id:u.id,name:u.name,email:u.email,plan,subscription_status,subscription_plan:u.subscription_plan||null,subscription_started_at:u.subscription_started_at||null,subscription_expires_at,created_at:u.created_at,business_profile:bp};
 }
 function currentUser(req, db) {
 

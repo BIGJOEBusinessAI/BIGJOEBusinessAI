@@ -139,12 +139,26 @@ function passwordVerify(password, stored) {
     return actual.length === expected.length && crypto.timingSafeEqual(Buffer.from(actual), Buffer.from(expected));
   }
   return false;
-}
-function safeUser(u) {
-  const bp={business_name:"BIGJOE",phone:"",address:"",email:u.email,tagline:"Smart business management with BIGJOE.",logo_data_url:"",show_logo:true,show_owner_name:true,show_branding:true,show_contact_info:true,...(u.business_profile||{})};
-  return {id:u.id,name:u.name,email:u.email,plan:u.plan,subscription_status:u.subscription_status||((u.plan&&u.plan!=="free")?"active":"free"),subscription_plan:u.subscription_plan||null,subscription_started_at:u.subscription_started_at||null,subscription_expires_at:u.subscription_expires_at||null,created_at:u.created_at,business_profile:bp};
+  async function safeUser(u) {
+    const bp={business_name:"BIGJOE",phone:"",address:"",email:u.email,tagline:"Smart business manage..."};
+    let plan = u.plan;
+    let subscription_status = u.subscription_status||((u.plan&&u.plan!=="free")?"active":"free");
+    let subscription_expires_at = u.subscription_expires_at||null;
+    try {
+      const remote = await checkRemoteSubscription(u.email);
+      if (remote && remote.active) {
+        plan = remote.tier || plan;
+        subscription_status = "active";
+        subscription_expires_at = remote.expiresAt || subscription_expires_at;
+      }
+    } catch (err) {
+      console.error("safeUser: remote subscription check failed", err);
+    }
+    return {id:u.id,name:u.name,email:u.email,plan,subscription_status,subscription_plan:u.subscription_plan||null,subscription_started_at:u.subscription_started_at||null,subscription_expires_at,created_at:u.created_at,business_profile:bp};
+  }
 }
 function currentUser(req, db) {
+
   const token = parseCookies(req).bigjoe_session;
   if (!token) return null;
   const s = db.sessions.find(x => x.token === token);
@@ -460,7 +474,18 @@ async function paystack(pathname, options={}) {
   let data; try { data = JSON.parse(text); } catch { data = { raw:text }; }
   return { ok:r.ok, status:r.status, data };
 }
+const SUBSCRIPTION_API_URL = process.env.SUBSCRIPTION_API_URL || 'https://bigjoe-backend.onrender.com';
 
+async function checkRemoteSubscription(email) {
+  try {
+    const r = await fetch(`${SUBSCRIPTION_API_URL}/check-subscription?email=${encodeURIComponent(email)}`);
+    const data = await r.json();
+    return data; // { active, tier, expiresAt } or { active:false, reason:'not_found' }
+  } catch (err) {
+    console.error('checkRemoteSubscription failed:', err);
+    return { active: false, reason: 'error' };
+  }
+}
 async function flutterwave(pathname, options={}, secretKey=FLW_SECRET_KEY) {
   const key=String(secretKey||'').trim();
   if(!key) throw new Error('Flutterwave secret key is not configured.');
@@ -740,7 +765,7 @@ async function route(req, res) {
       db.users.push(user); dbWrite(db);
       const token=id(); db.sessions.push({token,userId:user.id,created_at:now()}); dbWrite(db);
       setCookie(res,"bigjoe_session",token);
-      return json(res,201,{success:true,user:safeUser(user)});
+      return json(res,201,{success:true,user:await safeUser(user)});
     } catch(e) { return json(res,400,{error:e.message}); }
   }
 
@@ -757,7 +782,7 @@ async function route(req, res) {
         const token=id(); db.sessions=db.sessions.filter(s=>s.userId!==user.id); db.sessions.push({token,userId:user.id,created_at:now(),actor:'owner'}); dbWrite(db);
         setCookie(res,"bigjoe_session",token);
         activity(db,user.id,'login','owner','Business owner logged in successfully.'); dbWrite(db);
-        return json(res,200,{success:true,user:safeUser(user),actor:{type:'owner',role:'owner'}});
+        return json(res,200,{success:true,user:await safeUser(user),actor:{type:'owner',role:'owner'}});
       }
       const staff=(db.staff||[]).find(x=>String(x.email||"").trim().toLowerCase()===email && x.active!==false);
       if(!staff || !passwordVerify(password,staff.password_hash)) return json(res,401,{error:"Invalid email or password. Please check your login details."});
@@ -766,7 +791,7 @@ async function route(req, res) {
       const token=id(); db.sessions.push({token,userId:owner.id,staffId:staff.id,created_at:now(),actor:'staff'}); dbWrite(db);
       setCookie(res,"bigjoe_session",token);
       activity(db,owner.id,'staff_login',staff.name,`Staff member ${staff.name} logged in as ${staff.role}.`); dbWrite(db);
-      return json(res,200,{success:true,user:safeUser(owner),actor:{type:'staff',role:staff.role,name:staff.name,permissions:staff.permissions||[]}});
+      return json(res,200,{success:true,user:await safeUser(owner),actor:{type:'staff',role:staff.role}});
     } catch(e) { return json(res,400,{error:e.message}); }
   }
 
@@ -777,7 +802,7 @@ async function route(req, res) {
   }
 
   if (method === "GET" && url.pathname === "/api/me") {
-    const u=currentUser(req,db); return json(res,200,{user:u?safeUser(u):null});
+    const u=currentUser(req,db); return json(res,200,{user:u?await safeUser(u):null});
   }
 
 
@@ -937,7 +962,7 @@ async function route(req, res) {
       if(profile.logo_data_url && !/^data:image\/(png|jpeg|jpg|webp);base64,/i.test(profile.logo_data_url)) profile.logo_data_url="";
       u.business_profile=profile;
       dbWrite(db);
-      return json(res,200,{success:true,profile,user:safeUser(u)});
+      return json(res,200,{success:true,profile,user:await safeUser(u)});
     } catch(e) { return json(res,400,{error:e.message}); }
   }
 

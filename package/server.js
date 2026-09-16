@@ -16,6 +16,15 @@ const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || "";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
+// Free-tier data durability: Render's local disk is wiped on every redeploy unless you pay
+// for a persistent disk. Instead, we back db.json up to a free Supabase Storage bucket after
+// every write, and pull it back down on startup if the local file is missing (i.e. after a
+// fresh deploy). Uses the same Supabase project already set up for subscription checks.
+const SUPABASE_URL = process.env.SUPABASE_URL || "";
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || "";
+const SUPABASE_BACKUP_BUCKET = process.env.SUPABASE_BACKUP_BUCKET || "bigjoe-backups";
+const SUPABASE_BACKUP_PATH = "db.json";
+
 const DATA_DIR = path.join(__dirname, "data");
 const DB_FILE = path.join(DATA_DIR, "db.json");
 const PUBLIC_DIR = path.join(__dirname, "public");
@@ -100,8 +109,48 @@ function dbRead() {
 }
 function dbWrite(db) {
   const tmp = DB_FILE + ".tmp";
-  fs.writeFileSync(tmp, JSON.stringify(db, null, 2));
+  const json = JSON.stringify(db, null, 2);
+  fs.writeFileSync(tmp, json);
   fs.renameSync(tmp, DB_FILE);
+  backupDbToSupabase(json); // fire-and-forget; doesn't block the response
+}
+
+// ---- Supabase Storage backup (so data survives Render redeploys on the free tier) ----
+async function backupDbToSupabase(json) {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) return;
+  try {
+    const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${SUPABASE_BACKUP_BUCKET}/${SUPABASE_BACKUP_PATH}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+        apikey: SUPABASE_SERVICE_KEY,
+        "Content-Type": "application/json",
+        "x-upsert": "true"
+      },
+      body: json
+    });
+    if (!r.ok) console.error("Supabase backup upload failed:", r.status, await r.text().catch(()=>""));
+  } catch (err) {
+    console.error("Supabase backup upload failed:", err.message);
+  }
+}
+async function restoreDbFromSupabaseIfMissing() {
+  if (fs.existsSync(DB_FILE)) return; // local file already present, nothing to restore
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) return;
+  try {
+    const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${SUPABASE_BACKUP_BUCKET}/${SUPABASE_BACKUP_PATH}`, {
+      headers: { Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`, apikey: SUPABASE_SERVICE_KEY }
+    });
+    if (r.ok) {
+      const text = await r.text();
+      fs.writeFileSync(DB_FILE, text);
+      console.log("Restored db.json from Supabase backup.");
+    } else {
+      console.log("No existing Supabase backup found (this is normal on first deploy).");
+    }
+  } catch (err) {
+    console.error("Supabase backup restore failed:", err.message);
+  }
 }
 function id() { return crypto.randomUUID(); }
 function now() { return new Date().toISOString(); }
@@ -2809,9 +2858,12 @@ function serveStatic(res, pathname) {
   fs.createReadStream(full).pipe(res);
 }
 
-http.createServer((req,res)=>route(req,res).catch(e=>json(res,500,{error:"Server error: "+e.message}))).listen(PORT,HOST,()=> {
-  const lan = [...new Set(Object.values(os.networkInterfaces()).flat().filter(n=>n && n.family==="IPv4" && !n.internal).map(n=>n.address))];
-  console.log(`BIGJOE Business AI running locally at http://localhost:${PORT}`);
-  if (lan.length) console.log(`Phone/tablet access on the same Wi-Fi: ${lan.map(ip=>`http://${ip}:${PORT}`).join("  |  ")}`);
-  console.log(`Public website/app URL: ${process.env.APP_BASE_URL || "Not configured yet — deploy with a domain to make BIGJOE searchable on the internet."}`);
-});
+(async () => {
+  await restoreDbFromSupabaseIfMissing();
+  http.createServer((req,res)=>route(req,res).catch(e=>json(res,500,{error:"Server error: "+e.message}))).listen(PORT,HOST,()=> {
+    const lan = [...new Set(Object.values(os.networkInterfaces()).flat().filter(n=>n && n.family==="IPv4" && !n.internal).map(n=>n.address))];
+    console.log(`BIGJOE Business AI running locally at http://localhost:${PORT}`);
+    if (lan.length) console.log(`Phone/tablet access on the same Wi-Fi: ${lan.map(ip=>`http://${ip}:${PORT}`).join("  |  ")}`);
+    console.log(`Public website/app URL: ${process.env.APP_BASE_URL || "Not configured yet — deploy with a domain to make BIGJOE searchable on the internet."}`);
+  });
+})();

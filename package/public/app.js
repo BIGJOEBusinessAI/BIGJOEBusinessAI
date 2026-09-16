@@ -300,7 +300,7 @@ async function loadOnboarding(){try{const d=await api('/api/onboarding/status');
 function pageLoader(id){
   return ({
     overview:()=>Promise.all([loadBranches(),loadInventory(),loadHistory(),loadDashboard()]),
-    controlCenter:loadControlCenter,
+    controlCenter:loadCommandCenter,
     dashboard:loadDashboard,
     inventory:loadInventory,
     products:loadInventory,

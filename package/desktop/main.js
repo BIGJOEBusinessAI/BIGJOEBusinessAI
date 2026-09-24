@@ -1,16 +1,33 @@
 // BIGJOE Business AI — desktop app main process.
-// This is a thin Electron shell, the same idea as the mobile/ Capacitor wrapper: it just
-// opens your deployed BIGJOE website in a native window with a taskbar/dock icon, a proper
-// installer, and offline-friendly load-failure handling. The website (public/ + server.js)
-// stays the single "consolidated" BIGJOE — this app has no logic of its own.
+// Thin Electron shell: opens the deployed BIGJOE website in a native window.
 const { app, BrowserWindow, shell, Menu } = require("electron");
 const path = require("path");
-const { autoUpdater } = require('electron-updater');
-// Set this to your deployed HTTPS BIGJOE URL before building an installer.
-// Falls back to localhost for local development against `node server.js`.
+const fs = require("fs");
+
+// Write any startup error to %APPDATA%\bigjoe-desktop\crash.log so crashes are never silent.
+function logError(err) {
+  try {
+    fs.appendFileSync(
+      path.join(app.getPath("userData"), "crash.log"),
+      `[${new Date().toISOString()}] ${(err && err.stack) || err}\n`
+    );
+  } catch {}
+}
+process.on("uncaughtException", logError);
+process.on("unhandledRejection", logError);
+
+// Load the updater safely: if it's missing from the build, the app still opens.
+let autoUpdater = null;
+try {
+  autoUpdater = require("electron-updater").autoUpdater;
+} catch (e) {
+  logError(e);
+}
+
 const BIGJOE_URL = process.env.BIGJOE_URL || "https://bigjoebusinessai.netlify.app";
 
 function createWindow() {
+  const preloadPath = path.join(__dirname, "preload.js");
   const win = new BrowserWindow({
     width: 1360,
     height: 860,
@@ -22,14 +39,13 @@ function createWindow() {
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
-      preload: path.join(__dirname, "preload.js")
+      preload: fs.existsSync(preloadPath) ? preloadPath : undefined
     }
   });
 
   win.setMenuBarVisibility(false);
 
-  // Open any link that isn't the BIGJOE app itself (e.g. the Flutterwave checkout window,
-  // support links) in the person's normal browser instead of inside the app shell.
+  // Open non-BIGJOE links (Flutterwave checkout, support links) in the normal browser.
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (!url.startsWith(BIGJOE_URL)) {
       shell.openExternal(url);
@@ -45,17 +61,19 @@ function createWindow() {
   });
 
   win.loadURL(BIGJOE_URL).catch(() => {
-    win.loadFile(path.join(__dirname, "offline.html"));
+    win.loadFile(path.join(__dirname, "offline.html")).catch(logError);
   });
 
   win.webContents.on("did-fail-load", () => {
-    win.loadFile(path.join(__dirname, "offline.html"));
+    win.loadFile(path.join(__dirname, "offline.html")).catch(logError);
   });
 }
 
 app.whenReady().then(() => {
   Menu.setApplicationMenu(null);
- autoUpdater.checkForUpdatesAndNotify();
+  if (autoUpdater && app.isPackaged) {
+    autoUpdater.checkForUpdatesAndNotify().catch(logError);
+  }
   createWindow();
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();

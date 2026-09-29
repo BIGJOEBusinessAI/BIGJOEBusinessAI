@@ -315,6 +315,7 @@ function pageLoader(id){
     budgetControl:loadBudgetControl,
     customerIntel:loadCustomerIntelligence,
     marketing:loadMarketing,
+    shop:loadShop,
     loyalty:loadLoyalty,
     reports:loadManagementReports,
     settings:loadBusinessProfile,
@@ -1010,6 +1011,104 @@ async function pay(plan){
 }
 async function loadHistory(){try{const d=await api("/api/history");$("history").innerHTML=d.history.length?d.history.map(x=>`<div class="plan"><b>${esc(x.tool)}</b><div class="status">${new Date(x.created_at).toLocaleString()}</div><div>${esc(x.output_text).slice(0,600)}</div></div>`).join(""):"No activity yet."}catch{}}
 $("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+// ---------- Public Shop (Pro plan) ----------
+PAGE_PLAN_REQUIREMENT.shop='pro';
+let shopData=null, shopInquiries=[];
+(function initShopPage(){
+  const app=$('app'); if(!app||$('shop'))return;
+  const sec=document.createElement('section'); sec.id='shop'; sec.className='page hidden';
+  sec.innerHTML=`<div class="section-head"><div><h2>Public Shop</h2><p class="muted">Share one link where customers can browse your products and send order requests.</p></div></div>
+  <div class="box">
+    <div id="shopLinkBox" class="settings-note"></div>
+    <label><input type="checkbox" id="shopEnabled"> Shop is open to the public</label>
+    <label>Shop link name<input id="shopSlug" placeholder="e.g. joe-perfumes" maxlength="40"></label>
+    <label>Shop name<input id="shopName" maxlength="80"></label>
+    <label>Tagline (optional)<input id="shopTagline" maxlength="140"></label>
+    <label>WhatsApp number with country code<input id="shopWhatsapp" placeholder="2348012345678" maxlength="20"></label>
+    <h3>Products to show</h3>
+    <div id="shopProducts"></div>
+    <button class="primary" type="button" onclick="saveShopSettings()">Save shop</button>
+  </div>
+  <h3>Order requests</h3>
+  <div id="shopInquiries"></div>`;
+  app.appendChild(sec);
+  const dd=document.querySelector('.features-dropdown');
+  if(dd){const b=document.createElement('button');b.type='button';b.setAttribute('onclick',"showPage('shop',this)");b.textContent='🛍 Public Shop';dd.appendChild(b);}
+})();
+function shopUrl(slug){return window.location.origin+'/shop/'+encodeURIComponent(slug)}
+function renderShopLink(){
+  const sh=(shopData&&shopData.shop)||{},box=$('shopLinkBox');
+  box.innerHTML=sh.slug?`Your shop link: <b>${esc(shopUrl(sh.slug))}</b> ${sh.enabled?'':'(currently closed)'} <button type="button" class="link" onclick="copyShopLink()">Copy link</button>`:'Choose a link name below and save to get your shop link.';
+}
+function copyShopLink(){const sh=(shopData&&shopData.shop)||{};if(!sh.slug)return;const u=shopUrl(sh.slug);navigator.clipboard?.writeText(u).then(()=>toast('Shop link copied.')).catch(()=>toast(u))}
+async function loadShop(){
+  const [s,q]=await Promise.all([api('/api/shop-settings'),api('/api/shop-inquiries')]);
+  shopData=s; const sh=s.shop||{};
+  $('shopEnabled').checked=!!sh.enabled; $('shopSlug').value=sh.slug||''; $('shopName').value=sh.name||'';
+  $('shopTagline').value=sh.tagline||''; $('shopWhatsapp').value=sh.whatsapp||'';
+  $('shopProducts').innerHTML=(s.products||[]).length?s.products.map(p=>`<label><input type="checkbox" class="shopProd" value="${esc(p.id)}" ${p.visible?'checked':''}> ${esc(p.name)} - ${money(p.selling_price)}</label>`).join(''):'<div class="empty">Add products in Inventory first.</div>';
+  renderShopLink(); renderShopInquiries(q.inquiries||[]);
+}
+async function saveShopSettings(){
+  try{
+    const d=await api('/api/shop-settings',{method:'PUT',body:JSON.stringify({
+      enabled:$('shopEnabled').checked,slug:$('shopSlug').value.trim(),name:$('shopName').value.trim(),
+      tagline:$('shopTagline').value.trim(),whatsapp:$('shopWhatsapp').value.trim(),
+      product_ids:[...document.querySelectorAll('.shopProd:checked')].map(x=>x.value)})});
+    toast('Shop saved successfully.'); await loadShop();
+  }catch(e){toast(e.message,true)}
+}
+function renderShopInquiries(list){
+  const el=$('shopInquiries');
+  if(!list.length){el.innerHTML='<div class="empty">No order requests yet. Share your shop link to get started.</div>';return}
+  shopInquiries=list; const opts=['new','contacted','sold','closed','spam'];
+  el.innerHTML=`<table><thead><tr><th>Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody>${list.map(x=>`<tr>
+    <td>${esc(new Date(x.created_at).toLocaleString())}</td>
+    <td><b>${esc(x.customer_name)}</b><br><a class="link" target="_blank" rel="noopener" href="https://wa.me/${esc(String(x.phone).replace(/^0/,'234'))}">${esc(x.phone)}</a>${x.note?`<br><span class="muted">${esc(x.note)}</span>`:''}</td>
+    <td>${(x.items||[]).map(i=>esc(i.qty+' x '+i.name)).join('<br>')}</td>
+    <td>${money(x.total)}</td>
+    <td><select onchange="setInquiryStatus('${esc(x.id)}',this.value)">${opts.map(o=>`<option value="${o}" ${o===x.status?'selected':''}>${o}</option>`).join('')}</select>${x.status==='sold'?`<br><span class="muted">Sale recorded${x.invoice_no?' · '+esc(x.invoice_no):''}</span>`:x.status==='spam'?'':`<br><button type="button" class="link" onclick="recordInquiryAsSale('${esc(x.id)}')">Record as sale</button>`}</td></tr>`).join('')}</tbody></table>`;
+}
+async function setInquiryStatus(id,status){
+  try{await api('/api/shop-inquiries/'+encodeURIComponent(id)+'/status',{method:'POST',body:JSON.stringify({status})});toast('Status updated.')}catch(e){toast(e.message,true)}
+}
+// Record an order request as a sale: loads it into the POS cart with the customer selected.
+// The owner reviews it and presses the normal complete-sale button; the request is then marked sold.
+async function recordInquiryAsSale(id){
+  const q=shopInquiries.find(x=>x.id===id); if(!q)return;
+  try{
+    showPage('sales');
+    await Promise.all([loadInventory(),loadCustomers()]);
+    const lines=[],notes=[];
+    (q.items||[]).forEach(i=>{
+      const p=products.find(x=>x.id===i.product_id);
+      if(!p){notes.push(`${i.name} no longer exists`);return}
+      const avail=Number(p.branch_quantity??p.stock_quantity), qty=Math.min(Number(i.qty),avail);
+      if(qty<=0){notes.push(`${i.name} is out of stock`);return}
+      if(qty<Number(i.qty))notes.push(`only ${avail} of ${i.name} in stock`);
+      lines.push({product_id:p.id,quantity:qty});
+    });
+    if(!lines.length)return toast('Nothing in this request can be sold right now: '+notes.join(', ')+'.',true);
+    cart=lines; if($('saleDiscount'))$('saleDiscount').value=0;
+    if($('customerSelect')){$('customerSelect').value=q.customer_id;syncCustomerFields()}
+    renderCart();
+    window.__shopSale={id:q.id,customer_id:q.customer_id};
+    toast(`Order from ${q.customer_name} loaded. Choose the payment method and complete the sale.`+(notes.length?' Note: '+notes.join(', ')+'.':''),notes.length>0);
+  }catch(e){toast(e.message,true)}
+}
+const __origCompleteSale=completeSale;
+completeSale=async function(){
+  const pend=window.__shopSale, match=!!(pend&&cart.length&&$('customerSelect')?.value===pend.customer_id);
+  const before=new Set((sales||[]).map(s=>s.id));
+  await __origCompleteSale.apply(this,arguments);
+  if(match&&!cart.length){
+    const made=(sales||[]).find(s=>!before.has(s.id));
+    window.__shopSale=null;
+    try{await api('/api/shop-inquiries/'+encodeURIComponent(pend.id)+'/status',{method:'POST',body:JSON.stringify({status:'sold',invoice_no:made?.invoice_no||''})})}catch(e){toast(e.message,true)}
+  }
+};
+const __origClearCart=clearCart;
+clearCart=function(){window.__shopSale=null;return __origClearCart.apply(this,arguments)};
 boot();
 
 // BIGJOE v18 — Business Accounting & Cashbook

@@ -65,7 +65,8 @@ const BUSINESS_API_PREFIXES = [
 // intelligence & controls" bullets on the Pro plan card.
 const PRO_API_PREFIXES = [
   "/api/predictive-intelligence", "/api/decision-automation", "/api/smart-actions",
-  "/api/automation-center", "/api/command-center", "/api/system-health", "/api/data-audit"
+  "/api/automation-center", "/api/command-center", "/api/system-health", "/api/data-audit",
+  "/api/shop-settings", "/api/shop-inquiries"
 ];
 
 function matchesApiPrefix(pathname, prefixes) {
@@ -787,6 +788,33 @@ function awardLoyalty(db,user,sale){
   db.loyalty_ledger.push({id:id(),user_id:user.id,customer_id:sale.customer_id,sale_id:sale.id,type:'earn',points:pts,amount:Number(sale.total||0),description:`Points earned from ${sale.invoice_no}`,created_at:now()});
   return pts;
 }
+
+// ---------- Public shop (Pro plan only) ----------
+const shopHits = new Map(); // ip -> [timestamps] for inquiry rate limiting
+function shopRateLimited(ip){
+  const t=Date.now(), arr=(shopHits.get(ip)||[]).filter(x=>t-x<3600000);
+  if(arr.length>=5){ shopHits.set(ip,arr); return true; }
+  arr.push(t); shopHits.set(ip,arr); return false;
+}
+function clientIp(req){ return String(req.headers['x-forwarded-for']||req.socket.remoteAddress||'').split(',')[0].trim(); }
+function digitsOnly(s){ return String(s||'').replace(/\D/g,''); }
+const proCache = new Map(); // email -> {ok, at}
+// The public shop only works while the owner is on Pro. Checks the plan saved on this server
+// first, then falls back to the subscription service (cached 10 minutes for public traffic).
+async function ownerHasPro(owner){
+  if((PLAN_ORDER[owner.plan||'free']??0)>=PLAN_ORDER.pro) return true;
+  const c=proCache.get(owner.email);
+  if(c && Date.now()-c.at<600000) return c.ok;
+  const r=await checkRemoteSubscription(owner.email);
+  const ok=Boolean(r&&r.active&&r.tier==='pro');
+  proCache.set(owner.email,{ok,at:Date.now()});
+  return ok;
+}
+function findShopOwner(db,slug){
+  slug=String(slug||'').toLowerCase();
+  return db.users.find(x=>x.shop && x.shop.enabled && x.shop.slug===slug) || null;
+}
+
 async function route(req, res) {
   const url = new URL(req.url, BASE_URL);
   const db = dbRead();
@@ -1254,6 +1282,72 @@ async function route(req, res) {
     const pid=url.pathname.split("/").pop(),before=db.products.length;db.products=db.products.filter(x=>!(x.id===pid&&x.user_id===u.id));if(before===db.products.length)return json(res,404,{error:"Product not found."});dbWrite(db);return json(res,200,{success:true});
   }
 
+
+  // ---------- Public shop: owner settings + inquiries (Pro plan, enforced by requireUser) ----------
+  if (method === "GET" && url.pathname === "/api/shop-settings") {
+    const u=requireUser(req,res,db); if(!u)return;
+    const shop=u.shop||{enabled:false,slug:"",name:"",whatsapp:"",tagline:"",product_ids:[]};
+    const products=db.products.filter(x=>x.user_id===u.id).sort((a,b)=>a.name.localeCompare(b.name)).map(p=>({id:p.id,name:p.name,selling_price:p.selling_price,visible:(shop.product_ids||[]).includes(p.id)}));
+    return json(res,200,{shop,products});
+  }
+  if (method === "PUT" && url.pathname === "/api/shop-settings") {
+    const u=requireUser(req,res,db); if(!u)return;
+    if(currentStaff(req,db)) return json(res,403,{error:"Only the account owner can change shop settings."});
+    const b=await body(req);
+    const slug=String(b.slug||"").trim().toLowerCase();
+    if(!/^[a-z0-9-]{3,40}$/.test(slug)) return json(res,400,{error:"Shop link must be 3-40 characters: letters, numbers and dashes only."});
+    if(db.users.some(x=>x.id!==u.id && x.shop && x.shop.slug===slug)) return json(res,409,{error:"That shop link is already taken. Try another."});
+    const mine=new Set(db.products.filter(x=>x.user_id===u.id).map(x=>x.id));
+    const product_ids=(Array.isArray(b.product_ids)?b.product_ids:[]).map(String).filter(x=>mine.has(x));
+    u.shop={enabled:Boolean(b.enabled),slug,name:String(b.name||"").trim().slice(0,80)||"My Shop",whatsapp:digitsOnly(b.whatsapp).slice(0,15),tagline:String(b.tagline||"").trim().slice(0,140),product_ids};
+    dbWrite(db); return json(res,200,{success:true,shop:u.shop});
+  }
+  if (method === "GET" && url.pathname === "/api/shop-inquiries") {
+    const u=requireUser(req,res,db); if(!u)return;
+    if(!requirePermission(req,res,db,'customers')) return;
+    const list=(db.shop_inquiries||[]).filter(x=>x.user_id===u.id).sort((a,b)=>b.created_at.localeCompare(a.created_at));
+    return json(res,200,{inquiries:list});
+  }
+  if (method === "POST" && url.pathname.startsWith("/api/shop-inquiries/") && url.pathname.endsWith("/status")) {
+    const u=requireUser(req,res,db); if(!u)return;
+    if(!requirePermission(req,res,db,'customers')) return;
+    const iid=url.pathname.split("/")[3], b=await body(req), st=String(b.status||"");
+    if(!["new","contacted","sold","closed","spam"].includes(st)) return json(res,400,{error:"Invalid status."});
+    const q=(db.shop_inquiries||[]).find(x=>x.id===iid&&x.user_id===u.id); if(!q) return json(res,404,{error:"Inquiry not found."});
+    q.status=st; if(b.invoice_no) q.invoice_no=String(b.invoice_no).slice(0,40); q.updated_at=now(); dbWrite(db); return json(res,200,{success:true,inquiry:q});
+  }
+
+  // ---------- Public shop: visitor-facing (no login) ----------
+  if (method === "GET" && url.pathname.startsWith("/api/public-shop/") && url.pathname.split("/").length===4) {
+    const owner=findShopOwner(db,url.pathname.split("/")[3]);
+    if(!owner || !(await ownerHasPro(owner))) return json(res,404,{error:"This shop is not available."});
+    const ids=new Set(owner.shop.product_ids||[]);
+    const products=db.products.filter(x=>x.user_id===owner.id && ids.has(x.id)).sort((a,b)=>a.name.localeCompare(b.name))
+      .map(p=>({id:p.id,name:p.name,description:p.description||"",price:Number(p.selling_price||0),in_stock:Number(p.stock_quantity||0)>0}));
+    return json(res,200,{shop:{name:owner.shop.name,tagline:owner.shop.tagline,whatsapp:owner.shop.whatsapp},products});
+  }
+  if (method === "POST" && url.pathname.startsWith("/api/public-shop/") && url.pathname.endsWith("/inquiry")) {
+    const owner=findShopOwner(db,url.pathname.split("/")[3]);
+    if(!owner || !(await ownerHasPro(owner))) return json(res,404,{error:"This shop is not available."});
+    const b=await body(req);
+    if(b.website) return json(res,200,{success:true}); // honeypot: bots fill this in, people never see it
+    if(shopRateLimited(clientIp(req))) return json(res,429,{error:"Too many requests. Please try again later."});
+    const name=String(b.name||"").trim().slice(0,80), phone=digitsOnly(b.phone), note=String(b.note||"").trim().slice(0,500);
+    if(!name) return json(res,400,{error:"Please enter your name."});
+    if(phone.length<7||phone.length>15) return json(res,400,{error:"Please enter a valid phone number."});
+    const ids=new Set(owner.shop.product_ids||[]);
+    const items=(Array.isArray(b.items)?b.items:[]).slice(0,10).map(i=>{
+      const p=db.products.find(x=>x.id===String(i.product_id)&&x.user_id===owner.id&&ids.has(x.id)); if(!p) return null;
+      const qty=Math.min(99,Math.max(1,Math.floor(Number(i.qty)||1)));
+      return {product_id:p.id,name:p.name,price:Number(p.selling_price||0),qty};
+    }).filter(Boolean);
+    if(!items.length) return json(res,400,{error:"Please choose at least one product."});
+    let customer=db.customers.find(x=>x.user_id===owner.id && digitsOnly(x.phone).slice(-10)===phone.slice(-10));
+    if(!customer){ customer={id:id(),user_id:owner.id,name,phone,email:"",address:"",source:"shop",created_at:now(),updated_at:now()}; db.customers.push(customer); }
+    db.shop_inquiries ||= [];
+    db.shop_inquiries.push({id:id(),user_id:owner.id,customer_id:customer.id,customer_name:name,phone,items,note,total:Number(items.reduce((a,i)=>a+i.price*i.qty,0).toFixed(2)),status:"new",created_at:now()});
+    dbWrite(db); return json(res,201,{success:true});
+  }
 
   // ---------- Customers ----------
   if (method === "GET" && url.pathname === "/api/customers") {

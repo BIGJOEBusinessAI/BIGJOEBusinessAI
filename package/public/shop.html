@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--ink:#241c15;--mute:#7a6d60;--line:#e6dccd;--accent:#8a5a2b;--ok:#2f6b3f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 120px}
+h1{font:600 30px/1.15 Georgia,"Times New Roman",serif;margin:12px 0 4px}
+.tag{color:var(--mute);margin:0 0 20px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;display:flex;gap:12px;align-items:center}
+.item .info{flex:1;min-width:0}
+.item b{display:block}
+.item small{color:var(--mute);display:block}
+.price{color:var(--accent);font-weight:600;margin-top:2px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:18px;cursor:pointer}
+.qty span{min-width:18px;text-align:center}
+.out{color:var(--mute);font-size:14px}
+form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:18px}
+label{display:block;font-size:14px;color:var(--mute);margin:10px 0 4px}
+input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+.hp{position:absolute;left:-9999px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px}
+.bar div{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:13px 20px;font:600 16px inherit;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:disabled{opacity:.5}
+.msg{padding:14px;border-radius:10px;margin-top:14px}
+.err{background:#fbe9e7;color:#8a2a1c}.good{background:#e6f2e8;color:var(--ok)}
+.note{font-size:13px;color:var(--mute);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="name">Loading…</h1>
+  <p class="tag" id="tag"></p>
+  <div id="list"></div>
+  <form id="f" hidden>
+    <b>Send your order request</b>
+    <label for="cn">Your name</label><input id="cn" maxlength="80" required autocomplete="name">
+    <label for="cp">Phone number (WhatsApp if possible)</label><input id="cp" type="tel" maxlength="20" required autocomplete="tel">
+    <label for="cnote">Note (optional)</label><textarea id="cnote" rows="2" maxlength="500"></textarea>
+    <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="note">Your name and number are shared with this shop so they can reach you about your order.</p>
+    <div id="msg"></div>
+  </form>
+</div>
+<div class="bar" id="bar" hidden><div><span id="sum"></span><button class="btn" id="send" type="button">Send request</button></div></div>
+<script>
+const slug = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '');
+const naira = n => '₦' + Number(n).toLocaleString('en-NG');
+const $ = id => document.getElementById(id);
+let shop = null, products = [], cart = {};
+
+function show(text, cls){ const m=$('msg'); m.className='msg '+cls; m.textContent=text; }
+function total(){ return products.reduce((a,p)=>a+(cart[p.id]||0)*p.price,0); }
+function count(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+
+function render(){
+  const list = $('list'); list.innerHTML = '';
+  for(const p of products){
+    const row = document.createElement('div'); row.className = 'item';
+    const info = document.createElement('div'); info.className = 'info';
+    const b = document.createElement('b'); b.textContent = p.name;
+    const d = document.createElement('small'); d.textContent = p.description;
+    const pr = document.createElement('div'); pr.className = 'price'; pr.textContent = naira(p.price);
+    info.append(b, d, pr); row.append(info);
+    if(!p.in_stock){ const o=document.createElement('div'); o.className='out'; o.textContent='Out of stock'; row.append(o); }
+    else {
+      const q = document.createElement('div'); q.className = 'qty';
+      const minus = document.createElement('button'); minus.type='button'; minus.textContent='−'; minus.setAttribute('aria-label','Remove one');
+      const n = document.createElement('span'); n.textContent = cart[p.id]||0;
+      const plus = document.createElement('button'); plus.type='button'; plus.textContent='+'; plus.setAttribute('aria-label','Add one');
+      minus.onclick = ()=>{ cart[p.id]=Math.max(0,(cart[p.id]||0)-1); update(); };
+      plus.onclick = ()=>{ cart[p.id]=Math.min(99,(cart[p.id]||0)+1); update(); };
+      q.append(minus, n, plus); row.append(q);
+    }
+    list.append(row);
+  }
+  if(!products.length){ const e=document.createElement('p'); e.className='tag'; e.textContent='No products listed yet.'; list.append(e); }
+}
+function update(){
+  render();
+  const c = count();
+  $('f').hidden = c===0; $('bar').hidden = c===0;
+  $('sum').textContent = c + (c===1?' item · ':' items · ') + naira(total());
+}
+
+async function load(){
+  try{
+    const r = await fetch('/api/public-shop/' + encodeURIComponent(slug));
+    if(!r.ok) throw 0;
+    const data = await r.json();
+    shop = data.shop; products = data.products;
+    document.title = shop.name; $('name').textContent = shop.name; $('tag').textContent = shop.tagline || '';
+    render();
+  }catch(e){
+    $('name').textContent = 'Shop not available';
+    $('tag').textContent = 'This shop link may be wrong or the shop is currently closed.';
+  }
+}
+
+$('send').onclick = async ()=>{
+  const items = products.filter(p=>cart[p.id]).map(p=>({product_id:p.id, qty:cart[p.id]}));
+  const name = $('cn').value.trim(), phone = $('cp').value.trim();
+  if(!name || phone.replace(/\D/g,'').length < 7){ show('Please enter your name and a valid phone number.','err'); $('f').scrollIntoView({behavior:'smooth'}); return; }
+  $('send').disabled = true;
+  try{
+    const r = await fetch('/api/public-shop/' + encodeURIComponent(slug) + '/inquiry', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name, phone, note:$('cnote').value, website:$('website').value, items})
+    });
+    const data = await r.json();
+    if(!r.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+    const lines = products.filter(p=>cart[p.id]).map(p=>cart[p.id]+' x '+p.name).join(', ');
+    $('bar').hidden = true;
+    show('Thank you, ' + name + '! Your request was sent. The shop will contact you soon.','good');
+    if(shop.whatsapp){
+      const a = document.createElement('a'); a.className='btn'; a.style.marginTop='12px'; a.target='_blank'; a.rel='noopener';
+      a.textContent = 'Chat on WhatsApp';
+      a.href = 'https://wa.me/' + shop.whatsapp + '?text=' + encodeURIComponent('Hello, I just sent an order request: ' + lines + '. My name is ' + name + '.');
+      $('msg').append(document.createElement('br'), a);
+    }
+    cart = {}; $('list').innerHTML = ''; $('send').disabled = true;
+  }catch(e){ show(e.message,'err'); $('send').disabled = false; }
+};
+load();
+</script>
+</body>
+</html>

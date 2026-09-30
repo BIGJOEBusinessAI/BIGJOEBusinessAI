@@ -1015,22 +1015,101 @@ $("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
 PAGE_PLAN_REQUIREMENT.shop='pro';
 let shopData=null, shopInquiries=[];
 (function initShopPage(){
+  if(!document.getElementById('shopStyles')){
+    const st=document.createElement('style'); st.id='shopStyles';
+    st.textContent=`
+#shop{max-width:1120px;margin:0 auto;padding:8px 20px 64px;box-sizing:border-box}
+#shop .section-head{margin-bottom:22px}
+#shop .sp-stack{display:flex;flex-direction:column;gap:26px}
+#shop .sp-card{background:#fff;border:1px solid #e3e8f0;border-radius:16px;padding:26px;box-shadow:0 2px 12px rgba(11,42,92,.07);color:#0f172a}
+#shop .sp-card h3{margin:0 0 4px;font-size:19px;color:#0b2a5c}
+#shop .sp-sub{margin:0 0 20px;color:#64748b;font-size:14px;line-height:1.5}
+#shop .sp-linkrow{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+#shop .sp-url{flex:1;min-width:240px;background:#f1f5f9;border:1px dashed #b6c2d4;border-radius:10px;padding:13px 16px;font-weight:600;color:#0b2a5c;word-break:break-all}
+#shop .sp-row{display:flex;gap:10px;flex-wrap:wrap}
+#shop .sp-warn{margin:14px 0 0;padding:10px 14px;border-radius:10px;background:#fff7e0;color:#7a5200;font-size:14px}
+#shop .sp-switch{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:22px;cursor:pointer;font-weight:600;color:#1e293b}
+#shop .sp-switch input{position:absolute;opacity:0;width:1px;height:1px}
+#shop .sp-track{position:relative;flex:none;width:48px;height:27px;background:#cbd5e1;border-radius:99px;transition:background .2s}
+#shop .sp-track::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:left .2s}
+#shop .sp-switch input:checked+.sp-track{background:#16a34a}
+#shop .sp-switch input:checked+.sp-track::after{left:24px}
+#shop .sp-switch input:focus-visible+.sp-track{outline:3px solid #f4b94266}
+#shop .sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
+#shop .sp-field label{display:block;margin:0 0 7px;font-size:14px;font-weight:600;color:#1e293b}
+#shop .sp-field input[type=text],#shop .sp-field input:not([type]){width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;font-size:15px;background:#fff;color:#0f172a}
+#shop .sp-field input:focus{outline:none;border-color:#0b2a5c;box-shadow:0 0 0 3px #f4b94255}
+#shop .sp-hint{margin-top:6px;font-size:12px;color:#64748b}
+#shop .sp-prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+#shop .sp-chip{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid #e3e8f0;border-radius:12px;background:#f8fafc;cursor:pointer;margin:0}
+#shop .sp-chip:has(input:checked){border-color:#0b2a5c;background:#eef3fb}
+#shop .sp-chip input{width:18px;height:18px;flex:none;margin:0;accent-color:#0b2a5c}
+#shop .sp-chip b{display:block;font-size:15px;color:#0f172a}
+#shop .sp-chip small{display:block;margin-top:2px;color:#64748b;font-size:13px}
+#shop .sp-actions{display:flex;justify-content:flex-end}
+#shop .sp-btn{display:inline-block;border:0;border-radius:10px;padding:12px 24px;font-family:inherit;font-size:15px;font-weight:600;line-height:1.2;cursor:pointer;text-decoration:none;text-align:center}
+#shop .sp-primary{background:#0b2a5c;color:#fff}
+#shop .sp-primary:hover{background:#123a7d}
+#shop .sp-gold{background:#f4b942;color:#3a2a00}
+#shop .sp-gold:hover{background:#e9aa2a}
+#shop .sp-ghost{background:#fff;color:#0b2a5c;border:1px solid #cbd5e1}
+#shop .sp-ghost:hover{background:#f1f5f9}
+#shop .sp-small{padding:8px 14px;font-size:13px;margin-top:8px}
+#shop .sp-count{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:99px;background:#eef3fb;color:#0b2a5c;font-size:13px;vertical-align:middle}
+#shop .sp-tablewrap{overflow-x:auto;margin-top:6px}
+#shop table{width:100%;min-width:760px;border-collapse:collapse}
+#shop th{padding:10px 14px;text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#64748b;border-bottom:2px solid #e3e8f0;background:transparent}
+#shop td{padding:16px 14px;vertical-align:top;font-size:14px;border-bottom:1px solid #eef2f7;color:#0f172a}
+#shop tr:last-child td{border-bottom:0}
+#shop td b{font-size:15px}
+#shop .sp-wa{display:inline-block;margin-top:2px;color:#0b6bcb;font-weight:600;text-decoration:none}
+#shop .sp-wa:hover{text-decoration:underline}
+#shop .sp-note{margin-top:6px;color:#64748b;font-style:italic}
+#shop .sp-date small{display:block;color:#64748b;margin-top:2px}
+#shop .sp-total{font-weight:700;white-space:nowrap}
+#shop select.sp-status{padding:8px 12px;border-radius:99px;border:1px solid #cbd5e1;font:inherit;font-size:13px;font-weight:600;cursor:pointer;background:#fff}
+#shop select.sp-st-new{background:#fff4d6;border-color:#f0cf7a;color:#7a5200}
+#shop select.sp-st-contacted{background:#e3efff;border-color:#a9c8f5;color:#0b4a9a}
+#shop select.sp-st-sold{background:#dcf5e3;border-color:#93d6a6;color:#146c2e}
+#shop select.sp-st-closed{background:#eef1f5;border-color:#cbd5e1;color:#475569}
+#shop select.sp-st-spam{background:#fde4e1;border-color:#f2aaa2;color:#9a2517}
+#shop .sp-sold{display:block;margin-top:8px;font-size:13px;color:#146c2e}
+#shop .sp-empty{padding:30px;text-align:center;color:#64748b;background:#f8fafc;border-radius:12px}
+@media(max-width:700px){#shop{padding:8px 12px 56px}#shop .sp-grid{grid-template-columns:1fr}#shop .sp-card{padding:20px}#shop .sp-actions .sp-btn{width:100%}}`;
+    document.head.appendChild(st);
+  }
   const app=$('app'); if(!app||$('shop'))return;
   const sec=document.createElement('section'); sec.id='shop'; sec.className='page hidden';
   sec.innerHTML=`<div class="section-head"><div><h2>Public Shop</h2><p class="muted">Share one link where customers can browse your products and send order requests.</p></div></div>
-  <div class="box">
-    <div id="shopLinkBox" class="settings-note"></div>
-    <label><input type="checkbox" id="shopEnabled"> Shop is open to the public</label>
-    <label>Shop link name<input id="shopSlug" placeholder="e.g. joe-perfumes" maxlength="40"></label>
-    <label>Shop name<input id="shopName" maxlength="80"></label>
-    <label>Tagline (optional)<input id="shopTagline" maxlength="140"></label>
-    <label>WhatsApp number with country code<input id="shopWhatsapp" placeholder="2348012345678" maxlength="20"></label>
-    <h3>Products to show</h3>
-    <div id="shopProducts"></div>
-    <button class="primary" type="button" onclick="saveShopSettings()">Save shop</button>
-  </div>
-  <h3>Order requests</h3>
-  <div id="shopInquiries"></div>`;
+  <div class="sp-stack">
+    <div class="sp-card">
+      <h3>Your shop link</h3>
+      <p class="sp-sub">Post this link on Instagram, TikTok, WhatsApp status and Facebook.</p>
+      <div id="shopLinkBox"></div>
+      <label class="sp-switch"><input type="checkbox" id="shopEnabled"><span class="sp-track"></span><span>Shop is open to the public</span></label>
+    </div>
+    <div class="sp-card">
+      <h3>Shop details</h3>
+      <p class="sp-sub">This is what customers see at the top of your shop page.</p>
+      <div class="sp-grid">
+        <div class="sp-field"><label for="shopSlug">Shop link name</label><input id="shopSlug" type="text" placeholder="e.g. joe-perfumes" maxlength="40"><div class="sp-hint">Letters, numbers and dashes only.</div></div>
+        <div class="sp-field"><label for="shopName">Shop name</label><input id="shopName" type="text" placeholder="e.g. Joe Perfumes" maxlength="80"></div>
+        <div class="sp-field"><label for="shopTagline">Tagline (optional)</label><input id="shopTagline" type="text" placeholder="e.g. Original perfumes, delivered" maxlength="140"></div>
+        <div class="sp-field"><label for="shopWhatsapp">WhatsApp number</label><input id="shopWhatsapp" type="text" placeholder="2348012345678" maxlength="20"><div class="sp-hint">Include the country code, no plus sign.</div></div>
+      </div>
+    </div>
+    <div class="sp-card">
+      <h3>Products to show</h3>
+      <p class="sp-sub">Only ticked products appear in your public shop.</p>
+      <div id="shopProducts"></div>
+    </div>
+    <div class="sp-actions"><button class="sp-btn sp-primary" type="button" onclick="saveShopSettings()">Save shop</button></div>
+    <div class="sp-card">
+      <h3>Order requests<span class="sp-count" id="shopCount">0</span></h3>
+      <p class="sp-sub">Contact the customer on WhatsApp, then record the sale when they confirm.</p>
+      <div id="shopInquiries"></div>
+    </div>
+  </div>`;
   app.appendChild(sec);
   const dd=document.querySelector('.features-dropdown');
   if(dd){const b=document.createElement('button');b.type='button';b.setAttribute('onclick',"showPage('shop',this)");b.textContent='🛍 Public Shop';dd.appendChild(b);}
@@ -1038,7 +1117,9 @@ let shopData=null, shopInquiries=[];
 function shopUrl(slug){return window.location.origin+'/shop/'+encodeURIComponent(slug)}
 function renderShopLink(){
   const sh=(shopData&&shopData.shop)||{},box=$('shopLinkBox');
-  box.innerHTML=sh.slug?`Your shop link: <b>${esc(shopUrl(sh.slug))}</b> ${sh.enabled?'':'(currently closed)'} <button type="button" class="link" onclick="copyShopLink()">Copy link</button>`:'Choose a link name below and save to get your shop link.';
+  if(!sh.slug){box.innerHTML='<div class="sp-url">Choose a link name below and save to get your shop link.</div>';return}
+  const u=shopUrl(sh.slug);
+  box.innerHTML=`<div class="sp-linkrow"><div class="sp-url">${esc(u)}</div><div class="sp-row"><button type="button" class="sp-btn sp-gold" onclick="copyShopLink()">Copy link</button><a class="sp-btn sp-ghost" href="${esc(u)}" target="_blank" rel="noopener">Open shop</a></div></div>${sh.enabled?'':'<p class="sp-warn">Your shop is currently closed. Turn it on below and save so customers can see it.</p>'}`;
 }
 function copyShopLink(){const sh=(shopData&&shopData.shop)||{};if(!sh.slug)return;const u=shopUrl(sh.slug);navigator.clipboard?.writeText(u).then(()=>toast('Shop link copied.')).catch(()=>toast(u))}
 async function loadShop(){
@@ -1046,12 +1127,12 @@ async function loadShop(){
   shopData=s; const sh=s.shop||{};
   $('shopEnabled').checked=!!sh.enabled; $('shopSlug').value=sh.slug||''; $('shopName').value=sh.name||'';
   $('shopTagline').value=sh.tagline||''; $('shopWhatsapp').value=sh.whatsapp||'';
-  $('shopProducts').innerHTML=(s.products||[]).length?s.products.map(p=>`<label><input type="checkbox" class="shopProd" value="${esc(p.id)}" ${p.visible?'checked':''}> ${esc(p.name)} - ${money(p.selling_price)}</label>`).join(''):'<div class="empty">Add products in Inventory first.</div>';
+  $('shopProducts').innerHTML=(s.products||[]).length?`<div class="sp-prods">${s.products.map(p=>`<label class="sp-chip"><input type="checkbox" class="shopProd" value="${esc(p.id)}" ${p.visible?'checked':''}><span><b>${esc(p.name)}</b><small>${money(p.selling_price)}</small></span></label>`).join('')}</div>`:'<div class="sp-empty">Add products in Inventory first.</div>';
   renderShopLink(); renderShopInquiries(q.inquiries||[]);
 }
 async function saveShopSettings(){
   try{
-    const d=await api('/api/shop-settings',{method:'PUT',body:JSON.stringify({
+    await api('/api/shop-settings',{method:'PUT',body:JSON.stringify({
       enabled:$('shopEnabled').checked,slug:$('shopSlug').value.trim(),name:$('shopName').value.trim(),
       tagline:$('shopTagline').value.trim(),whatsapp:$('shopWhatsapp').value.trim(),
       product_ids:[...document.querySelectorAll('.shopProd:checked')].map(x=>x.value)})});
@@ -1059,18 +1140,18 @@ async function saveShopSettings(){
   }catch(e){toast(e.message,true)}
 }
 function renderShopInquiries(list){
-  const el=$('shopInquiries');
-  if(!list.length){el.innerHTML='<div class="empty">No order requests yet. Share your shop link to get started.</div>';return}
-  shopInquiries=list; const opts=['new','contacted','sold','closed','spam'];
-  el.innerHTML=`<table><thead><tr><th>Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody>${list.map(x=>`<tr>
-    <td>${esc(new Date(x.created_at).toLocaleString())}</td>
-    <td><b>${esc(x.customer_name)}</b><br><a class="link" target="_blank" rel="noopener" href="https://wa.me/${esc(String(x.phone).replace(/^0/,'234'))}">${esc(x.phone)}</a>${x.note?`<br><span class="muted">${esc(x.note)}</span>`:''}</td>
+  const el=$('shopInquiries'); shopInquiries=list; $('shopCount').textContent=list.length;
+  if(!list.length){el.innerHTML='<div class="sp-empty">No order requests yet. Share your shop link to get started.</div>';return}
+  const opts=['new','contacted','sold','closed','spam'];
+  el.innerHTML=`<div class="sp-tablewrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody>${list.map(x=>{const d=new Date(x.created_at);return `<tr>
+    <td class="sp-date">${esc(d.toLocaleDateString())}<small>${esc(d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}))}</small></td>
+    <td><b>${esc(x.customer_name)}</b><br><a class="sp-wa" target="_blank" rel="noopener" href="https://wa.me/${esc(String(x.phone).replace(/^0/,'234'))}">${esc(x.phone)}</a>${x.note?`<div class="sp-note">${esc(x.note)}</div>`:''}</td>
     <td>${(x.items||[]).map(i=>esc(i.qty+' x '+i.name)).join('<br>')}</td>
-    <td>${money(x.total)}</td>
-    <td><select onchange="setInquiryStatus('${esc(x.id)}',this.value)">${opts.map(o=>`<option value="${o}" ${o===x.status?'selected':''}>${o}</option>`).join('')}</select>${x.status==='sold'?`<br><span class="muted">Sale recorded${x.invoice_no?' · '+esc(x.invoice_no):''}</span>`:x.status==='spam'?'':`<br><button type="button" class="link" onclick="recordInquiryAsSale('${esc(x.id)}')">Record as sale</button>`}</td></tr>`).join('')}</tbody></table>`;
+    <td class="sp-total">${money(x.total)}</td>
+    <td><select class="sp-status sp-st-${esc(x.status)}" onchange="setInquiryStatus('${esc(x.id)}',this.value)">${opts.map(o=>`<option value="${o}" ${o===x.status?'selected':''}>${o}</option>`).join('')}</select>${x.status==='sold'?`<span class="sp-sold">Sale recorded${x.invoice_no?' · '+esc(x.invoice_no):''}</span>`:x.status==='spam'?'':`<br><button type="button" class="sp-btn sp-primary sp-small" onclick="recordInquiryAsSale('${esc(x.id)}')">Record as sale</button>`}</td></tr>`}).join('')}</tbody></table></div>`;
 }
 async function setInquiryStatus(id,status){
-  try{await api('/api/shop-inquiries/'+encodeURIComponent(id)+'/status',{method:'POST',body:JSON.stringify({status})});toast('Status updated.')}catch(e){toast(e.message,true)}
+  try{await api('/api/shop-inquiries/'+encodeURIComponent(id)+'/status',{method:'POST',body:JSON.stringify({status})});toast('Status updated.');const q=await api('/api/shop-inquiries');renderShopInquiries(q.inquiries||[])}catch(e){toast(e.message,true)}
 }
 // Record an order request as a sale: loads it into the POS cart with the customer selected.
 // The owner reviews it and presses the normal complete-sale button; the request is then marked sold.
@@ -1211,4 +1292,3 @@ async function loadCommandCenter(){try{
  $('commandActions').innerHTML=(d.actions||[]).map(x=>`<div class="decision-card priority-${esc(x.priority)}"><div class="decision-card-top"><span class="decision-priority">${esc(title(x.priority))}</span></div><h4>${esc(x.title)}</h4><p>${esc(x.text)}</p><button class="link" onclick="showPage('${esc(x.page)}',this)">Open related feature →</button></div>`).join('');
  $('commandSnapshot').innerHTML=`<div class="snapshot-row"><span>Products tracked</span><b>${c.products||0}</b></div><div class="snapshot-row"><span>Customers</span><b>${c.customers||0}</b></div><div class="snapshot-row"><span>Suppliers</span><b>${c.suppliers||0}</b></div><div class="snapshot-row"><span>Sales this month</span><b>${c.sales||0}</b></div><div class="snapshot-row"><span>Gross margin</span><b>${Number(s.margin||0).toFixed(1)}%</b></div>`;
 }catch(e){toast(e.message,true)}}
-

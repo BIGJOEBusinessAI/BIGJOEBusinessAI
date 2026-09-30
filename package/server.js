@@ -2943,7 +2943,7 @@ function redirectHtml(res, target, message) {
   res.end(`<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="2;url=${target}"><title>BIGJOE</title></head><body style="font-family:Arial;padding:40px"><h2>BIGJOE</h2><p>${safe}</p><p>Returning to BIGJOE...</p></body></html>`);
 }
 function serveStatic(res, pathname) {
-  let file = pathname === "/" ? "index.html" : pathname.replace(/^\/+/,"");
+  let file = pathname === "/" ? "index.html" : /^\/shop\/[^/]+\/?$/.test(pathname) ? "shop.html" : pathname.replace(/^\/+/,"");
   if(file.includes("..")) return json(res,403,{error:"Forbidden"});
   const full=path.join(PUBLIC_DIR,file);
   if(!fs.existsSync(full) || !fs.statSync(full).isFile()) return json(res,404,{error:"Not found"});

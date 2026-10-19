@@ -101,6 +101,30 @@ function ensureReferralField(show){
   }
   wrap.style.display=show?'block':'none';
 }
+// ---------- Trial note on the login card + compact lists (patch 2) ----------
+function ensureTrialNote(reg){
+  let note=$('trialNote');
+  if(!note){
+    const anchor=$('authTitle'); if(!anchor||!anchor.parentNode)return;
+    note=document.createElement('div'); note.id='trialNote';
+    note.style.cssText='margin:10px 0 14px;padding:10px 14px;border-radius:10px;background:#fff7e0;border:1px solid #f0cf7a;color:#5b4200;font-size:14px;line-height:1.5';
+    anchor.insertAdjacentElement('afterend',note);
+  }
+  note.innerHTML=reg
+    ?'🎁 <b>You are starting a 7-day free trial</b> with full Pro access. No payment needed.'
+    :'🎁 New to BIGJOE? <b>Create an account and enjoy a 7-day free trial</b> with full Pro access. No payment needed.';
+}
+(function injectCompactListStyles(){
+  if(document.getElementById('compactListStyles'))return;
+  const st=document.createElement('style'); st.id='compactListStyles';
+  st.textContent=
+    '#customerLeaderboard .table-scroll,#likelyToBuy .table-scroll{max-height:230px;overflow:auto}'+
+    '#loyaltyCustomers{max-height:260px;overflow:auto}'+
+    '#customerLeaderboard table,#likelyToBuy table,#loyaltyCustomers table{font-size:13px}'+
+    '#customerLeaderboard th,#customerLeaderboard td,#likelyToBuy th,#likelyToBuy td,#loyaltyCustomers th,#loyaltyCustomers td{padding:6px 8px}'+
+    '#customerLeaderboard small,#likelyToBuy small{font-size:11px}';
+  document.head.appendChild(st);
+})();
 function togglePasswordVisibility(){const input=$("password"),btn=document.querySelector(".password-toggle");if(!input||!btn)return;const show=input.type==="password";input.type=show?"text":"password";btn.textContent=show?"Hide":"Show";btn.setAttribute("aria-label",show?"Hide password":"Show password");btn.setAttribute("aria-pressed",String(show));}
 function showAuth(mode){
   setPublicSiteVisible(false);
@@ -114,6 +138,7 @@ function showAuth(mode){
   ensureReferralField(reg);
   $("authSwitch").innerHTML=reg?`Already have an account? <a href="#" onclick="showAuth('login')">Log in</a>`:`New to BIGJOE? <a href="#" onclick="showAuth('register')">Create an account</a>`;
   $("authForm").dataset.mode=mode;
+  try{ensureTrialNote(reg)}catch(e){console.warn("Trial note error:",e)}
   const nav=$("nav");
   if(nav) nav.innerHTML='';
   setScreen("auth");
@@ -739,7 +764,7 @@ $('customerActions').innerHTML=(d.actions||[]).map(x=>`<div class="insight"><b>$
 // customer at once — that's what was making the Customer Intelligence page feel endless on a
 // phone. The cached data avoids a refetch when someone taps "Show all".
 let __custIntelCache={customers:[],likely:[]};
-const LEADER_ROW_LIMIT=5;
+const LEADER_ROW_LIMIT=3;
 function renderCustomerLeaderboard(expanded){
   const rows=__custIntelCache.customers,list=expanded?rows:rows.slice(0,LEADER_ROW_LIMIT);
   const table=rows.length?`<table><thead><tr><th>Customer</th><th>Orders</th><th>Total Spent</th><th>Avg Order</th><th>Last Purchase</th><th>Days Since</th><th>Segment</th></tr></thead><tbody>${list.map(x=>`<tr><td><b>${esc(x.name)}</b><small>${esc(x.phone||x.email||'')}</small></td><td>${x.orders}</td><td>${money(x.total_spent)}</td><td>${money(x.avg_order)}</td><td>${x.last_purchase||'—'}</td><td>${x.days_since_last===null?'—':x.days_since_last}</td><td><span class="segment-pill ${esc(x.segment_key)}">${esc(x.segment)}</span></td></tr>`).join('')}</tbody></table>`:'<div class="empty">No customer sales history yet.</div>';

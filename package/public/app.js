@@ -69,6 +69,38 @@ function showWelcome(){
   if(nav) nav.innerHTML=`<button class="top-start-free" onclick="showAuth('login')">Start free</button>`;
   setScreen("welcome");
 }
+// ---------- Free trial banner & referral code (added) ----------
+function renderTrialBanner(){
+  const app=$('app'); if(!app||!user)return;
+  let el=$('trialBanner');
+  const ended=!user.trial && user.subscription_status==='trial';
+  if(actor.type==='staff'||(!user.trial&&!ended)){ if(el)el.remove(); return; }
+  if(!el){
+    el=document.createElement('div'); el.id='trialBanner'; el.className='settings-note';
+    el.style.cssText='margin:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap';
+    const firstPage=app.querySelector(':scope > .page');
+    if(firstPage)app.insertBefore(el,firstPage); else app.appendChild(el);
+  }
+  const days=Number(user.trial_days_left||0);
+  const urgent=user.trial&&days<=2;
+  el.style.borderLeft='4px solid '+((ended||urgent)?'#d92d20':'#f4b942');
+  el.innerHTML=ended
+    ?'<div><b>Your free trial has ended.</b> Subscribe to get your Pro or Business features back. Your data is safe.</div><button type="button" class="primary" onclick="showPage(\'plansPage\')">Choose a plan</button>'
+    :'<div><b>🎁 Free trial: '+days+' day'+(days===1?'':'s')+' left.</b> You have full Pro access. Subscribe any time to keep it.</div><button type="button" class="primary" onclick="showPage(\'plansPage\')">Choose a plan</button>';
+  if(user.trial&&$('userPlan'))$('userPlan').textContent='Pro • Trial ('+days+'d left)';
+}
+function ensureReferralField(show){
+  let wrap=$('referralField');
+  if(!wrap){
+    const anchor=$('nameField'); if(!anchor||!anchor.parentNode)return;
+    wrap=document.createElement('label'); wrap.id='referralField';
+    wrap.innerHTML='Referral code (optional)<input id="referralCode" type="text" maxlength="30" placeholder="e.g. AGENT-AMINA" autocomplete="off">';
+    anchor.parentNode.insertBefore(wrap,anchor.nextSibling);
+    let ref=''; try{ref=new URLSearchParams(window.location.search).get('ref')||''}catch{}
+    if(ref)$('referralCode').value=ref.trim().toUpperCase();
+  }
+  wrap.style.display=show?'block':'none';
+}
 function togglePasswordVisibility(){const input=$("password"),btn=document.querySelector(".password-toggle");if(!input||!btn)return;const show=input.type==="password";input.type=show?"text":"password";btn.textContent=show?"Hide":"Show";btn.setAttribute("aria-label",show?"Hide password":"Show password");btn.setAttribute("aria-pressed",String(show));}
 function showAuth(mode){
   setPublicSiteVisible(false);
@@ -79,6 +111,7 @@ function showAuth(mode){
   $("authTitle").textContent=reg?"Create your account":"Welcome back";
   $("authButton").textContent=reg?"Create account":"Log in";
   $("nameField").style.display=reg?"block":"none";
+  ensureReferralField(reg);
   $("authSwitch").innerHTML=reg?`Already have an account? <a href="#" onclick="showAuth('login')">Log in</a>`:`New to BIGJOE? <a href="#" onclick="showAuth('register')">Create an account</a>`;
   $("authForm").dataset.mode=mode;
   const nav=$("nav");
@@ -86,7 +119,7 @@ function showAuth(mode){
   setScreen("auth");
   setTimeout(()=>$("email")?.focus(),50);
 }
-$("authForm").onsubmit=async e=>{e.preventDefault();const form=e.currentTarget;const btn=$("authButton");const original=btn.textContent;btn.disabled=true;btn.textContent="Please wait...";try{const mode=form.dataset.mode||"login",email=$("email").value.trim(),password=$("password").value,name=$("name").value.trim();if(!email||!password||(mode==="register"&&!name)){throw new Error("Please enter all required fields.")}const d=await api("/api/"+(mode==="register"?"register":"login"),{method:"POST",body:JSON.stringify({name,email,password})});if(!d||!d.user) throw new Error("Login completed but no account session was returned. Please try again.");user=d.user;window.__bigjoeAuthToken=d.session&&d.session.access_token?d.session.access_token:null;await renderApp()}catch(e){console.error("BIGJOE authentication error:",e);toast(e.message||"Unable to log in. Please try again.",true)}finally{btn.disabled=false;btn.textContent=original}}
+$("authForm").onsubmit=async e=>{e.preventDefault();const form=e.currentTarget;const btn=$("authButton");const original=btn.textContent;btn.disabled=true;btn.textContent="Please wait...";try{const mode=form.dataset.mode||"login",email=$("email").value.trim(),password=$("password").value,name=$("name").value.trim();if(!email||!password||(mode==="register"&&!name)){throw new Error("Please enter all required fields.")}const d=await api("/api/"+(mode==="register"?"register":"login"),{method:"POST",body:JSON.stringify({name,email,password})});if(!d||!d.user) throw new Error("Login completed but no account session was returned. Please try again.");user=d.user;window.__bigjoeAuthToken=d.session&&d.session.access_token?d.session.access_token:null;if(mode==="register"){const ref=($("referralCode")?.value||"").trim();if(ref){try{await api("/api/referral",{method:"POST",body:JSON.stringify({code:ref})})}catch(refErr){console.warn("Referral code not saved:",refErr)}}}await renderApp()}catch(e){console.error("BIGJOE authentication error:",e);toast(e.message||"Unable to log in. Please try again.",true)}finally{btn.disabled=false;btn.textContent=original}}
 async function renderApp(){
   setPublicSiteVisible(false);
   $("landing").classList.add("hidden");
@@ -932,12 +965,13 @@ function renderPlans(planMap){
     const features=Array.isArray(p.features)&&p.features.length?p.features:local[k];
     const previouslyExpired=!current && paid && expired && String(user.subscription_plan)===k;
     let action;
-    if(current && paid) action=`<button type="button" class="plan-button flutterwave-button" onclick="pay('${k}')">Renew for another month</button>`;
+    if(current && paid) action=`<button type="button" class="plan-button flutterwave-button" onclick="pay('${k}')">${user?.trial?'Subscribe to keep Pro after trial':'Renew for another month'}</button>`;
     else if(current) action='<button class="plan-button current-button" disabled>✓ Current plan</button>';
     else if(previouslyExpired) action=`<button type="button" class="plan-button flutterwave-button" onclick="pay('${k}')">Renew ${esc(p.name)}</button>`;
     else if(paid) action=`<button type="button" class="plan-button flutterwave-button" onclick="pay('${k}')">Subscribe with Flutterwave</button>`;
     else action='<button type="button" class="plan-button free-button" onclick="selectFreePlan()">Start Free Forever</button>';
     let expiryNote='';
+    if(current && paid && user?.trial) expiryNote=`<div class="subscription-point">🎁 <b>Free trial: ${Number(user.trial_days_left||0)} day(s) left.</b> Subscribe to keep this plan.</div>`;
     if(current && paid && expiresAt) expiryNote=`<div class="subscription-point">${daysLeft!==null&&daysLeft<=7?'⚠ ':''}<b>${daysLeft!==null&&daysLeft>=0?`Renews/expires in ${daysLeft} day${daysLeft===1?'':'s'}`:'Expires'}:</b> ${expiresAt.toLocaleDateString('en-NG')}</div>`;
     else if(previouslyExpired) expiryNote=`<div class="subscription-point">⚠ <b>Expired${user.subscription_expires_at?` on ${new Date(user.subscription_expires_at).toLocaleDateString('en-NG')}`:''}.</b> Renew to restore access.</div>`;
     return `<article class="plan plan-card ${popular?'plan-popular':''} ${current?'plan-current':''}">
@@ -965,6 +999,9 @@ async function loadPlans(){
       user.subscription_status=remote?.subscription_status||user.subscription_status;
       user.subscription_plan=remote?.subscription_plan||user.subscription_plan;
       user.subscription_expires_at=remote?.subscription_expires_at||null;
+      user.trial=!!remote?.trial;
+      user.trial_days_left=Number(remote?.trial_days_left||0);
+      renderTrialBanner();
     }
     if(remote?.plans){ window.__bigjoeRecurringPlans=remote.recurring_available||{}; renderPlans({...fallback,...remote.plans}); }
     applyPlanUI();

@@ -292,7 +292,13 @@ function requireUser(req, res, db) {
   const u = currentUser(req, db);
   if (!u) { json(res, 401, {error:"Please log in first."}); return null; }
   const pathname = String(req.url || "").split("?")[0];
-  const required = requiredPlanForPath(pathname);
+  let required = requiredPlanForPath(pathname);
+  // Every plan needs to read its branch list and pick the active branch, because the whole app
+  // (products, sales, customers) loads through it. Everything else about branches stays gated.
+  if (required && (
+    (pathname === "/api/branches" && String(req.method || "GET").toUpperCase() === "GET") ||
+    pathname === "/api/branches/select"
+  )) required = null;
   if (required) {
     const currentPlan = u.plan || "free";
     if ((PLAN_ORDER[currentPlan] ?? 0) < PLAN_ORDER[required]) {
